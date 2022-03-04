@@ -1,3 +1,4 @@
 ﻿  GitTutorial.cpp
+c:\data\110-2-oopl\gittutorial\gittutorial\gittutorial.cpp(9): warning C4244: '引數': 將 'time_t' 轉換為 'unsigned int'，由於類型不同，可能導致資料遺失
   LINK : 最後的累加連結找不到或未建置 C:\DATA\110-2-OOPL\GitTutorial\x64\Debug\GitTutorial.exe，正在執行完整連結
   GitTutorial.vcxproj -> C:\DATA\110-2-OOPL\GitTutorial\x64\Debug\GitTutorial.exe
