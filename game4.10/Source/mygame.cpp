@@ -58,6 +58,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "mygame.h"
+#include "cstdlib"
 
 namespace game_framework {
 /////////////////////////////////////////////////////////////////////////////
@@ -184,6 +185,59 @@ void CGameStateOver::OnShow()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+// 以下class為角色物件
+/////////////////////////////////////////////////////////////////////////////
+
+// PacMan
+CPacMan::CPacMan() {
+	x = y = 0;
+}
+
+void CPacMan::OnMove() {
+	if (y <= SIZE_Y) {
+		x += 3;
+		y += 3;
+	}
+	else {
+		x = y = 0;
+	}
+}
+
+void CPacMan::LoadBitmapA() {
+	pic.LoadBitmapA(IDB_PACMAN_1);
+}
+
+void CPacMan::OnShow() {
+	pic.SetTopLeft(x, y);
+	pic.ShowBitmap();
+}
+
+// Elf
+CElf::CElf() {
+	x = 300;
+	y = 200;
+}
+
+void CElf::LoadBitmapA(int IDB) {
+	pic.LoadBitmapA(IDB, RGB(0,0,0));
+}
+
+void CElf::OnMove() {
+
+}
+
+void CElf::OnShow() {
+	pic.SetTopLeft(x, y);
+	pic.ShowBitmap();
+}
+/*
+CElf CGameStateRun::c_Elf_red()
+{
+	return CElf();
+}
+*/
+
+/////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
 /////////////////////////////////////////////////////////////////////////////
 
@@ -191,11 +245,14 @@ CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g), NUMBALLS(28)
 {
 	ball = new CBall [NUMBALLS];
+	elf = new CElf[4];
+	//picX = picY = 0;
 }
 
 CGameStateRun::~CGameStateRun()
 {
 	delete [] ball;
+	delete[] elf;
 }
 
 void CGameStateRun::OnBeginState()
@@ -240,16 +297,21 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 移動球
 	//
+	/*
 	int i;
 	for (i=0; i < NUMBALLS; i++)
 		ball[i].OnMove();
+	*/
 	//
 	// 移動擦子
 	//
+	/*
 	eraser.OnMove();
+	*/
 	//
 	// 判斷擦子是否碰到球
 	//
+	/*
 	for (i=0; i < NUMBALLS; i++)
 		if (ball[i].IsAlive() && ball[i].HitEraser(&eraser)) {
 			ball[i].SetIsAlive(false);
@@ -264,10 +326,28 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 				GotoGameState(GAME_STATE_OVER);
 			}
 		}
+	*/
 	//
 	// 移動彈跳的球
 	//
+	/*
 	bball.OnMove();
+	*/
+
+	//
+	// 移動PacMan
+	//
+	/*
+	if (picX <= SIZE_Y) {
+		picX += 5;
+		picY += 5;
+	}
+	else {
+		picX = picY = 0;
+	}
+	PacMan.SetTopLeft(picX, picY);
+
+	c_PacMan.OnMove();*/
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -304,6 +384,22 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 	//
+
+	// 載入PacMan
+	/*
+	PacMan.LoadBitmap(IDB_PACMAN_1, RGB(0,0,0));
+	*/
+	c_PacMan.LoadBitmapA();
+	elf[0].LoadBitmapA(IDB_ELF_RED_1);
+	elf[1].LoadBitmapA(IDB_ELF_BLUE_1);
+	elf[2].LoadBitmapA(IDB_ELF_PINK_1);
+	elf[3].LoadBitmapA(IDB_ELF_ORANGE_1);
+	/*
+	c_Elf_red.LoadBitmapA(IDB_ELF_RED_1);
+	c_Elf_blue.LoadBitmapA(IDB_ELF_BLUE_1);
+	c_Elf_pink.LoadBitmapA(IDB_ELF_PINK_1);
+	c_Elf_orange.LoadBitmapA(IDB_ELF_ORANGE_1);
+	*/
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -373,6 +469,7 @@ void CGameStateRun::OnShow()
 	//
 	//  貼上背景圖、撞擊數、球、擦子、彈跳的球
 	//
+	/*
 	background.ShowBitmap();			// 貼上背景圖
 	help.ShowBitmap();					// 貼上說明圖
 	hits_left.ShowBitmap();
@@ -380,12 +477,24 @@ void CGameStateRun::OnShow()
 		ball[i].OnShow();				// 貼上第i號球
 	bball.OnShow();						// 貼上彈跳的球
 	eraser.OnShow();					// 貼上擦子
+	*/
 	//
 	//  貼上左上及右下角落的圖
 	//
+	/*
 	corner.SetTopLeft(0,0);
 	corner.ShowBitmap();
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
 	corner.ShowBitmap();
+	*/
+
+	//顯示PacMan
+	/*
+	PacMan.ShowBitmap();
+	*/
+	c_PacMan.OnShow();
+	for (int i = 0; i < 4; i++) {
+		elf[i].OnShow();
+	}
 }
 }

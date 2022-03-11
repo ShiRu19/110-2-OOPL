@@ -54,6 +54,32 @@ namespace game_framework {
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
+	// 以下class為遊戲各個角色
+	/////////////////////////////////////////////////////////////////////////////
+
+	class CPacMan {
+	public:
+		CPacMan();
+		void LoadBitmap();
+		void OnMove();
+		void OnShow();
+	private:
+		CMovingBitmap pic;
+		int x, y;
+	};
+
+	class CElf {
+	public:
+		CElf();
+		void LoadBitmap(int IDB);
+		void OnMove();
+		void OnShow();
+	private:
+		CMovingBitmap pic;
+		int x, y;
+	};
+
+	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
 	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
@@ -101,6 +127,14 @@ namespace game_framework {
 		CEraser			eraser;		// 拍子
 		CInteger		hits_left;	// 剩下的撞擊數
 		CBouncingBall   bball;		// 反覆彈跳的球
+		CMovingBitmap   PacMan;     // 黃色小精靈
+		int             picX, picY; // PacMan座標位置
+		CPacMan         c_PacMan;   // 黃色小精靈
+		CElf            *elf;
+		CElf            c_Elf_red;  // 紅色幽靈
+		CElf            c_Elf_blue; // 藍色幽靈
+		CElf            c_Elf_pink;  // 粉色幽靈
+		CElf            c_Elf_orange; // 橘色幽靈
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

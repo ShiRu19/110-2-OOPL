@@ -323,6 +323,36 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\bitmap3.bmp" />
+    <Image Include="res\bitmap4.bmp" />
+    <Image Include="res\bitmap5.bmp" />
+    <Image Include="RES\blue_1.bmp" />
+    <Image Include="RES\blue_2.bmp" />
+    <Image Include="RES\blue_3.bmp" />
+    <Image Include="RES\blue_4.bmp" />
+    <Image Include="RES\blue_5.bmp" />
+    <Image Include="RES\ghost_1.bmp" />
+    <Image Include="RES\ghost_2.bmp" />
+    <Image Include="RES\ghost_3.bmp" />
+    <Image Include="RES\ghost_4.bmp" />
+    <Image Include="RES\orange_1.bmp" />
+    <Image Include="RES\orange_2.bmp" />
+    <Image Include="RES\orange_3.bmp" />
+    <Image Include="RES\orange_4.bmp" />
+    <Image Include="RES\orange_5.bmp" />
+    <Image Include="RES\pacman_1.bmp" />
+    <Image Include="RES\pink_1.bmp" />
+    <Image Include="RES\pink_2.bmp" />
+    <Image Include="RES\pink_3.bmp" />
+    <Image Include="RES\pink_4.bmp" />
+    <Image Include="RES\pink_5.bmp" />
+    <Image Include="RES\red_1.bmp" />
+    <Image Include="RES\red_2.bmp" />
+    <Image Include="RES\red_3.bmp" />
+    <Image Include="RES\red_4.bmp" />
+    <Image Include="RES\red_5.bmp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

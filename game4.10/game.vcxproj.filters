@@ -173,4 +173,90 @@
       <Filter>MFC</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\bitmap3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\orange_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\orange_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\pink_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\pink_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\pink_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\pink_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\pink_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\orange_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\orange_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\orange_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\pacman_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
