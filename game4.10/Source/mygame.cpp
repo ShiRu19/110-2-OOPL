@@ -192,14 +192,14 @@ CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g), NUMBALLS(28)
 {
 	//ball = new CBall [NUMBALLS];
-	elfs = new CGolst [4];
+	golsts = new CGolst [4];
 	//picX = picY = 0;
 }
 
 CGameStateRun::~CGameStateRun()
 {
 	//delete [] ball;
-	delete [] elfs;
+	delete [] golsts;
 }
 
 void CGameStateRun::OnBeginState()
@@ -328,17 +328,17 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 	// 載入PacMan及elfs
 	c_PacMan.LoadBitmapA();
-	elfs[0].LoadBitmapA(IDB_ELF_RED_1);
-	elfs[1].LoadBitmapA(IDB_ELF_BLUE_1);
-	elfs[2].LoadBitmapA(IDB_ELF_PINK_1);
-	elfs[3].LoadBitmapA(IDB_ELF_ORANGE_1);
+	golsts[0].LoadBitmapA(IDB_ELF_RED_1);
+	golsts[1].LoadBitmapA(IDB_ELF_BLUE_1);
+	golsts[2].LoadBitmapA(IDB_ELF_PINK_1);
+	golsts[3].LoadBitmapA(IDB_ELF_ORANGE_1);
 
 	// 設置位置
 	c_PacMan.SetTopLeft(100, 100);
-	elfs[0].SetTopLeft(0, 0);
-	elfs[1].SetTopLeft(60, 0);
-	elfs[2].SetTopLeft(120, 0);
-	elfs[3].SetTopLeft(180, 0);
+	golsts[0].SetTopLeft(0, 0);
+	golsts[1].SetTopLeft(60, 0);
+	golsts[2].SetTopLeft(120, 0);
+	golsts[3].SetTopLeft(180, 0);
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -410,7 +410,7 @@ void CGameStateRun::OnShow()
 	//
 	c_PacMan.OnShow();
 	for (int i = 0; i < 4; i++) {
-		elfs[i].OnShow();
+		golsts[i].OnShow();
 	}
 }
 }
