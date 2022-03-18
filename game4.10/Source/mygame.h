@@ -40,6 +40,8 @@
 
 #include "CEraser.h"
 #include "CBall.h"
+#include "CPacman.h"
+#include "CElf.h"
 #include "CBouncingBall.h"
 
 namespace game_framework {
@@ -51,32 +53,6 @@ namespace game_framework {
 		AUDIO_DING,				// 0
 		AUDIO_LAKE,				// 1
 		AUDIO_NTUT				// 2
-	};
-
-	/////////////////////////////////////////////////////////////////////////////
-	// 以下class為遊戲各個角色
-	/////////////////////////////////////////////////////////////////////////////
-
-	class CPacMan {
-	public:
-		CPacMan();
-		void LoadBitmap();
-		void OnMove();
-		void OnShow();
-	private:
-		CMovingBitmap pic;
-		int x, y;
-	};
-
-	class CElf {
-	public:
-		CElf();
-		void LoadBitmap(int IDB);
-		void OnMove();
-		void OnShow();
-	private:
-		CMovingBitmap pic;
-		int x, y;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -129,12 +105,14 @@ namespace game_framework {
 		CBouncingBall   bball;		// 反覆彈跳的球
 		CMovingBitmap   PacMan;     // 黃色小精靈
 		int             picX, picY; // PacMan座標位置
-		CPacMan         c_PacMan;   // 黃色小精靈
-		CElf            *elf;
+		CPacman         c_PacMan;   // 黃色小精靈
+		CElf            *elfs;       // 幽靈們
+		/*
 		CElf            c_Elf_red;  // 紅色幽靈
 		CElf            c_Elf_blue; // 藍色幽靈
 		CElf            c_Elf_pink;  // 粉色幽靈
 		CElf            c_Elf_orange; // 橘色幽靈
+		*/
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
