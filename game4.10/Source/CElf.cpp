@@ -24,8 +24,12 @@ namespace game_framework {
 		pic.LoadBitmapA(IDB, RGB(0, 0, 0));
 	}
 
-	void CElf::OnShow() {
+	void CElf::SetTopLeft(int x, int y) {
 		pic.SetTopLeft(x, y);
+	}
+
+	void CElf::OnShow() {
+		//pic.SetTopLeft(x, y);
 		pic.ShowBitmap();
 	}
 }

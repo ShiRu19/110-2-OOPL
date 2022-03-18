@@ -9,6 +9,7 @@ namespace game_framework {
 	public:
 		CElf();
 		void LoadBitmap(int IDB);										// 載入圖形
+		void CElf::SetTopLeft(int x, int y);
 		void OnMove();											// 移動
 		void OnShow();											// 將圖形貼到畫面
 	private:

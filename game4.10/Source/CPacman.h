@@ -9,6 +9,7 @@ namespace game_framework {
 	public:
 		CPacman();
 		void LoadBitmap();										// 載入圖形
+		void SetTopLeft(int x, int y);
 		void OnMove();											// 移動
 		void OnShow();											// 將圖形貼到畫面
 	private:

@@ -21,11 +21,14 @@ namespace game_framework {
 	}
 
 	void CPacman::LoadBitmapA() {
-		pic.LoadBitmapA(IDB_PACMAN_1);
+		pic.LoadBitmapA(IDB_PACMAN);
 	}
 
 	void CPacman::OnShow() {
-		pic.SetTopLeft(x, y);
 		pic.ShowBitmap();
+	}
+
+	void CPacman::SetTopLeft(int x, int y) {
+		pic.SetTopLeft(x, y);
 	}
 }

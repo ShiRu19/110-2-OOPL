@@ -21,7 +21,7 @@ namespace game_framework {
 	}
 
 	void CPacMan::LoadBitmapA() {
-		pic.LoadBitmapA(IDB_PACMAN_1);
+		pic.LoadBitmapA(IDB_PACMAN);
 	}
 
 	void CPacMan::OnShow() {

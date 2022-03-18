@@ -105,9 +105,6 @@
     <ClCompile Include="Source\gameDoc.cpp">
       <Filter>MFC</Filter>
     </ClCompile>
-    <ClCompile Include="Source\gamelib.cpp">
-      <Filter>GameLibrary</Filter>
-    </ClCompile>
     <ClCompile Include="Source\gameView.cpp">
       <Filter>MFC</Filter>
     </ClCompile>
@@ -135,6 +132,9 @@
     <ClCompile Include="Source\CElf.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\gamelib.cpp">
+      <Filter>GameLibrary</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -145,9 +145,6 @@
     </ClInclude>
     <ClInclude Include="Source\gameDoc.h">
       <Filter>MFC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\gamelib.h">
-      <Filter>GameLibrary</Filter>
     </ClInclude>
     <ClInclude Include="Source\gameView.h">
       <Filter>MFC</Filter>
@@ -178,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="Source\CElf.h">
       <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\gamelib.h">
+      <Filter>GameLibrary</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -268,6 +268,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\pacman_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\siru\Downloads\Pacman_1_.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
