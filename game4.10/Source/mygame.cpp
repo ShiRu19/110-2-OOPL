@@ -192,7 +192,7 @@ CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g), NUMBALLS(28)
 {
 	//ball = new CBall [NUMBALLS];
-	elfs = new CElf [4];
+	elfs = new CGolst [4];
 	//picX = picY = 0;
 }
 

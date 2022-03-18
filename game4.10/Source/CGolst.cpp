@@ -4,7 +4,7 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "CElf.h"
+#include "CGolst.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -12,23 +12,23 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 
 	// Elf
-	CElf::CElf() {
+	CGolst::CGolst() {
 		x = y = 0;
 	}
 
-	void CElf::OnMove() {
+	void CGolst::OnMove() {
 
 	}
 
-	void CElf::LoadBitmapA(int IDB) {
+	void CGolst::LoadBitmapA(int IDB) {
 		pic.LoadBitmapA(IDB, RGB(0, 0, 0));
 	}
 
-	void CElf::SetTopLeft(int x, int y) {
+	void CGolst::SetTopLeft(int x, int y) {
 		pic.SetTopLeft(x, y);
 	}
 
-	void CElf::OnShow() {
+	void CGolst::OnShow() {
 		//pic.SetTopLeft(x, y);
 		pic.ShowBitmap();
 	}
