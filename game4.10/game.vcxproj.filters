@@ -129,11 +129,11 @@
     <ClCompile Include="Source\CPacman.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CElf.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
     <ClCompile Include="Source\gamelib.cpp">
       <Filter>GameLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CGolst.cpp">
+      <Filter>MyGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -173,11 +173,11 @@
     <ClInclude Include="Source\CPacman.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\CElf.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
     <ClInclude Include="Source\gamelib.h">
       <Filter>GameLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CGolst.h">
+      <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

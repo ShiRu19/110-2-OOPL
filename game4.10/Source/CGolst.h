@@ -4,12 +4,12 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
-	class CElf
+	class CGolst
 	{
 	public:
-		CElf();
+		CGolst();
 		void LoadBitmap(int IDB);										// 載入圖形
-		void CElf::SetTopLeft(int x, int y);
+		void CGolst::SetTopLeft(int x, int y);
 		void OnMove();											// 移動
 		void OnShow();											// 將圖形貼到畫面
 	private:
