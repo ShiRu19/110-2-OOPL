@@ -252,9 +252,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 移動擦子
 	//
-	/*
-	eraser.OnMove();
-	*/
+	// eraser.OnMove();
 	//
 	// 判斷擦子是否碰到球
 	//
@@ -284,6 +282,8 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 移動PacMan
 	//
+	c_PacMan.OnMove();
+
 	/*
 	if (picX <= SIZE_Y) {
 		picX += 5;
@@ -334,7 +334,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	elfs[3].LoadBitmapA(IDB_ELF_ORANGE_1);
 
 	// 設置位置
-	c_PacMan.SetTopLeft(100, 100);
+	c_PacMan.SetTopLeft();
 	elfs[0].SetTopLeft(0, 0);
 	elfs[1].SetTopLeft(60, 0);
 	elfs[2].SetTopLeft(120, 0);
@@ -347,17 +347,16 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
-	/*
+	
 	if (nChar == KEY_LEFT) {
-		eraser.SetMovingLeft(true);
+		c_PacMan.SetMovingLeft(true);
 	}
 	if (nChar == KEY_RIGHT)
-		eraser.SetMovingRight(true);
+		c_PacMan.SetMovingRight(true);
 	if (nChar == KEY_UP)
-		eraser.SetMovingUp(true);
+		c_PacMan.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
-		eraser.SetMovingDown(true);
-	*/
+		c_PacMan.SetMovingDown(true);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
