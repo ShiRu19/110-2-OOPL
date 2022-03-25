@@ -56,7 +56,7 @@ namespace game_framework {
 	void CEraser::OnMove()
 	{
 		const int STEP_SIZE = 2;
-		//animation.OnMove();
+		animation.OnMove();
 		if (isMovingLeft)
 			x -= STEP_SIZE;
 		if (isMovingRight)
