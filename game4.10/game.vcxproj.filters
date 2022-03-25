@@ -270,7 +270,7 @@
     <Image Include="RES\pacman_1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="C:\Users\siru\Downloads\Pacman_1_.bmp">
+    <Image Include="RES\Pacman_1_.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

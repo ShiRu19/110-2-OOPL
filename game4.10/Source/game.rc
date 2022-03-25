@@ -156,6 +156,10 @@ IDB_PACMAN_1            BITMAP                  "..\\RES\\pacman_1.bmp"
 
 IDB_PACMAN              BITMAP                  "..\\RES\\Pacman_1_.bmp"
 
+IDB_WALL_BLUE           BITMAP                  "..\\res\\bitmap4.bmp"
+
+IDB_FOOD                BITMAP                  "..\\res\\bitmap5.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -55,6 +55,14 @@ namespace game_framework {
 		AUDIO_NTUT				// 2
 	};
 
+	enum MAP_ID
+	{
+		MAP_BLUE,
+		MAP_PINK,
+		MAP_ORANGE
+	};
+
+
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
 	// 每個Member function的Implementation都要弄懂
@@ -73,11 +81,26 @@ namespace game_framework {
 		CMovingBitmap logo;								// csie的logo
 	};
 
+
+	class CGameMap
+	{
+	public:
+		CGameMap();
+		void LoadBitmap();
+		void OnShow();
+		void SetMap(int maptype);
+	protected:
+		//int maptype;
+		CMovingBitmap wall, Food;
+		int map[31][28];
+		const int X, Y;
+		const int MW, MH;
+	};
+
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
 	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
-
 	class CGameStateRun : public CGameState {
 	public:
 		CGameStateRun(CGame *g);
@@ -95,6 +118,7 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
+		CGameMap		gamemap1;	// 地圖1
 		const int		NUMBALLS;	// 球的總數
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
