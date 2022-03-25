@@ -306,5 +306,23 @@
     <Image Include="RES\Pacman_left_2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\red_down_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_down_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_left_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_left_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_right_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_right_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

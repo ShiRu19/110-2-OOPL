@@ -106,7 +106,7 @@ namespace game_framework {
 		CMovingBitmap   PacMan;     // 黃色小精靈
 		int             picX, picY; // PacMan座標位置
 		CPacman         c_PacMan;   // 黃色小精靈
-		CGolst            *golsts;       // 幽靈們
+		CGolst          *golsts;    // 幽靈們
 		/*
 		CElf            c_Elf_red;  // 紅色幽靈
 		CElf            c_Elf_blue; // 藍色幽靈

@@ -168,6 +168,18 @@ IDB_PACMAN_LEFT_1       BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10
 
 IDB_PACMAN_LEFT_2       BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\Pacman_left_2.bmp"
 
+IDB_RED_DOWN_1          BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\red_down_1.bmp"
+
+IDB_RED_DOWN_2          BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\red_down_2.bmp"
+
+IDB_RED_LEFT_2          BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\red_left_2.bmp"
+
+IDB_RED_RIGHT_1         BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\red_right_1.bmp"
+
+IDB_RED_RIGHT_2         BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\red_right_2.bmp"
+
+IDB_RED_LEFT_1          BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\red_left_1.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -17,19 +17,22 @@ namespace game_framework {
 	}
 
 	void CGolst::OnMove() {
-
+		animation->OnMove();
 	}
 
-	void CGolst::LoadBitmapA(int IDB) {
-		pic.LoadBitmapA(IDB, RGB(0, 0, 0));
+	void CGolst::LoadBitmap(int IDB1, int IDB2) {
+		animation->AddBitmap(IDB1, RGB(0, 0, 0));
+		animation->AddBitmap(IDB2, RGB(0, 0, 0));
 	}
 
 	void CGolst::SetTopLeft(int x, int y) {
-		pic.SetTopLeft(x, y);
+		animation->SetTopLeft(x, y);
+		this->x = x;
+		this->y = y;
 	}
 
 	void CGolst::OnShow() {
-		//pic.SetTopLeft(x, y);
-		pic.ShowBitmap();
+		animation->SetTopLeft(x,y);
+		animation->OnShow();
 	}
 }

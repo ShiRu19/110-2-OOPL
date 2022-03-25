@@ -283,7 +283,9 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 移動PacMan
 	//
 	c_PacMan.OnMove();
-
+	for (int i = 0; i < 4; i++) {
+		golsts[i].OnMove();
+	}
 	/*
 	if (picX <= SIZE_Y) {
 		picX += 5;
@@ -327,11 +329,11 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 
 	// 載入PacMan及elfs
-	c_PacMan.LoadBitmapA();
-	golsts[0].LoadBitmapA(IDB_ELF_RED_1);
-	golsts[1].LoadBitmapA(IDB_ELF_BLUE_1);
-	golsts[2].LoadBitmapA(IDB_ELF_PINK_1);
-	golsts[3].LoadBitmapA(IDB_ELF_ORANGE_1);
+	c_PacMan.LoadBitmap();
+	golsts[0].LoadBitmap(IDB_RED_RIGHT_1, IDB_RED_RIGHT_2);
+	golsts[1].LoadBitmap(IDB_RED_RIGHT_1, IDB_RED_RIGHT_2);
+	golsts[2].LoadBitmap(IDB_RED_RIGHT_1, IDB_RED_RIGHT_2);
+	golsts[3].LoadBitmap(IDB_RED_RIGHT_1, IDB_RED_RIGHT_2);
 
 	// 設置位置
 	c_PacMan.SetTopLeft();
