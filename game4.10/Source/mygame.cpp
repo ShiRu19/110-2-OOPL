@@ -334,11 +334,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	golsts[3].LoadBitmapA(IDB_ELF_ORANGE_1);
 
 	// 設置位置
-<<<<<<< HEAD
-	
-=======
 	c_PacMan.SetTopLeft();
->>>>>>> characters
 	golsts[0].SetTopLeft(0, 0);
 	golsts[1].SetTopLeft(60, 0);
 	golsts[2].SetTopLeft(120, 0);
