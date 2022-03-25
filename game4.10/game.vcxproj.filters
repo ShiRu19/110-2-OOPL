@@ -324,5 +324,23 @@
     <Image Include="RES\red_right_2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\blue_down_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_down_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_left_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_left_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_right_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_right_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -192,14 +192,14 @@ CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g), NUMBALLS(28)
 {
 	//ball = new CBall [NUMBALLS];
-	golsts = new CGolst [4];
+	ghost = new CGhost [4];
 	//picX = picY = 0;
 }
 
 CGameStateRun::~CGameStateRun()
 {
 	//delete [] ball;
-	delete [] golsts;
+	delete [] ghost;
 }
 
 void CGameStateRun::OnBeginState()
@@ -284,7 +284,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	c_PacMan.OnMove();
 	for (int i = 0; i < 4; i++) {
-		golsts[i].OnMove();
+		ghost[i].OnMove();
 	}
 	/*
 	if (picX <= SIZE_Y) {
@@ -330,17 +330,24 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 	// 載入PacMan及elfs
 	c_PacMan.LoadBitmap();
-	golsts[0].LoadBitmap(IDB_RED_RIGHT_1, IDB_RED_RIGHT_2);
-	golsts[1].LoadBitmap(IDB_RED_RIGHT_1, IDB_RED_RIGHT_2);
-	golsts[2].LoadBitmap(IDB_RED_RIGHT_1, IDB_RED_RIGHT_2);
-	golsts[3].LoadBitmap(IDB_RED_RIGHT_1, IDB_RED_RIGHT_2);
+	ghost[0].LoadBitmap(IDB_GHOST_RED_RIGHT_1, IDB_GHOST_RED_RIGHT_2);
+	ghost[0].LoadBitmap(IDB_GHOST_RED_LEFT_1, IDB_GHOST_RED_LEFT_2);
+	ghost[0].LoadBitmap(IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2);
+
+
+	ghost[1].LoadBitmap(IDB_GHOST_BLUE_DOWN_1, IDB_GHOST_BLUE_DOWN_2);
+	ghost[1].LoadBitmap(IDB_GHOST_BLUE_LEFT_1, IDB_GHOST_BLUE_LEFT_2);
+	ghost[1].LoadBitmap(IDB_GHOST_BLUE_RIGHT_1, IDB_GHOST_BLUE_RIGHT_2);
+
+	ghost[2].LoadBitmap(IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2);
+	ghost[3].LoadBitmap(IDB_GHOST_RED_RIGHT_1, IDB_GHOST_RED_RIGHT_2);
 
 	// 設置位置
 	c_PacMan.SetTopLeft();
-	golsts[0].SetTopLeft(0, 0);
-	golsts[1].SetTopLeft(60, 0);
-	golsts[2].SetTopLeft(120, 0);
-	golsts[3].SetTopLeft(180, 0);
+	ghost[0].SetTopLeft(0, 0);
+	ghost[1].SetTopLeft(60, 0);
+	ghost[2].SetTopLeft(120, 0);
+	ghost[3].SetTopLeft(180, 0);
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -411,7 +418,7 @@ void CGameStateRun::OnShow()
 	//
 	c_PacMan.OnShow();
 	for (int i = 0; i < 4; i++) {
-		golsts[i].OnShow();
+		ghost[i].OnShow();
 	}
 }
 }

@@ -12,26 +12,26 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 
 	// Golst
-	CGolst::CGolst() {
+	CGhost::CGhost() {
 		x = y = 0;
 	}
 
-	void CGolst::OnMove() {
+	void CGhost::OnMove() {
 		animation->OnMove();
 	}
 
-	void CGolst::LoadBitmap(int IDB1, int IDB2) {
+	void CGhost::LoadBitmap(int IDB1, int IDB2) {
 		animation->AddBitmap(IDB1, RGB(0, 0, 0));
 		animation->AddBitmap(IDB2, RGB(0, 0, 0));
 	}
 
-	void CGolst::SetTopLeft(int x, int y) {
+	void CGhost::SetTopLeft(int x, int y) {
 		animation->SetTopLeft(x, y);
 		this->x = x;
 		this->y = y;
 	}
 
-	void CGolst::OnShow() {
+	void CGhost::OnShow() {
 		animation->SetTopLeft(x,y);
 		animation->OnShow();
 	}

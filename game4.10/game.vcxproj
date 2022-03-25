@@ -334,6 +334,12 @@
     <Image Include="RES\blue_3.bmp" />
     <Image Include="RES\blue_4.bmp" />
     <Image Include="RES\blue_5.bmp" />
+    <Image Include="RES\blue_down_1.bmp" />
+    <Image Include="RES\blue_down_2.bmp" />
+    <Image Include="RES\blue_left_1.bmp" />
+    <Image Include="RES\blue_left_2.bmp" />
+    <Image Include="RES\blue_right_1.bmp" />
+    <Image Include="RES\blue_right_2.bmp" />
     <Image Include="RES\ghost_1.bmp" />
     <Image Include="RES\ghost_2.bmp" />
     <Image Include="RES\ghost_3.bmp" />
