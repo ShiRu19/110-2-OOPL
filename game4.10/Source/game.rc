@@ -154,7 +154,7 @@ IDB_GHOST_4             BITMAP                  "..\\RES\\ghost_4.bmp"
 
 IDB_PACMAN_1            BITMAP                  "..\\RES\\pacman_1.bmp"
 
-IDB_PACMAN              BITMAP                  "C:\\Users\\siru\\Downloads\\Pacman_1_.bmp"
+IDB_PACMAN              BITMAP                  "..\\RES\\Pacman_1_.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
