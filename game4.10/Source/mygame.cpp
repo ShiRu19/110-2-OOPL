@@ -339,8 +339,13 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	ghost[1].LoadBitmap(IDB_GHOST_BLUE_LEFT_1, IDB_GHOST_BLUE_LEFT_2);
 	ghost[1].LoadBitmap(IDB_GHOST_BLUE_RIGHT_1, IDB_GHOST_BLUE_RIGHT_2);
 
-	ghost[2].LoadBitmap(IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2);
-	ghost[3].LoadBitmap(IDB_GHOST_RED_RIGHT_1, IDB_GHOST_RED_RIGHT_2);
+	ghost[2].LoadBitmap(IDB_GHOST_PINK_DOWN_1, IDB_GHOST_PINK_DOWN_2);
+	ghost[2].LoadBitmap(IDB_GHOST_PINK_LEFT_1, IDB_GHOST_PINK_LEFT_2);
+	ghost[2].LoadBitmap(IDB_GHOST_PINK_RIGHT_1, IDB_GHOST_PINK_RIGHT_2);
+	
+	ghost[3].LoadBitmap(IDB_GHOST_ORANGE_DOWN_1, IDB_GHOST_ORANGE_DOWN_2);
+	ghost[3].LoadBitmap(IDB_GHOST_ORANGE_LEFT_1, IDB_GHOST_ORANGE_LEFT_2);
+	ghost[3].LoadBitmap(IDB_GHOST_ORANGE_RIGHT_1, IDB_GHOST_ORANGE_RIGHT_2);
 
 	// 設置位置
 	c_PacMan.SetTopLeft();
