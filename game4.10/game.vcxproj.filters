@@ -132,7 +132,7 @@
     <ClCompile Include="Source\gamelib.cpp">
       <Filter>GameLibrary</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CGolst.cpp">
+    <ClCompile Include="Source\CGhost.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
   </ItemGroup>
@@ -176,7 +176,7 @@
     <ClInclude Include="Source\gamelib.h">
       <Filter>GameLibrary</Filter>
     </ClInclude>
-    <ClInclude Include="Source\CGolst.h">
+    <ClInclude Include="Source\CGhost.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>

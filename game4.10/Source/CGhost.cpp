@@ -4,7 +4,7 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "CGolst.h"
+#include "CGhost.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////

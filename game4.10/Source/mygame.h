@@ -41,7 +41,7 @@
 #include "CEraser.h"
 #include "CBall.h"
 #include "CPacman.h"
-#include "CGolst.h"
+#include "CGhost.h"
 #include "CBouncingBall.h"
 
 namespace game_framework {
