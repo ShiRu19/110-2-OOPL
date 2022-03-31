@@ -446,9 +446,11 @@ void CGameStateRun::OnShow()
 	// ≈„•‹Pacman§Œelfs
 	//
 	c_PacMan.OnShow();
+	/*
 	for (int i = 0; i < 10; i++) {
 		foods[i].OnShow();
 	}
+	*/
 	for (int i = 0; i < 4; i++) {
 		ghost[i].OnShow();
 	}
