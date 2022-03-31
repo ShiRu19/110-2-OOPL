@@ -22,12 +22,15 @@ namespace game_framework {
 		void SetMovingRight(bool flag);                         // 設定是否正在往右移動
 	private:
 		//CMovingBitmap pic;                                    // 載入角色
-		CAnimation animation_0;                                 // Pacman的動畫_靜止狀態(預設向右)
+		CAnimation animation_stop_1;                            // Pacman的動畫_靜止狀態(預設向上)
+		CAnimation animation_stop_2;                            // Pacman的動畫_靜止狀態(預設向下)
+		CAnimation animation_stop_3;                            // Pacman的動畫_靜止狀態(預設向左)
+		CAnimation animation_stop_4;                            // Pacman的動畫_靜止狀態(預設向右)
 		CAnimation animation_1;                                 // Pacman的動畫_向上
 		CAnimation animation_2;                                 // Pacman的動畫_向下
 		CAnimation animation_3;                                 // Pacman的動畫_向左
 		CAnimation animation_4;                                 // Pacman的動畫_向右
-		CAnimation *animation = &animation_0;                   // 當前Pacman動畫方向
+		CAnimation *animation = &animation_stop_4;              // 當前Pacman動畫方向(預設向右)
 		int x, y;
 		int move;                                               // 移動方向
 		bool isMovingDown;		                             	// 是否正在往下移動

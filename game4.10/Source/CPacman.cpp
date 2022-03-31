@@ -59,7 +59,11 @@ namespace game_framework {
 	}
 
 	void CPacman::LoadBitmap() {
-		animation_0.AddBitmap(IDB_PACMAN_RIGHT_1, RGB(255, 255, 255));          //靜止狀態(預設向右)
+		animation_stop_1.AddBitmap(IDB_PACMAN_UP_1, RGB(255, 255, 255));        //靜止狀態(預設向上)
+		animation_stop_2.AddBitmap(IDB_PACMAN_DOWN_1, RGB(255, 255, 255));      //靜止狀態(預設向下)
+		animation_stop_3.AddBitmap(IDB_PACMAN_LEFT_1, RGB(255, 255, 255));      //靜止狀態(預設向左)
+		animation_stop_4.AddBitmap(IDB_PACMAN_RIGHT_1, RGB(255, 255, 255));     //靜止狀態(預設向右)
+
 		// UP
 		animation_1.AddBitmap(IDB_PACMAN_UP_1, RGB(255, 255, 255));             //向上_open
 		animation_1.AddBitmap(IDB_PACMAN_UP_2, RGB(255, 255, 255));             //向上_close
@@ -99,6 +103,23 @@ namespace game_framework {
 	}
 
 	void CPacman::OnShow() {
+		if (isMovingUp && y == 0) {
+			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+			animation = &animation_stop_1;
+		}
+		else if (isMovingDown && y == 900) {
+			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+			animation = &animation_stop_2;
+		}
+		else if (isMovingLeft && x == 0) {
+			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+			animation = &animation_stop_3;
+		}
+		else if (isMovingRight && x == 1440) {
+			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+			animation = &animation_stop_4;
+		}
+
 		animation->SetTopLeft(x, y);
 		animation->OnShow();
 	}

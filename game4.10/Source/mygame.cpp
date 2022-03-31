@@ -387,15 +387,14 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_RIGHT = 0x27; // keyboard•kΩb¿Y
 	const char KEY_DOWN  = 0x28; // keyboard§UΩb¿Y
 	
-	if (nChar == KEY_LEFT) {
-		c_PacMan.SetMovingLeft(true);
-	}
-	if (nChar == KEY_RIGHT)
-		c_PacMan.SetMovingRight(true);
 	if (nChar == KEY_UP)
 		c_PacMan.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
 		c_PacMan.SetMovingDown(true);
+	if (nChar == KEY_LEFT)
+		c_PacMan.SetMovingLeft(true);
+	if (nChar == KEY_RIGHT)
+		c_PacMan.SetMovingRight(true);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
