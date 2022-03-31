@@ -193,6 +193,7 @@ CGameStateRun::CGameStateRun(CGame *g)
 {
 	//ball = new CBall [NUMBALLS];
 	ghost = new CGhost [4];
+	foods = new CFood[10];
 	//picX = picY = 0;
 }
 
@@ -200,6 +201,7 @@ CGameStateRun::~CGameStateRun()
 {
 	//delete [] ball;
 	delete [] ghost;
+	delete [] foods;
 }
 
 void CGameStateRun::OnBeginState()
@@ -256,6 +258,12 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 判斷擦子是否碰到球
 	//
+
+	for (int i = 0; i < 10; i++) {
+		if (foods[i].IsAlive() && foods[i].HitPacman(&c_PacMan)) {
+			foods[i].SetIsAlive(false);
+		}
+	}
 	/*
 	for (i=0; i < NUMBALLS; i++)
 		if (ball[i].IsAlive() && ball[i].HitEraser(&eraser)) {
@@ -272,6 +280,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 			}
 		}
 	*/
+	
 	//
 	// 移動彈跳的球
 	//
@@ -328,27 +337,43 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	//
 
-	// 載入PacMan及elfs
+	// 載入PacMan
 	c_PacMan.LoadBitmap();
-	ghost[0].LoadBitmap(IDB_GHOST_RED_RIGHT_1, IDB_GHOST_RED_RIGHT_2);
-	ghost[0].LoadBitmap(IDB_GHOST_RED_LEFT_1, IDB_GHOST_RED_LEFT_2);
-	ghost[0].LoadBitmap(IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2);
 
+	// 載入食物
+	for (int i = 0; i < 10; i++) {
+		foods[i].LoadBitmap();
+	}
 
-	ghost[1].LoadBitmap(IDB_GHOST_BLUE_DOWN_1, IDB_GHOST_BLUE_DOWN_2);
-	ghost[1].LoadBitmap(IDB_GHOST_BLUE_LEFT_1, IDB_GHOST_BLUE_LEFT_2);
-	ghost[1].LoadBitmap(IDB_GHOST_BLUE_RIGHT_1, IDB_GHOST_BLUE_RIGHT_2);
-
-	ghost[2].LoadBitmap(IDB_GHOST_PINK_DOWN_1, IDB_GHOST_PINK_DOWN_2);
-	ghost[2].LoadBitmap(IDB_GHOST_PINK_LEFT_1, IDB_GHOST_PINK_LEFT_2);
-	ghost[2].LoadBitmap(IDB_GHOST_PINK_RIGHT_1, IDB_GHOST_PINK_RIGHT_2);
+	// 載入紅色鬼
+	ghost[0].LoadBitmap(1,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // up
+	ghost[0].LoadBitmap(2,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // down
+	ghost[0].LoadBitmap(3,IDB_GHOST_RED_LEFT_1, IDB_GHOST_RED_LEFT_2); // left
+	ghost[0].LoadBitmap(4,IDB_GHOST_RED_RIGHT_1, IDB_GHOST_RED_RIGHT_2); // right
 	
-	ghost[3].LoadBitmap(IDB_GHOST_ORANGE_DOWN_1, IDB_GHOST_ORANGE_DOWN_2);
-	ghost[3].LoadBitmap(IDB_GHOST_ORANGE_LEFT_1, IDB_GHOST_ORANGE_LEFT_2);
-	ghost[3].LoadBitmap(IDB_GHOST_ORANGE_RIGHT_1, IDB_GHOST_ORANGE_RIGHT_2);
+	// 載入藍色鬼
+	ghost[1].LoadBitmap(1, IDB_GHOST_BLUE_DOWN_1, IDB_GHOST_BLUE_DOWN_2); // up
+	ghost[1].LoadBitmap(2, IDB_GHOST_BLUE_DOWN_1, IDB_GHOST_BLUE_DOWN_2); // down
+	ghost[1].LoadBitmap(3, IDB_GHOST_BLUE_LEFT_1, IDB_GHOST_BLUE_LEFT_2); // left
+	ghost[1].LoadBitmap(4, IDB_GHOST_BLUE_RIGHT_1, IDB_GHOST_BLUE_RIGHT_2); // right
+
+	// 載入粉色鬼
+	ghost[2].LoadBitmap(1, IDB_GHOST_PINK_DOWN_1, IDB_GHOST_PINK_DOWN_2); // up
+	ghost[2].LoadBitmap(2, IDB_GHOST_PINK_DOWN_1, IDB_GHOST_PINK_DOWN_2); // down
+	ghost[2].LoadBitmap(3, IDB_GHOST_PINK_LEFT_1, IDB_GHOST_PINK_LEFT_2); // left
+	ghost[2].LoadBitmap(4, IDB_GHOST_PINK_RIGHT_1, IDB_GHOST_PINK_RIGHT_2); // right
+	
+	// 載入橘色鬼
+	ghost[3].LoadBitmap(1, IDB_GHOST_ORANGE_DOWN_1, IDB_GHOST_ORANGE_DOWN_2); // up
+	ghost[3].LoadBitmap(2, IDB_GHOST_ORANGE_DOWN_1, IDB_GHOST_ORANGE_DOWN_2); // down
+	ghost[3].LoadBitmap(3, IDB_GHOST_ORANGE_LEFT_1, IDB_GHOST_ORANGE_LEFT_2); // left
+	ghost[3].LoadBitmap(4, IDB_GHOST_ORANGE_RIGHT_1, IDB_GHOST_ORANGE_RIGHT_2); // right
 
 	// 設置位置
 	c_PacMan.SetTopLeft();
+	for (int i = 0; i < 10; i++) {
+		foods[i].SetTopLeft(100+i*50, 100);
+	}
 	ghost[0].SetTopLeft(0, 0);
 	ghost[1].SetTopLeft(60, 0);
 	ghost[2].SetTopLeft(120, 0);
@@ -422,6 +447,9 @@ void CGameStateRun::OnShow()
 	// 顯示Pacman及elfs
 	//
 	c_PacMan.OnShow();
+	for (int i = 0; i < 10; i++) {
+		foods[i].OnShow();
+	}
 	for (int i = 0; i < 4; i++) {
 		ghost[i].OnShow();
 	}

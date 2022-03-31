@@ -20,7 +20,12 @@ namespace game_framework {
 		animation->OnMove();
 	}
 
-	void CGhost::LoadBitmap(int IDB1, int IDB2) {
+	void CGhost::LoadBitmap(int direction, int IDB1, int IDB2) {
+		if (direction == 1) animation = &animation_1;
+		else if (direction == 2) animation = &animation_2;
+		else if (direction == 3) animation = &animation_3;
+		else if (direction == 4) animation = &animation_4;
+
 		animation->AddBitmap(IDB1, RGB(0, 0, 0));
 		animation->AddBitmap(IDB2, RGB(0, 0, 0));
 	}

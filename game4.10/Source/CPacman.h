@@ -12,8 +12,10 @@ namespace game_framework {
 		void SetTopLeft();
 		void OnMove();											// 移動
 		void OnShow();											// 將圖形貼到畫面
-		int  get_x();                                           // 取得x
-		int  get_y();                                           // 取得y
+		int  GetX1();                                           // 取得x1(左上角)
+		int  GetY1();                                           // 取得y1(左上角)
+		int  GetX2();                                           // 取得x2(右下角)
+		int  GetY2();                                           // 取得y2(右下角)
 		void SetMovingUp(bool flag);                            // 設定是否正在往上移動
 		void SetMovingDown(bool flag);                          // 設定是否正在往下移動
 		void SetMovingLeft(bool flag);                          // 設定是否正在往左移動

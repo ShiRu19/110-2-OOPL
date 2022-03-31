@@ -35,7 +35,6 @@ namespace game_framework {
 		animation = &animation_1;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 		isMovingUp = flag;
-		LoadBitmap();
 	}
 
 	void CPacman::SetMovingDown(bool flag)
@@ -57,7 +56,6 @@ namespace game_framework {
 		animation = &animation_4;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 		isMovingRight = flag;
-		LoadBitmap();
 	}
 
 	void CPacman::LoadBitmap() {
@@ -76,12 +74,24 @@ namespace game_framework {
 		animation_4.AddBitmap(IDB_PACMAN_RIGHT_2, RGB(255, 255, 255));          //¦V¥k_close
 	}
 
-	int CPacman::get_x() {
+	int CPacman::GetX1()
+	{
 		return x;
 	}
 
-	int CPacman::get_y() {
+	int CPacman::GetY1()
+	{
 		return y;
+	}
+
+	int CPacman::GetX2()
+	{
+		return x + animation->Width();
+	}
+
+	int CPacman::GetY2()
+	{
+		return y + animation->Height();
 	}
 
 	void CPacman::SetTopLeft() {
