@@ -29,6 +29,22 @@ namespace game_framework {
 		animation->AddBitmap(IDB1, RGB(0, 0, 0));
 		animation->AddBitmap(IDB2, RGB(0, 0, 0));
 	}
+	
+	int CGhost::GetX1() {
+		return x;
+	}
+	
+	int CGhost::GetY1() {
+		return y;
+	}
+
+	int CGhost::GetX2() {
+		return x + animation->Width();
+	}
+
+	int CGhost::GetY2() {
+		return y + animation->Height();
+	}
 
 	void CGhost::SetTopLeft(int x, int y) {
 		animation->SetTopLeft(x, y);

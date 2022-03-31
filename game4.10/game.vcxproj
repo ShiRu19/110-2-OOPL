@@ -360,6 +360,11 @@
     <Image Include="RES\pacman_1.bmp" />
     <Image Include="RES\Pacman_2.bmp" />
     <Image Include="RES\Pacman_3.bmp" />
+    <Image Include="RES\Pacman_die_1.bmp" />
+    <Image Include="RES\Pacman_die_2.bmp" />
+    <Image Include="RES\Pacman_die_3.bmp" />
+    <Image Include="RES\Pacman_die_4.bmp" />
+    <Image Include="RES\Pacman_die_5.bmp" />
     <Image Include="RES\Pacman_down_1.bmp" />
     <Image Include="RES\Pacman_down_2.bmp" />
     <Image Include="RES\Pacman_left_1.bmp" />

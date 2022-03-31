@@ -8,8 +8,12 @@ namespace game_framework {
 	{
 	public:
 		CGhost();
-		void LoadBitmap(int direction, int IDB1, int IDB2);										// 載入圖形
-		void CGhost::SetTopLeft(int x, int y);
+		void LoadBitmap(int direction, int IDB1, int IDB2);		// 載入圖形
+		int  GetX1();                                           // 取得x1(左上角)
+		int  GetY1();                                           // 取得y1(左上角)
+		int  GetX2();                                           // 取得x2(右下角)
+		int  GetY2();                                           // 取得y2(右下角)
+		void SetTopLeft(int x, int y);
 		void OnMove();											// 移動
 		void OnShow();											// 將圖形貼到畫面
 	private:

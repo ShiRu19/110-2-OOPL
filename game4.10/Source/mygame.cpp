@@ -264,6 +264,26 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 			foods[i].SetIsAlive(false);
 		}
 	}
+
+	for (int i = 0; i < 4; i++) {
+		if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
+			c_PacMan.SetIsAlive(false);
+		}
+	}
+
+	//
+	// 移動PacMan
+	//
+	if(c_PacMan.IsAlive())
+		c_PacMan.OnMove();
+
+	//
+	// 移動ghosts
+	//
+	for (int i = 0; i < 4; i++) {
+		ghost[i].OnMove();
+	}
+
 	/*
 	for (i=0; i < NUMBALLS; i++)
 		if (ball[i].IsAlive() && ball[i].HitEraser(&eraser)) {
@@ -288,13 +308,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	bball.OnMove();
 	*/
 
-	//
-	// 移動PacMan
-	//
-	c_PacMan.OnMove();
-	for (int i = 0; i < 4; i++) {
-		ghost[i].OnMove();
-	}
+	
 	/*
 	if (picX <= SIZE_Y) {
 		picX += 5;
@@ -442,15 +456,17 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 
 void CGameStateRun::OnShow()
 {
-	//
-	// 顯示Pacman及elfs
-	//
+	// 顯示Pacman
 	c_PacMan.OnShow();
-	/*
+
+	// 顯示豆子
+	
 	for (int i = 0; i < 10; i++) {
 		foods[i].OnShow();
 	}
-	*/
+	
+	
+	// 顯示Ghost
 	for (int i = 0; i < 4; i++) {
 		ghost[i].OnShow();
 	}

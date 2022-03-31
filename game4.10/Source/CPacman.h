@@ -8,10 +8,14 @@ namespace game_framework {
 	{
 	public:
 		CPacman();
+		bool HitGhost(CGhost *ghost);    						// 是否碰到正常的ghost
+		bool IsAlive();                                         // 是否活著
+		void SetIsAlive(bool alive);                            // 設定是否活著
 		void LoadBitmap();										// 載入圖形
 		void SetTopLeft();
 		void OnMove();											// 移動
 		void OnShow();											// 將圖形貼到畫面
+
 		int  GetX1();                                           // 取得x1(左上角)
 		int  GetY1();                                           // 取得y1(左上角)
 		int  GetX2();                                           // 取得x2(右下角)
@@ -30,6 +34,7 @@ namespace game_framework {
 		CAnimation animation_2;                                 // Pacman的動畫_向下
 		CAnimation animation_3;                                 // Pacman的動畫_向左
 		CAnimation animation_4;                                 // Pacman的動畫_向右
+		CAnimation animation_die;                               // Pacman的動畫_死亡
 		CAnimation *animation = &animation_stop_4;              // 當前Pacman動畫方向(預設向右)
 		int x, y;
 		int move;                                               // 移動方向
@@ -37,5 +42,9 @@ namespace game_framework {
 		bool isMovingLeft;		                             	// 是否正在往左移動
 		bool isMovingRight;		                             	// 是否正在往右移動
 		bool isMovingUp;		                             	// 是否正在往上移動
+
+		bool HitRectangle(int tx1, int ty1, int tx2, int ty2);  // 檢查是否有交集
+		bool is_alive;                                          // 生命狀態
+		bool gameover = false;                                  // 遊戲結束
 	};
 }

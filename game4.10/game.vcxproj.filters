@@ -384,5 +384,20 @@
     <Image Include="RES\orange_right_2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Pacman_die_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Pacman_die_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Pacman_die_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Pacman_die_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Pacman_die_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

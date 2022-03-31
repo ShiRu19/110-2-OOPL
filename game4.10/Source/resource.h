@@ -109,13 +109,18 @@
 #define IDB_GHOST_PINK_LEFT_2           231
 #define IDB_GHOST_PINK_RIGHT_1          232
 #define IDB_GHOST_PINK_RIGHT_2          233
-#define IDB_BITMAP5                     234
 #define IDB_GHOST_ORANGE_DOWN_1         234
 #define IDB_GHOST_ORANGE_DOWN_2         235
 #define IDB_GHOST_ORANGE_LEFT_1         236
 #define IDB_GHOST_ORANGE_LEFT_2         237
 #define IDB_GHOST_ORANGE_RIGHT_1        238
 #define IDB_GHOST_ORANGE_RIGHT_2        239
+#define IDB_PACMAN_DIE_1                240
+#define IDB_PACMAN_DIE_2                241
+#define IDB_PACMAN_DIE_3                242
+#define IDB_PACMAN_DIE_4                243
+#define IDB_BITMAP13                    244
+#define IDB_PACMAN_DIE_BLACK            244
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -128,7 +133,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        240
+#define _APS_NEXT_RESOURCE_VALUE        245
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

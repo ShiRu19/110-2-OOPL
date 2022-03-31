@@ -40,9 +40,10 @@
 
 #include "CEraser.h"
 #include "CBall.h"
-#include "CPacman.h"
-#include "CGhost.h"
 #include "CBouncingBall.h"
+
+#include "CGhost.h"
+#include "CPacman.h"
 #include "CFood.h"
 
 namespace game_framework {
