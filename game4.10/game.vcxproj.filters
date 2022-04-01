@@ -135,6 +135,9 @@
     <ClCompile Include="Source\CGolst.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CGameMap.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -177,6 +180,9 @@
       <Filter>GameLibrary</Filter>
     </ClInclude>
     <ClInclude Include="Source\CGolst.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CGameMap.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -270,7 +276,7 @@
     <Image Include="RES\pacman_1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="C:\Users\siru\Downloads\Pacman_1_.bmp">
+    <Image Include="RES\Pacman_1_.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\Pacman_2.bmp">

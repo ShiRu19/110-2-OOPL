@@ -43,6 +43,7 @@
 #include "CPacman.h"
 #include "CGolst.h"
 #include "CBouncingBall.h"
+#include "CGameMap.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -54,6 +55,15 @@ namespace game_framework {
 		AUDIO_LAKE,				// 1
 		AUDIO_NTUT				// 2
 	};
+	
+	enum MAP_ID					// 定義各種地圖的編號
+	{
+		MAP_BLUE,				// 0
+		MAP_PINK,				// 1
+		MAP_ORANGE				// 2
+	};
+	
+
 
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
@@ -73,11 +83,13 @@ namespace game_framework {
 		CMovingBitmap logo;								// csie的logo
 	};
 
+
+
+
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
 	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
-
 	class CGameStateRun : public CGameState {
 	public:
 		CGameStateRun(CGame *g);
@@ -95,6 +107,7 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
+		CGameMap		gamemap1;	// 地圖1
 		const int		NUMBALLS;	// 球的總數
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖

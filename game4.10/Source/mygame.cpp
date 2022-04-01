@@ -325,6 +325,11 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 	//
 	//
+	
+	// 載入地圖
+	gamemap1.SetMap(MAP_BLUE);
+	gamemap1.LoadBitmap();
+
 
 	// 載入PacMan及elfs
 	c_PacMan.LoadBitmapA();
@@ -407,9 +412,14 @@ void CGameStateRun::OnShow()
 	//
 	// 顯示Pacman及elfs
 	//
-	c_PacMan.OnShow();
-	for (int i = 0; i < 4; i++) {
-		golsts[i].OnShow();
-	}
+	//c_PacMan.OnShow();
+	//for (int i = 0; i < 4; i++) {
+	//	golsts[i].OnShow();
+	//}
+	// Show Map
+	gamemap1.OnShow();
+
 }
+
+
 }

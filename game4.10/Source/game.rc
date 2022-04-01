@@ -156,17 +156,22 @@ IDB_PACMAN_RIGHT_1      BITMAP                  "..\\RES\\Pacman_right_1.bmp"
 
 IDB_PACMAN_RIGHT_2      BITMAP                  "..\\RES\\Pacman_right_2.bmp"
 
-IDB_PACMAN_UP_1         BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\Pacman_up_1.bmp"
+IDB_PACMAN_UP_1         BITMAP                  "..\\RES\\Pacman_up_1.bmp"
+												 
+IDB_PACMAN_UP_2         BITMAP                  "..\\RES\\Pacman_up_2.bmp"
+												 
+IDB_PACMAN_DOWN_1       BITMAP                  "..\\RES\\Pacman_down_1.bmp"
+												 
+IDB_PACMAN_DOWN_2       BITMAP                  "..\\RES\\Pacman_down_2.bmp"
+												 
+IDB_PACMAN_LEFT_1       BITMAP                  "..\\RES\\Pacman_left_1.bmp"
+												 
+IDB_PACMAN_LEFT_2       BITMAP                  "..\\RES\\Pacman_left_2.bmp"
 
-IDB_PACMAN_UP_2         BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\Pacman_up_2.bmp"
 
-IDB_PACMAN_DOWN_1       BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\Pacman_down_1.bmp"
+IDB_WALL_BLUE           BITMAP                  "..\\res\\bitmap4.bmp"
 
-IDB_PACMAN_DOWN_2       BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\Pacman_down_2.bmp"
-
-IDB_PACMAN_LEFT_1       BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\Pacman_left_1.bmp"
-
-IDB_PACMAN_LEFT_2       BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\Pacman_left_2.bmp"
+IDB_FOOD                BITMAP                  "..\\res\\bitmap5.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
