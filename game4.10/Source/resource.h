@@ -9,7 +9,6 @@
 #define IDB_BALL                        130
 #define IDB_RACKET                      131
 #define IDB_ERASER1                     131
-#define IDB_BITMAP1                     132
 #define IDB_BACKGROUND                  132
 #define IDB_CORNER                      133
 #define IDB_BALL1                       134
@@ -33,7 +32,6 @@
 #define IDB_CONTINUE                    152
 #define IDC_GAMECURSOR                  153
 #define IDB_HELP                        155
-#define IDB_BITMAP2                     156
 #define IDB_LOADING                     156
 #define IDB_PNG1                        165
 #define IDB_PNG2                        166
@@ -61,7 +59,6 @@
 #define IDB_GHOST_2                     189
 #define IDB_GHOST_3                     190
 #define IDB_GHOST_4                     191
-#define IDB_BITMAP3                     192
 #define IDB_Pacman_1_                   193
 #define IDB_PACMAN_RIGHT_1              195
 #define IDB_PACMAN_RIGHT_2              196
@@ -71,8 +68,51 @@
 #define IDB_PACMAN_DOWN_2               202
 #define IDB_PACMAN_LEFT_1               203
 #define IDB_PACMAN_LEFT_2               204
-#define IDB_WALL_BLUE                   205
-#define IDB_FOOD                        206
+#define IDB_RED_DOWN_1                  205
+#define IDB_RED_DOWN_2                  206
+#define IDB_RED_LEFT_2                  208
+#define IDB_RED_RIGHT_1                 209
+#define IDB_RED_RIGHT_2                 210
+#define IDB_RED_LEFT_1                  211
+#define IDB_GOLST_BLUE_DOWN_1           212
+#define IDB_GHOST_BLUE_DOWN_1           212
+#define IDB_GOLST_BLUE_DOWN_2           213
+#define IDB_GHOST_BLUE_DOWN_2           213
+#define IDB_GOLST_RED_DOWN_1            214
+#define IDB_GHOST_RED_DOWN_1            214
+#define IDB_GOLST_RED_DOWN_2            215
+#define IDB_GHOST_RED_DOWN_2            215
+#define IDB_GOLST_RED_LEFT_1            216
+#define IDB_GHOST_RED_LEFT_1            216
+#define IDB_GOLST_RED_LEFT_2            217
+#define IDB_GHOST_RED_LEFT_2            217
+#define IDB_GOLST_RED_RIGHT_1           218
+#define IDB_GHOST_RED_RIGHT_1           218
+#define IDB_GOLST_RED_RIGHT_2           219
+#define IDB_GHOST_RED_RIGHT_2           219
+#define IDB_GHOST_BLUE_LEFT_1           224
+#define IDB_GHOST_BLUE_LEFT_2           225
+#define IDB_GHOST_BLUE_RIGHT_1          226
+#define IDB_GHOST_BLUE_RIGHT_2          227
+#define IDB_GHOST_PINK_DOWN_1           228
+#define IDB_GHOST_PINK_DOWN_2           229
+#define IDB_GHOST_PINK_LEFT_1           230
+#define IDB_GHOST_PINK_LEFT_2           231
+#define IDB_GHOST_PINK_RIGHT_1          232
+#define IDB_GHOST_PINK_RIGHT_2          233
+#define IDB_GHOST_ORANGE_DOWN_1         234
+#define IDB_GHOST_ORANGE_DOWN_2         235
+#define IDB_GHOST_ORANGE_LEFT_1         236
+#define IDB_GHOST_ORANGE_LEFT_2         237
+#define IDB_GHOST_ORANGE_RIGHT_1        238
+#define IDB_GHOST_ORANGE_RIGHT_2        239
+#define IDB_PACMAN_DIE_1                240
+#define IDB_PACMAN_DIE_2                241
+#define IDB_PACMAN_DIE_3                242
+#define IDB_PACMAN_DIE_4                243
+#define IDB_PACMAN_DIE_BLACK            244
+#define IDB_WALL_BLUE                   245
+#define IDB_FOOD                        246
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -84,8 +124,8 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_3D_CONTROLS 
-#define _APS_NEXT_RESOURCE_VALUE        207
+#define _APS_3D_CONTROLS                     1
+#define _APS_NEXT_RESOURCE_VALUE        247
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

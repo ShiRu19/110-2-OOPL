@@ -132,7 +132,10 @@
     <ClCompile Include="Source\gamelib.cpp">
       <Filter>GameLibrary</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CGolst.cpp">
+    <ClCompile Include="Source\CGhost.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CFood.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
     <ClCompile Include="Source\CGameMap.cpp">
@@ -179,7 +182,10 @@
     <ClInclude Include="Source\gamelib.h">
       <Filter>GameLibrary</Filter>
     </ClInclude>
-    <ClInclude Include="Source\CGolst.h">
+    <ClInclude Include="Source\CGhost.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CFood.h">
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\CGameMap.h">
@@ -310,6 +316,93 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\Pacman_left_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_down_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_down_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_left_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_left_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_right_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\red_right_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_down_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_down_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_left_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_left_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_right_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blue_right_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\pink_down_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\pink_down_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\pink_left_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\pink_left_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\pink_right_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\pink_right_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\orange_down_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\orange_down_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\orange_left_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\orange_left_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\orange_right_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\orange_right_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Pacman_die_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Pacman_die_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Pacman_die_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Pacman_die_4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Pacman_die_5.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

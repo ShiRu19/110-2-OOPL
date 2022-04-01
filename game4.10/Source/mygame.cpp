@@ -192,14 +192,16 @@ CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g), NUMBALLS(28)
 {
 	//ball = new CBall [NUMBALLS];
-	golsts = new CGolst [4];
+	ghost = new CGhost [4];
+	foods = new CFood[10];
 	//picX = picY = 0;
 }
 
 CGameStateRun::~CGameStateRun()
 {
 	//delete [] ball;
-	delete [] golsts;
+	delete [] ghost;
+	delete [] foods;
 }
 
 void CGameStateRun::OnBeginState()
@@ -256,6 +258,32 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 判斷擦子是否碰到球
 	//
+
+	for (int i = 0; i < 10; i++) {
+		if (foods[i].IsAlive() && foods[i].HitPacman(&c_PacMan)) {
+			foods[i].SetIsAlive(false);
+		}
+	}
+
+	for (int i = 0; i < 4; i++) {
+		if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
+			c_PacMan.SetIsAlive(false);
+		}
+	}
+
+	//
+	// 移動PacMan
+	//
+	if(c_PacMan.IsAlive())
+		c_PacMan.OnMove();
+
+	//
+	// 移動ghosts
+	//
+	for (int i = 0; i < 4; i++) {
+		ghost[i].OnMove();
+	}
+
 	/*
 	for (i=0; i < NUMBALLS; i++)
 		if (ball[i].IsAlive() && ball[i].HitEraser(&eraser)) {
@@ -272,6 +300,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 			}
 		}
 	*/
+	
 	//
 	// 移動彈跳的球
 	//
@@ -279,11 +308,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	bball.OnMove();
 	*/
 
-	//
-	// 移動PacMan
-	//
-	c_PacMan.OnMove();
-
+	
 	/*
 	if (picX <= SIZE_Y) {
 		picX += 5;
@@ -331,19 +356,47 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	gamemap1.LoadBitmap();
 
 
-	// 載入PacMan及elfs
-	c_PacMan.LoadBitmapA();
-	golsts[0].LoadBitmapA(IDB_ELF_RED_1);
-	golsts[1].LoadBitmapA(IDB_ELF_BLUE_1);
-	golsts[2].LoadBitmapA(IDB_ELF_PINK_1);
-	golsts[3].LoadBitmapA(IDB_ELF_ORANGE_1);
+	// 載入PacMan
+	c_PacMan.LoadBitmap();
+
+	// 載入食物
+	for (int i = 0; i < 10; i++) {
+		foods[i].LoadBitmap();
+	}
+
+	// 載入紅色鬼
+	ghost[0].LoadBitmap(1,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // up
+	ghost[0].LoadBitmap(2,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // down
+	ghost[0].LoadBitmap(3,IDB_GHOST_RED_LEFT_1, IDB_GHOST_RED_LEFT_2); // left
+	ghost[0].LoadBitmap(4,IDB_GHOST_RED_RIGHT_1, IDB_GHOST_RED_RIGHT_2); // right
+	
+	// 載入藍色鬼
+	ghost[1].LoadBitmap(1, IDB_GHOST_BLUE_DOWN_1, IDB_GHOST_BLUE_DOWN_2); // up
+	ghost[1].LoadBitmap(2, IDB_GHOST_BLUE_DOWN_1, IDB_GHOST_BLUE_DOWN_2); // down
+	ghost[1].LoadBitmap(3, IDB_GHOST_BLUE_LEFT_1, IDB_GHOST_BLUE_LEFT_2); // left
+	ghost[1].LoadBitmap(4, IDB_GHOST_BLUE_RIGHT_1, IDB_GHOST_BLUE_RIGHT_2); // right
+
+	// 載入粉色鬼
+	ghost[2].LoadBitmap(1, IDB_GHOST_PINK_DOWN_1, IDB_GHOST_PINK_DOWN_2); // up
+	ghost[2].LoadBitmap(2, IDB_GHOST_PINK_DOWN_1, IDB_GHOST_PINK_DOWN_2); // down
+	ghost[2].LoadBitmap(3, IDB_GHOST_PINK_LEFT_1, IDB_GHOST_PINK_LEFT_2); // left
+	ghost[2].LoadBitmap(4, IDB_GHOST_PINK_RIGHT_1, IDB_GHOST_PINK_RIGHT_2); // right
+	
+	// 載入橘色鬼
+	ghost[3].LoadBitmap(1, IDB_GHOST_ORANGE_DOWN_1, IDB_GHOST_ORANGE_DOWN_2); // up
+	ghost[3].LoadBitmap(2, IDB_GHOST_ORANGE_DOWN_1, IDB_GHOST_ORANGE_DOWN_2); // down
+	ghost[3].LoadBitmap(3, IDB_GHOST_ORANGE_LEFT_1, IDB_GHOST_ORANGE_LEFT_2); // left
+	ghost[3].LoadBitmap(4, IDB_GHOST_ORANGE_RIGHT_1, IDB_GHOST_ORANGE_RIGHT_2); // right
 
 	// 設置位置
 	c_PacMan.SetTopLeft();
-	golsts[0].SetTopLeft(0, 0);
-	golsts[1].SetTopLeft(60, 0);
-	golsts[2].SetTopLeft(120, 0);
-	golsts[3].SetTopLeft(180, 0);
+	for (int i = 0; i < 10; i++) {
+		foods[i].SetTopLeft(100+i*50, 100);
+	}
+	ghost[0].SetTopLeft(0, 0);
+	ghost[1].SetTopLeft(60, 0);
+	ghost[2].SetTopLeft(120, 0);
+	ghost[3].SetTopLeft(180, 0);
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -353,15 +406,14 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	
-	if (nChar == KEY_LEFT) {
-		c_PacMan.SetMovingLeft(true);
-	}
-	if (nChar == KEY_RIGHT)
-		c_PacMan.SetMovingRight(true);
 	if (nChar == KEY_UP)
 		c_PacMan.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
 		c_PacMan.SetMovingDown(true);
+	if (nChar == KEY_LEFT)
+		c_PacMan.SetMovingLeft(true);
+	if (nChar == KEY_RIGHT)
+		c_PacMan.SetMovingRight(true);
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -409,16 +461,22 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 
 void CGameStateRun::OnShow()
 {
-	//
-	// 顯示Pacman及elfs
-	//
-	//c_PacMan.OnShow();
-	//for (int i = 0; i < 4; i++) {
-	//	golsts[i].OnShow();
-	//}
-	// Show Map
-	gamemap1.OnShow();
+	// 顯示Pacman
+	c_PacMan.OnShow();
 
+	// 顯示豆子
+	
+	for (int i = 0; i < 10; i++) {
+		foods[i].OnShow();
+	}
+	
+	
+	// 顯示Ghost
+	for (int i = 0; i < 4; i++) {
+		ghost[i].OnShow();
+	}
+
+	gamemap1.OnShow();
 }
 
 

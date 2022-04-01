@@ -40,10 +40,12 @@
 
 #include "CEraser.h"
 #include "CBall.h"
-#include "CPacman.h"
-#include "CGolst.h"
 #include "CBouncingBall.h"
+
+#include "CGhost.h"
 #include "CGameMap.h"
+#include "CPacman.h"
+#include "CFood.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -119,13 +121,8 @@ namespace game_framework {
 		CMovingBitmap   PacMan;     // 黃色小精靈
 		int             picX, picY; // PacMan座標位置
 		CPacman         c_PacMan;   // 黃色小精靈
-		CGolst            *golsts;       // 幽靈們
-		/*
-		CElf            c_Elf_red;  // 紅色幽靈
-		CElf            c_Elf_blue; // 藍色幽靈
-		CElf            c_Elf_pink;  // 粉色幽靈
-		CElf            c_Elf_orange; // 橘色幽靈
-		*/
+		CGhost          *ghost;     // 幽靈們
+		CFood           *foods;       // 測試食物
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

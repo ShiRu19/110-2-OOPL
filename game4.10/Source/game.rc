@@ -157,21 +157,78 @@ IDB_PACMAN_RIGHT_1      BITMAP                  "..\\RES\\Pacman_right_1.bmp"
 IDB_PACMAN_RIGHT_2      BITMAP                  "..\\RES\\Pacman_right_2.bmp"
 
 IDB_PACMAN_UP_1         BITMAP                  "..\\RES\\Pacman_up_1.bmp"
-												 
-IDB_PACMAN_UP_2         BITMAP                  "..\\RES\\Pacman_up_2.bmp"
-												 
-IDB_PACMAN_DOWN_1       BITMAP                  "..\\RES\\Pacman_down_1.bmp"
-												 
-IDB_PACMAN_DOWN_2       BITMAP                  "..\\RES\\Pacman_down_2.bmp"
-												 
-IDB_PACMAN_LEFT_1       BITMAP                  "..\\RES\\Pacman_left_1.bmp"
-												 
-IDB_PACMAN_LEFT_2       BITMAP                  "..\\RES\\Pacman_left_2.bmp"
-
 
 IDB_WALL_BLUE           BITMAP                  "..\\res\\bitmap4.bmp"
 
 IDB_FOOD                BITMAP                  "..\\res\\bitmap5.bmp"
+
+IDB_PACMAN_UP_2         BITMAP                  "..\\RES\\Pacman_up_2.bmp"
+
+IDB_PACMAN_DOWN_1       BITMAP                  "..\\RES\\Pacman_down_1.bmp"
+
+IDB_PACMAN_DOWN_2       BITMAP                  "..\\RES\\Pacman_down_2.bmp"
+
+IDB_PACMAN_LEFT_1       BITMAP                  "..\\RES\\Pacman_left_1.bmp"
+
+IDB_PACMAN_LEFT_2       BITMAP                  "..\\RES\\Pacman_left_2.bmp"
+
+IDB_GHOST_RED_DOWN_1    BITMAP                  "..\\RES\\red_down_1.bmp"
+
+IDB_GHOST_RED_DOWN_2    BITMAP                  "..\\RES\\red_down_2.bmp"
+
+IDB_GHOST_RED_LEFT_2    BITMAP                  "..\\RES\\red_left_2.bmp"
+
+IDB_GHOST_RED_RIGHT_1   BITMAP                  "..\\RES\\red_right_1.bmp"
+
+IDB_GHOST_RED_RIGHT_2   BITMAP                  "..\\RES\\red_right_2.bmp"
+
+IDB_GHOST_RED_LEFT_1    BITMAP                  "..\\RES\\red_left_1.bmp"
+
+IDB_GHOST_BLUE_DOWN_1   BITMAP                  "..\\RES\\blue_down_1.bmp"
+
+IDB_GHOST_BLUE_DOWN_2   BITMAP                  "..\\RES\\blue_down_2.bmp"
+
+IDB_GHOST_BLUE_LEFT_1   BITMAP                  "..\\RES\\blue_left_1.bmp"
+
+IDB_GHOST_BLUE_LEFT_2   BITMAP                  "..\\RES\\blue_left_2.bmp"
+
+IDB_GHOST_BLUE_RIGHT_1  BITMAP                  "..\\RES\\blue_right_1.bmp"
+
+IDB_GHOST_BLUE_RIGHT_2  BITMAP                  "..\\RES\\blue_right_2.bmp"
+
+IDB_GHOST_PINK_DOWN_1   BITMAP                  "..\\RES\\pink_down_1.bmp"
+
+IDB_GHOST_PINK_DOWN_2   BITMAP                  "..\\RES\\pink_down_2.bmp"
+												 
+IDB_GHOST_PINK_LEFT_1   BITMAP                  "..\\RES\\pink_left_1.bmp"
+												 
+IDB_GHOST_PINK_LEFT_2   BITMAP                  "..\\RES\\pink_left_2.bmp"
+												 
+IDB_GHOST_PINK_RIGHT_1  BITMAP                  "..\\RES\\pink_right_1.bmp"
+												 
+IDB_GHOST_PINK_RIGHT_2  BITMAP                  "..\\RES\\pink_right_2.bmp"
+												 
+IDB_GHOST_ORANGE_DOWN_1 BITMAP                  "..\\RES\\orange_down_1.bmp"
+												 
+IDB_GHOST_ORANGE_DOWN_2 BITMAP                  "..\\RES\\orange_down_2.bmp"
+												 
+IDB_GHOST_ORANGE_LEFT_1 BITMAP                  "..\\RES\\orange_left_1.bmp"
+												 
+IDB_GHOST_ORANGE_LEFT_2 BITMAP                  "..\\RES\\orange_left_2.bmp"
+
+IDB_GHOST_ORANGE_RIGHT_1 BITMAP                 "..\\RES\\orange_right_1.bmp"
+												 
+IDB_GHOST_ORANGE_RIGHT_2 BITMAP                 "..\\RES\\orange_right_2.bmp"
+												 
+IDB_PACMAN_DIE_1        BITMAP                  "..\\RES\\Pacman_die_1.bmp"
+												 
+IDB_PACMAN_DIE_2        BITMAP                  "..\\RES\\Pacman_die_2.bmp"
+												 
+IDB_PACMAN_DIE_3        BITMAP                  "..\\RES\\Pacman_die_3.bmp"
+												 
+IDB_PACMAN_DIE_4        BITMAP                  "..\\RES\\Pacman_die_4.bmp"
+												 
+IDB_PACMAN_DIE_BLACK    BITMAP                  "..\\RES\\Pacman_die_5.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
