@@ -4,6 +4,13 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
+	enum MAP_ID					// 定義各種地圖的編號
+	{
+		MAP_BLUE,				// 0
+		MAP_PINK,				// 1
+		MAP_ORANGE				// 2
+	};
+
 	class CGameMap
 	{
 	public:

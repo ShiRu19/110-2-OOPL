@@ -57,15 +57,6 @@ namespace game_framework {
 		AUDIO_LAKE,				// 1
 		AUDIO_NTUT				// 2
 	};
-	
-	enum MAP_ID					// 定義各種地圖的編號
-	{
-		MAP_BLUE,				// 0
-		MAP_PINK,				// 1
-		MAP_ORANGE				// 2
-	};
-	
-
 
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
