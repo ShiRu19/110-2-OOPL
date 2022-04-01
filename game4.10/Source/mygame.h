@@ -43,6 +43,7 @@
 #include "CPacman.h"
 #include "CGolst.h"
 #include "CBouncingBall.h"
+#include "CGameMap.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -54,13 +55,14 @@ namespace game_framework {
 		AUDIO_LAKE,				// 1
 		AUDIO_NTUT				// 2
 	};
-
-	enum MAP_ID
+	
+	enum MAP_ID					// 定義各種地圖的編號
 	{
-		MAP_BLUE,
-		MAP_PINK,
-		MAP_ORANGE
+		MAP_BLUE,				// 0
+		MAP_PINK,				// 1
+		MAP_ORANGE				// 2
 	};
+	
 
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -82,20 +84,7 @@ namespace game_framework {
 	};
 
 
-	class CGameMap
-	{
-	public:
-		CGameMap();
-		void LoadBitmap();
-		void OnShow();
-		void SetMap(int maptype);
-	protected:
-		//int maptype;
-		CMovingBitmap wall, Food;
-		int map[31][28];
-		const int X, Y;
-		const int MW, MH;
-	};
+
 
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
