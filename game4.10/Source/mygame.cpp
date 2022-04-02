@@ -262,6 +262,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	for (int i = 0; i < gamemap1.getFoodCount(); i++) {
 		if (allFoods->at(i).IsAlive() && allFoods->at(i).HitPacman(&c_PacMan)) {
 			allFoods->at(i).SetIsAlive(false);
+			myScore.setScore(20);
 		}
 	}
 	
@@ -358,11 +359,6 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	// 載入PacMan
 	c_PacMan.LoadBitmap();
 
-	// 載入食物
-	//for (int i = 0; i < foodCount; i++) {
-	//	foods[i].LoadBitmap();
-	//}
-
 	// 載入紅色鬼
 	ghost[0].LoadBitmap(1,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // up
 	ghost[0].LoadBitmap(2,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // down
@@ -389,9 +385,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 	// 設置位置
 	c_PacMan.SetTopLeft();
-	//for (int i = 0; i < foodCount; i++) {
-	//	foods[i].SetTopLeft(100+i*50, 100);
-	//}
+
 	ghost[0].SetTopLeft(0, 0);
 	ghost[1].SetTopLeft(60, 0);
 	ghost[2].SetTopLeft(120, 0);

@@ -141,6 +141,9 @@
     <ClCompile Include="Source\CGameMap.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CScore.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -189,6 +192,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\CGameMap.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CScore.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -282,16 +288,10 @@
     <Image Include="RES\pacman_1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="RES\Pacman_1_.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="RES\Pacman_2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\Pacman_3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\..\DM\OOPL\picture\bmp\pacman\Pacman_1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\Pacman_up_1.bmp">

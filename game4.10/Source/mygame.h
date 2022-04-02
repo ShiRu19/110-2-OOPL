@@ -46,6 +46,7 @@
 #include "CGameMap.h"
 #include "CPacman.h"
 #include "CFood.h"
+#include "CScore.h"
 
 using namespace std;
 
@@ -115,8 +116,8 @@ namespace game_framework {
 		int             picX, picY; // PacMan座標位置
 		CPacman         c_PacMan;   // 黃色小精靈
 		CGhost          *ghost;     // 幽靈們
-		vector<CFood>   foods;     // 小豆子
-		int             foodCount;  // 小豆子數量
+		vector<CFood>   foods;      // 小豆子
+		CScore          myScore;    // 總分數
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
