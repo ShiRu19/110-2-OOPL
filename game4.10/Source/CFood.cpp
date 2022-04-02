@@ -38,7 +38,7 @@ namespace game_framework {
 
 	void CFood::LoadBitmap()
 	{
-		food.LoadBitmap(IDB_BALL, RGB(0, 0, 0)); // ¸ü¤Jfood
+		food.LoadBitmap(IDB_FOOD, RGB(0, 0, 0)); // ¸ü¤Jfood
 	}
 
 	void CFood::OnMove()

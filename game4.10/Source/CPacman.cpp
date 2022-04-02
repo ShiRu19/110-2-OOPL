@@ -14,7 +14,7 @@ namespace game_framework {
 
 	// Pacman
 	CPacman::CPacman() {
-		x = y = 100;
+		x = y = 20+23*5;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 		is_alive = true;
 	}

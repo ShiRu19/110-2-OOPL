@@ -193,7 +193,6 @@ CGameStateRun::CGameStateRun(CGame *g)
 {
 	//ball = new CBall [NUMBALLS];
 	ghost = new CGhost [4];
-	foods = new CFood[10];
 	//picX = picY = 0;
 }
 
@@ -201,7 +200,6 @@ CGameStateRun::~CGameStateRun()
 {
 	//delete [] ball;
 	delete [] ghost;
-	delete [] foods;
 }
 
 void CGameStateRun::OnBeginState()
@@ -259,12 +257,14 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 判斷擦子是否碰到球
 	//
 
-	for (int i = 0; i < 10; i++) {
-		if (foods[i].IsAlive() && foods[i].HitPacman(&c_PacMan)) {
-			foods[i].SetIsAlive(false);
+	vector<CFood>* allFoods = gamemap1.getAllFoods();
+	
+	for (int i = 0; i < gamemap1.getFoodCount(); i++) {
+		if (allFoods->at(i).IsAlive() && allFoods->at(i).HitPacman(&c_PacMan)) {
+			allFoods->at(i).SetIsAlive(false);
 		}
 	}
-
+	
 	for (int i = 0; i < 4; i++) {
 		if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
 			c_PacMan.SetIsAlive(false);
@@ -355,14 +355,13 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	gamemap1.SetMap(MAP_BLUE);
 	gamemap1.LoadBitmap();
 
-
 	// 載入PacMan
 	c_PacMan.LoadBitmap();
 
 	// 載入食物
-	for (int i = 0; i < 10; i++) {
-		foods[i].LoadBitmap();
-	}
+	//for (int i = 0; i < foodCount; i++) {
+	//	foods[i].LoadBitmap();
+	//}
 
 	// 載入紅色鬼
 	ghost[0].LoadBitmap(1,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // up
@@ -390,9 +389,9 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 	// 設置位置
 	c_PacMan.SetTopLeft();
-	for (int i = 0; i < 10; i++) {
-		foods[i].SetTopLeft(100+i*50, 100);
-	}
+	//for (int i = 0; i < foodCount; i++) {
+	//	foods[i].SetTopLeft(100+i*50, 100);
+	//}
 	ghost[0].SetTopLeft(0, 0);
 	ghost[1].SetTopLeft(60, 0);
 	ghost[2].SetTopLeft(120, 0);
@@ -461,14 +460,17 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 
 void CGameStateRun::OnShow()
 {
+	// 顯示地圖
+	gamemap1.OnShow();
+	
 	// 顯示Pacman
 	c_PacMan.OnShow();
 
 	// 顯示豆子
 	
-	for (int i = 0; i < 10; i++) {
-		foods[i].OnShow();
-	}
+	//for (int i = 0; i < 10; i++) {
+	//	foods[i].OnShow();
+	//}
 	
 	
 	// 顯示Ghost
@@ -476,7 +478,7 @@ void CGameStateRun::OnShow()
 		ghost[i].OnShow();
 	}
 
-	gamemap1.OnShow();
+	
 }
 
 

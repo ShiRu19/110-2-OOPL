@@ -47,6 +47,8 @@
 #include "CPacman.h"
 #include "CFood.h"
 
+using namespace std;
+
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// Constants
@@ -113,7 +115,8 @@ namespace game_framework {
 		int             picX, picY; // PacMan座標位置
 		CPacman         c_PacMan;   // 黃色小精靈
 		CGhost          *ghost;     // 幽靈們
-		CFood           *foods;       // 測試食物
+		vector<CFood>   foods;     // 小豆子
+		int             foodCount;  // 小豆子數量
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
