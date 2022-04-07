@@ -26,6 +26,8 @@ namespace game_framework {
 
 		const int STEP_SIZE = 2;
 		animation->OnMove();
+		isStop = false;
+
 		if (isMovingLeft)
 		{
 			int MapIndex_Y = CPacman::FindMapIndex_Y();
@@ -50,6 +52,7 @@ namespace game_framework {
 			else
 			{
 				x = wall_pixel;
+				isStop = true;
 			}
 		}
 		if (isMovingRight)
@@ -76,6 +79,7 @@ namespace game_framework {
 			else
 			{
 				x = wall_pixel;
+				isStop = true;
 			}
 		}
 		if (isMovingUp)
@@ -102,6 +106,7 @@ namespace game_framework {
 			else
 			{
 				y = wall_pixel;
+				isStop = true;
 			}
 		}
 		if (isMovingDown)
@@ -128,6 +133,7 @@ namespace game_framework {
 			else
 			{
 				y = wall_pixel;
+				isStop = true;
 			}
 		}
 	}
@@ -236,19 +242,19 @@ namespace game_framework {
 
 	void CPacman::OnShow() {
 		if (is_alive) {
-			if (isMovingUp && y <= 0) {
+			if (isMovingUp && isStop) {
 				isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 				animation = &animation_stop_1;
 			}
-			else if (isMovingDown && y >= 900-animation->Height()) {
+			else if (isMovingDown && isStop) {
 				isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 				animation = &animation_stop_2;
 			}
-			else if (isMovingLeft && x <= 0) {
+			else if (isMovingLeft && isStop) {
 				isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 				animation = &animation_stop_3;
 			}
-			else if (isMovingRight && x >= 1440-animation->Width()) {
+			else if (isMovingRight && isStop) {
 				isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 				animation = &animation_stop_4;
 			}

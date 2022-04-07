@@ -46,6 +46,7 @@ namespace game_framework {
 		bool isMovingLeft;		                             	// 是否正在往左移動
 		bool isMovingRight;		                             	// 是否正在往右移動
 		bool isMovingUp;		                             	// 是否正在往上移動
+		bool isStop = false;                                    // 是否撞牆停止移動
 
 		bool HitRectangle(int tx1, int ty1, int tx2, int ty2);  // 檢查是否有交集
 		bool is_alive;                                          // 生命狀態
