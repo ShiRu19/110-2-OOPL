@@ -40,7 +40,7 @@ namespace game_framework {
 		this->map = map;
 	}
 
-	void CPacman::OnMove(int **map) {
+	void CPacman::OnMove() {
 		if (!is_alive)
 			return;
 

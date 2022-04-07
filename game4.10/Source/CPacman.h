@@ -15,7 +15,7 @@ namespace game_framework {
 		void SetIsAlive(bool alive);                            // 設定是否活著
 		void LoadBitmap();										// 載入圖形
 		void SetTopLeft();
-		void OnMove(int **map);									// 移動
+		void OnMove();									// 移動
 		void OnShow();											// 將圖形貼到畫面
 
 		int  GetX1();                                           // 取得x1(左上角)

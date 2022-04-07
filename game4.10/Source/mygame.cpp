@@ -276,7 +276,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 移動PacMan
 	//
 	if(c_PacMan.IsAlive())
-		c_PacMan.OnMove(gamemap1.GetMap());
+		c_PacMan.OnMove();
 
 	//
 	// 移動ghosts
