@@ -132,5 +132,8 @@ namespace game_framework {
 			}
 		}
 	}
-
+	int **CGameMap::GetMap()
+	{
+		return map;
+	}
 }

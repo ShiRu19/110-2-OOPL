@@ -20,20 +20,116 @@ namespace game_framework {
 		is_alive = true;
 	}
 
-	void CPacman::OnMove() {
+	void CPacman::OnMove(int **map) {
 		if (!is_alive)
 			return;
 
 		const int STEP_SIZE = 2;
 		animation->OnMove();
 		if (isMovingLeft)
-			x -= STEP_SIZE;
+		{
+			int MapIndex_Y = CPacman::FindMapIndex_Y();
+			int MapIndex_X = CPacman::FindMapIndex_X();
+			int wall_pixel = 0;
+			while (true)
+			{
+				if (map[MapIndex_Y][MapIndex_X] == 1)
+				{
+					wall_pixel = MAP_START + BITMAP_SIZE * (MapIndex_X + 1);
+					break;
+				}
+				else
+				{
+					MapIndex_X--;
+				}
+			}
+			if (x - wall_pixel>STEP_SIZE)
+			{
+				x -= STEP_SIZE;
+			}
+			else
+			{
+				x = wall_pixel;
+			}
+		}
 		if (isMovingRight)
-			x += STEP_SIZE;
+		{
+			int MapIndex_Y = CPacman::FindMapIndex_Y();
+			int MapIndex_X = CPacman::FindMapIndex_X();
+			int wall_pixel = 0;
+			while (true)
+			{
+				if (map[MapIndex_Y][MapIndex_X] == 1)
+				{
+					wall_pixel = MAP_START + BITMAP_SIZE * (MapIndex_X - 1);
+					break;
+				}
+				else
+				{
+					MapIndex_X++;
+				}
+			}
+			if (wall_pixel-x>STEP_SIZE)
+			{
+				x += STEP_SIZE;
+			}
+			else
+			{
+				x = wall_pixel;
+			}
+		}
 		if (isMovingUp)
-			y -= STEP_SIZE;
+		{
+			int MapIndex_Y = CPacman::FindMapIndex_Y();
+			int MapIndex_X = CPacman::FindMapIndex_X();
+			int wall_pixel = 0;
+			while (true)
+			{
+				if (map[MapIndex_Y][MapIndex_X] == 1)
+				{
+					wall_pixel = MAP_START + BITMAP_SIZE * (MapIndex_Y + 1);
+					break;
+				}
+				else
+				{
+					MapIndex_Y--;
+				}
+			}
+			if (y - wall_pixel> STEP_SIZE)
+			{
+				y -= STEP_SIZE;
+			}
+			else
+			{
+				y = wall_pixel;
+			}
+		}
 		if (isMovingDown)
-			y += STEP_SIZE;
+		{
+			int MapIndex_Y = CPacman::FindMapIndex_Y();
+			int MapIndex_X = CPacman::FindMapIndex_X();
+			int wall_pixel = 0;
+			while (true)
+			{
+				if (map[MapIndex_Y][MapIndex_X] == 1)
+				{
+					wall_pixel = MAP_START + BITMAP_SIZE * (MapIndex_Y - 1);
+					break;
+				}
+				else
+				{
+					MapIndex_Y++;
+				}
+			}
+			if (wall_pixel-y > STEP_SIZE)
+			{
+				y += STEP_SIZE;
+			}
+			else
+			{
+				y = wall_pixel;
+			}
+		}
 	}
 
 	void CPacman::SetMovingUp(bool flag)
@@ -166,5 +262,14 @@ namespace game_framework {
 			animation->OnMove();
 			animation->OnShow();
 		}
+	}
+
+	int CPacman::FindMapIndex_X()
+	{
+		return (x - MAP_START) / BITMAP_SIZE;
+	}
+	int CPacman::FindMapIndex_Y()
+	{
+		return (y - MAP_START) / BITMAP_SIZE;
 	}
 }

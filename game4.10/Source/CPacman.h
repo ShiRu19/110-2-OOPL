@@ -15,7 +15,7 @@ namespace game_framework {
 		void SetIsAlive(bool alive);                            // 設定是否活著
 		void LoadBitmap();										// 載入圖形
 		void SetTopLeft();
-		void OnMove();											// 移動
+		void OnMove(int **map);									// 移動
 		void OnShow();											// 將圖形貼到畫面
 
 		int  GetX1();                                           // 取得x1(左上角)
@@ -26,6 +26,8 @@ namespace game_framework {
 		void SetMovingDown(bool flag);                          // 設定是否正在往下移動
 		void SetMovingLeft(bool flag);                          // 設定是否正在往左移動
 		void SetMovingRight(bool flag);                         // 設定是否正在往右移動
+		int FindMapIndex_X();
+		int FindMapIndex_Y();
 	private:
 		//CMovingBitmap pic;                                    // 載入角色
 		CAnimation animation_stop_1;                            // Pacman的動畫_靜止狀態(預設向上)
