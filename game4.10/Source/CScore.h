@@ -9,7 +9,7 @@ namespace game_framework {
 	public:
 		CScore();
 		void setScore(int profit);      // 魁だ计
-		int  getScore();            // 眔だ计
+		int  getScore();                // 眔だ计
 	private:
 		int myScore;					// 仓璸だ计
 	};

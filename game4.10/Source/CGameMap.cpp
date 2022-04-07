@@ -74,9 +74,24 @@ namespace game_framework {
 		return foodCount;
 	}
 
-	CGameMap::CGameMap():X(20), Y(20), MW(23), MH(23)
+	CGameMap::CGameMap():X(20), Y(20), MW(24), MH(24)
 	{
+		map = new int*[31];
+		for (int i = 0; i < 31; i++)
+		{
+			map[i] = new int[28];
+		}
 	}
+
+	CGameMap::~CGameMap()
+	{
+		for (int i = 0; i < 31; i++)
+		{
+			delete[] map[i];
+		}
+		delete[] map;
+	}
+
 	void CGameMap::LoadBitmap()
 	{
 		wall.LoadBitmap(IDB_WALL_BLUE);
@@ -117,5 +132,8 @@ namespace game_framework {
 			}
 		}
 	}
-
+	int **CGameMap::GetMap()
+	{
+		return map;
+	}
 }

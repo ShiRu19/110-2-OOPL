@@ -14,9 +14,30 @@ namespace game_framework {
 
 	// Pacman
 	CPacman::CPacman() {
-		x = y = 20+23*5;
+		y = MAP_START + 17 * BITMAP_SIZE;									// 設定Pacman起始的X座標
+		x = MAP_START + 14 * BITMAP_SIZE;									// 設定Pacman起始的Y座標
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 		is_alive = true;
+	}
+
+	int CPacman::FindMapIndex_X(int x)
+	{
+		return (x - MAP_START) / BITMAP_SIZE;
+	}
+	int CPacman::FindMapIndex_Y(int y)
+	{
+		return (y - MAP_START) / BITMAP_SIZE;
+	}
+
+	void CPacman::GetMapIndex() {
+		MapIndex_X1 = FindMapIndex_X(x);
+		MapIndex_X2 = FindMapIndex_X(x + 22);
+		MapIndex_Y1 = FindMapIndex_Y(y);
+		MapIndex_Y2 = FindMapIndex_Y(y + 22);
+	}
+
+	void CPacman::SetMap(int **map) {
+		this->map = map;
 	}
 
 	void CPacman::OnMove() {
@@ -25,42 +46,141 @@ namespace game_framework {
 
 		const int STEP_SIZE = 2;
 		animation->OnMove();
-		if (isMovingLeft)
-			x -= STEP_SIZE;
-		if (isMovingRight)
-			x += STEP_SIZE;
+		isStop = false;
+		GetMapIndex();
+
 		if (isMovingUp)
-			y -= STEP_SIZE;
-		if (isMovingDown)
-			y += STEP_SIZE;
+		{
+			if (y - wall_pixel > STEP_SIZE) {
+				y -= STEP_SIZE;
+			}
+			else {
+				y = wall_pixel;
+				isStop = true;
+			}
+		}
+		else if (isMovingDown)
+		{
+			if (wall_pixel - y > STEP_SIZE) {
+				y += STEP_SIZE;
+			}
+			else {
+				y = wall_pixel;
+				isStop = true;
+			}
+		}
+		else if (isMovingLeft)
+		{
+			if (x - wall_pixel > STEP_SIZE) {
+				x -= STEP_SIZE;
+			}
+			else {
+				x = wall_pixel;
+				isStop = true;
+			}
+		}
+		else if (isMovingRight)
+		{
+			if (wall_pixel - x > STEP_SIZE) {
+				x += STEP_SIZE;
+			}
+			else {
+				x = wall_pixel;
+				isStop = true;
+			}
+		}
 	}
 
 	void CPacman::SetMovingUp(bool flag)
 	{
-		animation = &animation_1;
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
-		isMovingUp = flag;
+		GetMapIndex();
+		if (map[MapIndex_Y1 - 1][MapIndex_X1] != 1 && map[MapIndex_Y1 - 1][MapIndex_X2] != 1) {
+			animation = &animation_1;
+			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+			isMovingUp = flag;
+
+			// 計算向上終點牆的位置
+			wall_pixel = 0;
+			while (true)
+			{
+				if (map[MapIndex_Y1][MapIndex_X1] == 1)
+				{
+					wall_pixel = MAP_START + BITMAP_SIZE * (MapIndex_Y1 + 1);
+					break;
+				}
+				else
+					MapIndex_Y1--;
+			}
+		}
 	}
 
 	void CPacman::SetMovingDown(bool flag)
 	{
-		animation = &animation_2;
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
-		isMovingDown = flag;
+		GetMapIndex();
+		if (map[MapIndex_Y2 + 1][MapIndex_X1] != 1 && map[MapIndex_Y2 + 1][MapIndex_X2] != 1) {
+			animation = &animation_2;
+			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+			isMovingDown = flag;
+
+			// 計算向下終點牆的位置
+			wall_pixel = 0;
+			while (true)
+			{
+				if (map[MapIndex_Y1][MapIndex_X1] == 1)
+				{
+					wall_pixel = MAP_START + BITMAP_SIZE * (MapIndex_Y1 - 1);
+					break;
+				}
+				else
+					MapIndex_Y1++;
+			}
+		}
 	}
 
 	void CPacman::SetMovingLeft(bool flag)
 	{
-		animation = &animation_3;
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
-		isMovingLeft = flag;
+		GetMapIndex();
+		if (map[MapIndex_Y1][MapIndex_X1-1] != 1 && map[MapIndex_Y2][MapIndex_X1-1] != 1) {
+			animation = &animation_3;
+			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+			isMovingLeft = flag;
+
+			// 計算向左終點牆的位置
+			wall_pixel = 0;
+			while (true)
+			{
+				if (map[MapIndex_Y1][MapIndex_X1] == 1)
+				{
+					wall_pixel = MAP_START + BITMAP_SIZE * (MapIndex_X1 + 1);
+					break;
+				}
+				else
+					MapIndex_X1--;
+			}
+		}
 	}
 
 	void CPacman::SetMovingRight(bool flag)
 	{
-		animation = &animation_4;
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
-		isMovingRight = flag;
+		GetMapIndex();
+		if (map[MapIndex_Y1][MapIndex_X2 + 1] != 1 && map[MapIndex_Y2][MapIndex_X2 + 1] != 1) {
+			animation = &animation_4;
+			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+			isMovingRight = flag;
+
+			// 計算向右終點牆的位置
+			wall_pixel = 0;
+			while (true)
+			{
+				if (map[MapIndex_Y1][MapIndex_X1] == 1)
+				{
+					wall_pixel = MAP_START + BITMAP_SIZE * (MapIndex_X1 - 1);
+					break;
+				}
+				else
+					MapIndex_X1++;
+			}
+		}
 	}
 
 	void CPacman::LoadBitmap() {
@@ -139,19 +259,19 @@ namespace game_framework {
 
 	void CPacman::OnShow() {
 		if (is_alive) {
-			if (isMovingUp && y <= 0) {
+			if (isMovingUp && isStop) {
 				isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 				animation = &animation_stop_1;
 			}
-			else if (isMovingDown && y >= 900-animation->Height()) {
+			else if (isMovingDown && isStop) {
 				isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 				animation = &animation_stop_2;
 			}
-			else if (isMovingLeft && x <= 0) {
+			else if (isMovingLeft && isStop) {
 				isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 				animation = &animation_stop_3;
 			}
-			else if (isMovingRight && x >= 1440-animation->Width()) {
+			else if (isMovingRight && isStop) {
 				isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 				animation = &animation_stop_4;
 			}
