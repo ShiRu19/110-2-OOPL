@@ -14,7 +14,8 @@ namespace game_framework {
 
 	// Pacman
 	CPacman::CPacman() {
-		x = y = 20+23*5;
+		y = MAP_START + 17 * BITMAP_SIZE;									// 設定Pacman起始的X座標
+		x = MAP_START + 14 * BITMAP_SIZE;									// 設定Pacman起始的Y座標
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 		is_alive = true;
 	}

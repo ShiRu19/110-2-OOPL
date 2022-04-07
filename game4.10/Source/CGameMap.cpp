@@ -76,7 +76,22 @@ namespace game_framework {
 
 	CGameMap::CGameMap():X(20), Y(20), MW(23), MH(23)
 	{
+		map = new int*[31];
+		for (int i = 0; i < 31; i++)
+		{
+			map[i] = new int[28];
+		}
 	}
+
+	CGameMap::~CGameMap()
+	{
+		for (int i = 0; i < 31; i++)
+		{
+			delete[] map[i];
+		}
+		delete[] map;
+	}
+
 	void CGameMap::LoadBitmap()
 	{
 		wall.LoadBitmap(IDB_WALL_BLUE);
