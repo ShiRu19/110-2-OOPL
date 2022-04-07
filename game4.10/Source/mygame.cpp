@@ -387,10 +387,13 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	// 設置位置
 	c_PacMan.SetTopLeft();
 
-	ghost[0].SetTopLeft(0, 0);
-	ghost[1].SetTopLeft(60, 0);
-	ghost[2].SetTopLeft(120, 0);
-	ghost[3].SetTopLeft(180, 0);
+	//y = MAP_START + 17 * BITMAP_SIZE;									// 設定Pacman起始的X座標
+	//x = MAP_START + 14 * BITMAP_SIZE;									// 設定Pacman起始的Y座標
+
+	ghost[0].SetTopLeft(MAP_START + 12 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
+	ghost[1].SetTopLeft(MAP_START + 13 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
+	ghost[2].SetTopLeft(MAP_START + 9 * BITMAP_SIZE, MAP_START + 17 * BITMAP_SIZE);
+	ghost[3].SetTopLeft(MAP_START + 15 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
