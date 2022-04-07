@@ -4,35 +4,35 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "CScore.h"
+#include "CLevel.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// CBall: Ball class
 	/////////////////////////////////////////////////////////////////////////////
 
-	CScore::CScore()
+	CLevel::CLevel()
 	{
-		myScore = 0;
+		myLevel = 0;
 	}
 
-	void CScore::LoadBitmap() {
-		SCORE_text.LoadBitmap(IDB_SCORE_TEXT, RGB(255, 255, 255));
+	void CLevel::LoadBitmap() {
+		LEVEL_text.LoadBitmap(IDB_LEVEL_TEXT, RGB(255, 255, 255));
 	}
 
-	void CScore::OnShow() {
-		SCORE_text.ShowBitmap();
+	void CLevel::OnShow() {
+		LEVEL_text.ShowBitmap();
 	}
 
-	void CScore::SetTopLeft() {
-		SCORE_text.SetTopLeft(800, 50);
+	void CLevel::SetTopLeft() {
+		LEVEL_text.SetTopLeft(800, 130);
 	}
 	
-	void CScore::setScore(int profit) {
-		myScore += profit;
+	void CLevel::setLevel(int LV) {
+		myLevel += LV;
 	}
 
-	int CScore::getScore() {
-		return myScore;
+	int CLevel::getLevel() {
+		return myLevel;
 	}
 }

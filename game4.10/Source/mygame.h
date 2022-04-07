@@ -47,6 +47,7 @@
 #include "CPacman.h"
 #include "CFood.h"
 #include "CScore.h"
+#include "CLevel.h"
 
 using namespace std;
 
@@ -118,6 +119,7 @@ namespace game_framework {
 		CGhost          *ghost;     // 幽靈們
 		vector<CFood>   foods;      // 小豆子
 		CScore          myScore;    // 總分數
+		CLevel          myLevel;    // 關卡等級
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

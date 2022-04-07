@@ -4,17 +4,17 @@ namespace game_framework {
 	// 来碞э糶Θ祘Α
 	/////////////////////////////////////////////////////////////////////////////
 
-	class CScore
+	class CLevel
 	{
 	public:
-		CScore();
+		CLevel();
 		void LoadBitmap();
 		void SetTopLeft();
 		void OnShow();
-		void setScore(int profit);      // 魁だ计
-		int  getScore();                // 眔だ计
+		void setLevel(int LV);          // 魁闽单
+		int  getLevel();                // 眔闽单
 	private:
-		CMovingBitmap SCORE_text;
-		int myScore;					// 仓璸だ计
+		CMovingBitmap LEVEL_text;
+		int myLevel;					// 闽单
 	};
 }

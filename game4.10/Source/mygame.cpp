@@ -227,6 +227,9 @@ void CGameStateRun::OnBeginState()
 	CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
 	CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
 	CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI*/
+	hits_left.SetInteger(0);
+	hits_left.SetTopLeft(590, 0);
+
 }
 
 void CGameStateRun::OnMove()							// 移動遊戲元素
@@ -308,19 +311,6 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	/*
 	bball.OnMove();
 	*/
-
-	
-	/*
-	if (picX <= SIZE_Y) {
-		picX += 5;
-		picY += 5;
-	}
-	else {
-		picX = picY = 0;
-	}
-	PacMan.SetTopLeft(picX, picY);
-
-	c_PacMan.OnMove();*/
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -360,6 +350,12 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	c_PacMan.LoadBitmap();
 	c_PacMan.SetMap(gamemap1.GetMap());
 
+	// 載入Score文字
+	myScore.LoadBitmap();
+
+	// 載入Level文字
+	myLevel.LoadBitmap();
+
 	// 載入紅色鬼
 	ghost[0].LoadBitmap(1,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // up
 	ghost[0].LoadBitmap(2,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // down
@@ -386,9 +382,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 	// 設置位置
 	c_PacMan.SetTopLeft();
-
-	//y = MAP_START + 17 * BITMAP_SIZE;									// 設定Pacman起始的X座標
-	//x = MAP_START + 14 * BITMAP_SIZE;									// 設定Pacman起始的Y座標
+	myScore.SetTopLeft();
+	myLevel.SetTopLeft();
 
 	ghost[0].SetTopLeft(MAP_START + 12 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[1].SetTopLeft(MAP_START + 13 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
@@ -463,21 +458,14 @@ void CGameStateRun::OnShow()
 	
 	// 顯示Pacman
 	c_PacMan.OnShow();
-
-	// 顯示豆子
-	
-	//for (int i = 0; i < 10; i++) {
-	//	foods[i].OnShow();
-	//}
-	
 	
 	// 顯示Ghost
 	for (int i = 0; i < 4; i++) {
 		ghost[i].OnShow();
 	}
 
-	
+	// 顯示分數和關卡等級
+	myScore.OnShow();
+	myLevel.OnShow();
 }
-
-
 }

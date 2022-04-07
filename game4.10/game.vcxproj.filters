@@ -144,6 +144,9 @@
     <ClCompile Include="Source\CScore.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CLevel.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -195,6 +198,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\CScore.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CLevel.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -403,6 +409,13 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\Pacman_die_5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SCORE.png" />
+    <Image Include="RES\SCORE.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LEVEL.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
