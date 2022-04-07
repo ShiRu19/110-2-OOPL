@@ -28,7 +28,7 @@ namespace game_framework {
 	bool CFood::HitRectangle(int tx1, int ty1, int tx2, int ty2)
 	{
 		// 檢查是否有交集
-		return (tx2 >= x && tx1 <= (x + food.Width()) && ty2 >= y && ty1 <= (y + food.Height()));
+		return (tx2 >= x+1 && tx1 <= (x + food.Width()-1) && ty2 >= y+1 && ty1 <= (y + food.Height()-1));
 	}
 
 	bool CFood::IsAlive()
