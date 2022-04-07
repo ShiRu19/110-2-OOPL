@@ -74,7 +74,7 @@ namespace game_framework {
 		return foodCount;
 	}
 
-	CGameMap::CGameMap():X(20), Y(20), MW(23), MH(23)
+	CGameMap::CGameMap():X(20), Y(20), MW(24), MH(24)
 	{
 		map = new int*[31];
 		for (int i = 0; i < 31; i++)

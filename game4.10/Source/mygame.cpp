@@ -358,6 +358,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 	// 載入PacMan
 	c_PacMan.LoadBitmap();
+	c_PacMan.SetMap(gamemap1.GetMap());
 
 	// 載入紅色鬼
 	ghost[0].LoadBitmap(1,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // up
