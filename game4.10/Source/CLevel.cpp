@@ -13,26 +13,44 @@ namespace game_framework {
 
 	CLevel::CLevel()
 	{
-		myLevel = 0;
+		myLevel = CInteger(1);
+		myLevel.SetInteger(1);
 	}
 
 	void CLevel::LoadBitmap() {
 		LEVEL_text.LoadBitmap(IDB_LEVEL_TEXT, RGB(255, 255, 255));
+		myLevel.LoadBitmap();
 	}
 
 	void CLevel::OnShow() {
 		LEVEL_text.ShowBitmap();
+		myLevel.ShowBitmap();
 	}
 
 	void CLevel::SetTopLeft() {
 		LEVEL_text.SetTopLeft(800, 130);
+		myLevel.SetTopLeft(820, 155);
 	}
 	
 	void CLevel::setLevel(int LV) {
-		myLevel += LV;
-	}
+		myLevel.SetInteger(LV);
 
-	int CLevel::getLevel() {
-		return myLevel;
+		int d = 1;
+		while (true) {
+			LV = LV / 10;
+			if (LV != 0) {
+				d++;
+			}
+			else {
+				myLevel.SetDigits(d);
+				break;
+			}
+
+		}
 	}
+	
+	int CLevel::getLevel() {
+		return myLevel.GetInteger();
+	}
+	
 }

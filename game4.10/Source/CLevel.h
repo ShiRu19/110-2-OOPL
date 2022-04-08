@@ -14,7 +14,7 @@ namespace game_framework {
 		void setLevel(int LV);          // 紀錄關卡等級
 		int  getLevel();                // 取得關卡等級
 	private:
-		CMovingBitmap LEVEL_text;
-		int myLevel;					// 關卡等級
+		CMovingBitmap LEVEL_text;       // LEVEL文字
+		CInteger myLevel;		        // 關卡等級
 	};
 }

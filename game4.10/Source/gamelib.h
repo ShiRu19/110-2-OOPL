@@ -281,6 +281,7 @@ namespace game_framework {
 		void SetTopLeft(int, int);	// 將動畫的左上角座標移至 (x,y)
 		void ShowBitmap(bool);			// 將動畫貼到螢幕
 		void ShowBitmap();			// 將動畫貼到螢幕
+		void SetDigits(int digits);
 	private:
 		int NUMDIGITS;			// 共顯示NUMDIGITS個位數
 		CMovingBitmap digit[11]; // 儲存0..9及負號之圖形(bitmap)

@@ -13,26 +13,44 @@ namespace game_framework {
 
 	CScore::CScore()
 	{
-		myScore = 0;
+		myScore.SetInteger(-20);
+		myScore.SetDigits(2);
 	}
 
 	void CScore::LoadBitmap() {
 		SCORE_text.LoadBitmap(IDB_SCORE_TEXT, RGB(255, 255, 255));
-	}
-
-	void CScore::OnShow() {
-		SCORE_text.ShowBitmap();
+		myScore.LoadBitmap();
 	}
 
 	void CScore::SetTopLeft() {
 		SCORE_text.SetTopLeft(800, 50);
+		myScore.SetTopLeft(820, 75);
 	}
 	
 	void CScore::setScore(int profit) {
-		myScore += profit;
+		int newScore = myScore.GetInteger() + profit;
+		myScore.SetInteger(newScore);
+
+		int d = 1;
+		while (true) {
+			newScore = newScore / 10;
+			if (newScore != 0) {
+				d++;
+			}
+			else {
+				myScore.SetDigits(d);
+				break;
+			}
+
+		}
 	}
 
 	int CScore::getScore() {
-		return myScore;
+		return myScore.GetInteger();
+	}
+
+	void CScore::OnShow() {
+		SCORE_text.ShowBitmap();
+		myScore.ShowBitmap();
 	}
 }

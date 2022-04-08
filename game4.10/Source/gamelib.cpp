@@ -250,6 +250,10 @@ namespace game_framework {
 		isBmpLoaded = false;
 	}
 
+	void CInteger::SetDigits(int digits) {
+		NUMDIGITS = digits;
+	}
+
 	void CInteger::Add(int x)
 	{
 		n += x;

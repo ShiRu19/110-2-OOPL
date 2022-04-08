@@ -15,6 +15,7 @@ namespace game_framework {
 		int  getScore();                // 取得分數
 	private:
 		CMovingBitmap SCORE_text;
-		int myScore;					// 累計分數
+		CInteger      myScore;          // 累計的分數
+		int           totalScore;       // 總分(integer)
 	};
 }

@@ -355,6 +355,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 	// 載入Level文字
 	myLevel.LoadBitmap();
+	myLevel.setLevel(1);
 
 	// 載入紅色鬼
 	ghost[0].LoadBitmap(1,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // up
