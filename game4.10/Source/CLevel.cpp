@@ -13,7 +13,9 @@ namespace game_framework {
 
 	CLevel::CLevel()
 	{
+		// Level預設為第1關
 		myLevel = CInteger(1);
+		// 預設為1位數
 		myLevel.SetInteger(1);
 	}
 
@@ -35,6 +37,7 @@ namespace game_framework {
 	void CLevel::setLevel(int LV) {
 		myLevel.SetInteger(LV);
 
+		// 計算level的位數
 		int d = 1;
 		while (true) {
 			LV = LV / 10;
@@ -42,7 +45,7 @@ namespace game_framework {
 				d++;
 			}
 			else {
-				myLevel.SetDigits(d);
+				myLevel.SetDigits(d); // 重設level的位數
 				break;
 			}
 

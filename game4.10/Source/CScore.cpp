@@ -13,8 +13,10 @@ namespace game_framework {
 
 	CScore::CScore()
 	{
+		// 初始score = -20，避免開局就20分
 		myScore.SetInteger(-20);
-		myScore.SetDigits(2);
+		// 預設score只有1位數 (0);
+		myScore.SetDigits(1);
 	}
 
 	void CScore::LoadBitmap() {
@@ -31,6 +33,7 @@ namespace game_framework {
 		int newScore = myScore.GetInteger() + profit;
 		myScore.SetInteger(newScore);
 
+		// 計算score的位數
 		int d = 1;
 		while (true) {
 			newScore = newScore / 10;
@@ -38,7 +41,7 @@ namespace game_framework {
 				d++;
 			}
 			else {
-				myScore.SetDigits(d);
+				myScore.SetDigits(d); // 重設score的位數
 				break;
 			}
 
