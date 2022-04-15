@@ -351,6 +351,7 @@
     <Image Include="RES\ghost_3.bmp" />
     <Image Include="RES\ghost_4.bmp" />
     <Image Include="RES\LEVEL.bmp" />
+    <Image Include="RES\magicFood.bmp" />
     <Image Include="RES\orange_1.bmp" />
     <Image Include="RES\orange_2.bmp" />
     <Image Include="RES\orange_3.bmp" />

@@ -24,7 +24,7 @@ namespace game_framework {
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 			{1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1},
-			{1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1},
+			{1, 3, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 3, 1},
 			{1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1},
 			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 			{1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1},
@@ -44,7 +44,7 @@ namespace game_framework {
 			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 			{1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1},
 			{1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1},
-			{1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1},
+			{1, 3, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 3, 1},
 			{1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1},
 			{1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1},
 			{1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1},
@@ -54,15 +54,20 @@ namespace game_framework {
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1} };
 			
 			foodCount = 0;
+
 			for (int i = 0; i < 31; i++)
 			{
 				for (int j = 0; j < 28; j++)
 				{
 					map[i][j] = map_info[i][j];
-					if (map_info[i][j] == 0) {
-						CFood food;
-						food.LoadBitmap();
-						allFoods.push_back(food);
+					if (map_info[i][j] == 0) { // ¤p¨§¤l
+						allFoods.push_back(new CFood(10));
+						allFoods.at(foodCount)->LoadBitmap(IDB_FOOD, IDB_FOOD);
+						foodCount++;
+					}
+					else if (map_info[i][j] == 3) { // ¤jÅ]¨§
+						allFoods.push_back(new CFood(50));
+						allFoods.at(foodCount)->LoadBitmap(IDB_MAGICFOOD, IDB_BLACKBMP);
 						foodCount++;
 					}
 				}
@@ -85,30 +90,29 @@ namespace game_framework {
 
 	CGameMap::~CGameMap()
 	{
+		for (int i = 0; i < (int)allFoods.size(); i++) {
+			delete allFoods.at(i);
+		}
 		for (int i = 0; i < 31; i++)
 		{
 			delete[] map[i];
 		}
 		delete[] map;
+		
 	}
 
 	void CGameMap::LoadBitmap()
 	{
 		wall.LoadBitmap(IDB_WALL_BLUE);
-		//for (int i = 0; i < foodCount; i++) {
-		//	allFoods[i].LoadBitmap();
-		//}
-		//Food.LoadBitmap(IDB_FOOD);
 	}
 
-	vector<CFood>* CGameMap::getAllFoods() {
+	vector<CFood *>* CGameMap::getAllFoods() {
 		return &allFoods;
 	}
 
 	void CGameMap::OnShow()
 	{
 		int currentFoodIndex = 0;
-
 		for (int i = 0; i < 31; i++)
 		{
 			for (int j = 0; j < 28; j++)
@@ -116,15 +120,18 @@ namespace game_framework {
 				switch (map[i][j])
 				{
 				case 0:
-					//Food.SetTopLeft(X + (MW*j), Y + (MH*i));
-					//Food.ShowBitmap();
-					allFoods.at(currentFoodIndex).SetTopLeft(X + (MW*j), Y + (MH*i));
-					allFoods.at(currentFoodIndex).OnShow();
+					allFoods.at(currentFoodIndex)->SetTopLeft(X + (MW*j), Y + (MH*i));
+					allFoods.at(currentFoodIndex)->OnShow();
 					currentFoodIndex++;
 					break;
 				case 1:
 					wall.SetTopLeft(X + (MW*j), Y + (MH*i));
 					wall.ShowBitmap();
+					break;
+				case 3:
+					allFoods.at(currentFoodIndex)->SetTopLeft(X + (MW*j), Y + (MH*i));
+					allFoods.at(currentFoodIndex)->OnShow();
+					currentFoodIndex++;
 					break;
 				default:
 					break;

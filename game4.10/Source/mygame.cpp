@@ -256,22 +256,24 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 移動擦子
 	//
 	// eraser.OnMove();
-	//
-	// 判斷擦子是否碰到球
-	//
 
-	vector<CFood>* allFoods = gamemap1.getAllFoods();
-	
+	//
+	// 判斷Pacman是否碰到food
+	//
+	vector<CFood *>* allFoods = gamemap1.getAllFoods();
 	for (int i = 0; i < gamemap1.getFoodCount(); i++) {
-		if (allFoods->at(i).IsAlive() && allFoods->at(i).HitPacman(&c_PacMan)) {
-			allFoods->at(i).SetIsAlive(false);
-			myScore.setScore(20);
+		if ((*allFoods->at(i)).IsAlive() && (*allFoods->at(i)).HitPacman(&c_PacMan)) {
+			(*allFoods->at(i)).SetIsAlive(false);
+			myScore.setScore((*allFoods->at(i)).GetScore()); // 得分
 		}
 	}
 	
+	//
+	// 判斷Pacman是否碰到ghost
+	//
 	for (int i = 0; i < 4; i++) {
 		if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
-			c_PacMan.SetIsAlive(false);
+			c_PacMan.SetIsAlive(false); // Pacman死亡
 		}
 	}
 

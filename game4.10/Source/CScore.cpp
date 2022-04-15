@@ -13,8 +13,8 @@ namespace game_framework {
 
 	CScore::CScore()
 	{
-		// 初始score = -20，避免開局就20分
-		myScore.SetInteger(-20);
+		// 初始score = -10，避免開局就10分
+		myScore.SetInteger(-10);
 		// 預設score只有1位數 (0);
 		myScore.SetDigits(1);
 	}

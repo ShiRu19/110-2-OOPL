@@ -18,6 +18,13 @@ namespace game_framework {
 		x = y = 0;
 	}
 
+	CFood::CFood(int score)
+	{
+		is_alive = true;
+		x = y = 0;
+		this->score = score;
+	}
+
 	bool CFood::HitPacman(CPacman *pacman)
 	{
 		// 檢測Pacman所構成的矩形是否碰到food
@@ -28,7 +35,7 @@ namespace game_framework {
 	bool CFood::HitRectangle(int tx1, int ty1, int tx2, int ty2)
 	{
 		// 檢查是否有交集
-		return (tx2 >= x+1 && tx1 <= (x + food.Width()-1) && ty2 >= y+1 && ty1 <= (y + food.Height()-1));
+		return (tx2 >= x+1 && tx1 <= (x + foods.Width()-1) && ty2 >= y+1 && ty1 <= (y + foods.Height()-1));
 	}
 
 	bool CFood::IsAlive()
@@ -36,9 +43,10 @@ namespace game_framework {
 		return is_alive;
 	}
 
-	void CFood::LoadBitmap()
+	void CFood::LoadBitmap(int IDB1, int IDB2)
 	{
-		food.LoadBitmap(IDB_FOOD, RGB(0, 0, 0)); // 載入food
+		foods.AddBitmap(IDB1, RGB(0, 0, 0));
+		foods.AddBitmap(IDB2, RGB(0, 0, 0));
 	}
 
 	void CFood::OnMove()
@@ -80,17 +88,23 @@ namespace game_framework {
 		x = nx; y = ny;
 	}
 
-	void CFood::SetTopLeft(int x, int y) {
-		this->x = x;
-		this->y = y;
-		food.SetTopLeft(x, y);
+	int CFood::GetScore() {
+		return this->score;
 	}
 
+	void CFood::SetTopLeft(int x, int y) {
+		foods.SetTopLeft(x, y);
+		this->x = x;
+		this->y = y;
+	}
+	
 	void CFood::OnShow()
 	{
 		if (is_alive) {
-			food.SetTopLeft(x, y);
-			food.ShowBitmap();
+			foods.SetTopLeft(x,y);
+			foods.OnMove();
+			foods.OnShow();
 		}
 	}
+	
 }

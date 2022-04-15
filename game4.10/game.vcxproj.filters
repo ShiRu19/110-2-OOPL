@@ -418,5 +418,8 @@
     <Image Include="RES\LEVEL.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\magicFood.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
