@@ -20,17 +20,26 @@ namespace game_framework {
 	}
 
 	void CLife::LoadBitmap() {
-		LIFE_multi.LoadBitmap(IDB_LIFEMULTI, RGB(0, 0, 0));
+		for (int i = 0; i < 4; i++) {
+			Pacman_icon[i].LoadBitmap(IDB_PACMAN_RIGHT_1, RGB(125, 125, 125));
+		}
+		Life_multi.LoadBitmap(IDB_LIFEMULTI, RGB(0, 0, 0));
 		myLife.LoadBitmap();
 	}
 
 	void CLife::OnShow() {
-		LIFE_multi.ShowBitmap();
+		for (int i = 0; i < myLife.GetInteger(); i++) {
+			Pacman_icon[i].ShowBitmap();
+		}
+		Life_multi.ShowBitmap();
 		myLife.ShowBitmap();
 	}
 
 	void CLife::SetTopLeft() {
-		LIFE_multi.SetTopLeft(800, 400);
+		for (int i = 0; i < 4; i++) {
+			Pacman_icon[i].SetTopLeft(800 + 25*i, 360);
+		}
+		Life_multi.SetTopLeft(800, 400);
 		myLife.SetTopLeft(830, 400);
 	}
 	
