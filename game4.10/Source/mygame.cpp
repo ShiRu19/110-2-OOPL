@@ -350,6 +350,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 	// 載入PacMan
 	c_PacMan.LoadBitmap();
+	c_PacMan.SetInitXY(14, 17);
 	c_PacMan.SetMap(gamemap1.GetMap());
 
 	// 載入Score文字
@@ -461,6 +462,10 @@ void CGameStateRun::OnShow()
 	// 顯示Pacman
 	c_PacMan.OnShow();
 	
+	if (c_PacMan.IsGameover()) {
+		GotoGameState(GAME_STATE_OVER);
+	}
+
 	// 顯示Ghost
 	for (int i = 0; i < 4; i++) {
 		ghost[i].OnShow();

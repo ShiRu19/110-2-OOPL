@@ -14,10 +14,15 @@ namespace game_framework {
 
 	// Pacman
 	CPacman::CPacman() {
-		y = MAP_START + 17 * BITMAP_SIZE;									// 設定Pacman起始的X座標
-		x = MAP_START + 14 * BITMAP_SIZE;									// 設定Pacman起始的Y座標
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 		is_alive = true;
+	}
+
+	void CPacman::SetInitXY(int x, int y) {
+		init_X = MAP_START + x * BITMAP_SIZE;									// 設定Pacman起始的Y座標
+		init_Y = MAP_START + y * BITMAP_SIZE;									// 設定Pacman起始的X座標
+		this->x = init_X;
+		this->y = init_Y;
 	}
 
 	int CPacman::FindMapIndex_X(int x)
@@ -257,6 +262,21 @@ namespace game_framework {
 		animation->SetTopLeft(x, y);
 	}
 
+	void CPacman::restart() {
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+		animation = &animation_stop_4;
+		y = init_Y;
+		x = init_X;
+		is_alive = true;
+	}
+
+	bool CPacman::IsGameover() {
+		if (lifes < 0) {
+			return true;
+		}
+		return false;
+	}
+
 	void CPacman::OnShow() {
 		if (is_alive) {
 			if (isMovingUp && isStop) {
@@ -281,9 +301,19 @@ namespace game_framework {
 		}
 		else {
 			animation = &animation_die;
+			delay++;
 			animation->SetTopLeft(x, y);
 			animation->OnMove();
 			animation->OnShow();
 		}
+
+		if (delay == 29) {
+			lifes--;
+			if (lifes > -1) restart();
+			delay = 0;
+			animation->OnMove();
+			animation->OnShow();
+		}
+
 	}
 }
