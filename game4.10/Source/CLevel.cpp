@@ -13,9 +13,9 @@ namespace game_framework {
 
 	CLevel::CLevel()
 	{
-		// Level預設為第1關
+		// Level預設為1位數
 		myLevel = CInteger(1);
-		// 預設為1位數
+		// 預設為1
 		myLevel.SetInteger(1);
 	}
 

@@ -48,6 +48,7 @@
 #include "CFood.h"
 #include "CScore.h"
 #include "CLevel.h"
+#include "CLife.h"
 
 using namespace std;
 
@@ -120,6 +121,7 @@ namespace game_framework {
 		vector<CFood>   foods;      // 小豆子
 		CScore          myScore;    // 總分數
 		CLevel          myLevel;    // 關卡等級
+		CLife           myLife;     // 生命值
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

@@ -5,6 +5,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "CGhost.h"
+#include "CLife.h"
 #include "CPacman.h"
 
 namespace game_framework {
@@ -188,7 +189,8 @@ namespace game_framework {
 		}
 	}
 
-	void CPacman::LoadBitmap() {
+	void CPacman::LoadBitmap()
+	{
 		// STOP
 		animation_stop_1.AddBitmap(IDB_PACMAN_UP_1, RGB(255, 255, 255));        //靜止狀態(預設向上)
 		animation_stop_2.AddBitmap(IDB_PACMAN_DOWN_1, RGB(255, 255, 255));      //靜止狀態(預設向下)
@@ -218,7 +220,8 @@ namespace game_framework {
 	}
 
 	// 檢查Pacman所構成的矩形是否碰到ghost
-	bool CPacman::HitGhost(CGhost *ghost) {
+	bool CPacman::HitGhost(CGhost *ghost)
+	{
 		return HitRectangle(ghost->GetX1(), ghost->GetY1(),
 			ghost->GetX2(), ghost->GetY2());
 	}
@@ -229,7 +232,8 @@ namespace game_framework {
 		return (tx2 >= x && tx1 <= (x + animation->Width()) && ty2 >= y && ty1 <= (y + animation->Height()));
 	}
 
-	void CPacman::SetIsAlive(bool alive) {
+	void CPacman::SetIsAlive(bool alive)
+	{
 		is_alive = alive;
 	}
 
@@ -262,7 +266,8 @@ namespace game_framework {
 		animation->SetTopLeft(x, y);
 	}
 
-	void CPacman::restart() {
+	void CPacman::restart()
+	{
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 		animation = &animation_stop_4;
 		y = init_Y;
@@ -270,15 +275,23 @@ namespace game_framework {
 		is_alive = true;
 	}
 
-	bool CPacman::IsGameover() {
-		if (lifes < 0) {
+	bool CPacman::IsGameover()
+	{
+		if (myLife < 0) {
 			return true;
 		}
 		return false;
 	}
 
-	void CPacman::OnShow() {
-		if (is_alive) {
+	int CPacman::GetLife()
+	{
+		return myLife;
+	}
+
+	void CPacman::OnShow()
+	{
+		if (is_alive)
+		{
 			if (isMovingUp && isStop) {
 				isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 				animation = &animation_stop_1;
@@ -308,12 +321,11 @@ namespace game_framework {
 		}
 
 		if (delay == 29) {
-			lifes--;
-			if (lifes > -1) restart();
+			myLife--;
+			if (myLife > -1) restart();
 			delay = 0;
 			animation->OnMove();
 			animation->OnShow();
 		}
-
 	}
 }

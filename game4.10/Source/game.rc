@@ -232,9 +232,11 @@ IDB_BLACKBMP            BITMAP                  "..\\RES\\Pacman_die_5.bmp"
 
 IDB_SCORE_TEXT          BITMAP                  "..\\RES\\SCORE.bmp"
 
-IDB_LEVEL_TEXT          BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\LEVEL.bmp"
+IDB_LEVEL_TEXT          BITMAP                  "..\\RES\\LEVEL.bmp"
 
-IDB_MAGICFOOD           BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\magicFood.bmp"
+IDB_MAGICFOOD           BITMAP                  "..\\RES\\magicFood.bmp"
+
+IDB_LIFEMULTI           BITMAP                  "..\\RES\\multi.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

@@ -147,6 +147,9 @@
     <ClCompile Include="Source\CLevel.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CLife.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -201,6 +204,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\CLevel.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CLife.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -419,6 +425,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\magicFood.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\multi.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

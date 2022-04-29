@@ -278,6 +278,12 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	}
 
 	//
+	// 更新目前生命值
+	// 
+	myLife.setLife(c_PacMan.GetLife());
+
+
+	//
 	// 移動PacMan
 	//
 	if(c_PacMan.IsAlive())
@@ -359,6 +365,9 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	// 載入Level文字
 	myLevel.LoadBitmap();
 
+	// 載入Life圖示
+	myLife.LoadBitmap();
+
 	// 載入紅色鬼
 	ghost[0].LoadBitmap(1,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // up
 	ghost[0].LoadBitmap(2,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // down
@@ -387,6 +396,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	c_PacMan.SetTopLeft();
 	myScore.SetTopLeft();
 	myLevel.SetTopLeft();
+	myLife.SetTopLeft();
 
 	ghost[0].SetTopLeft(MAP_START + 12 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[1].SetTopLeft(MAP_START + 13 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
@@ -462,6 +472,7 @@ void CGameStateRun::OnShow()
 	// 顯示Pacman
 	c_PacMan.OnShow();
 	
+	// 轉換狀態
 	if (c_PacMan.IsGameover()) {
 		GotoGameState(GAME_STATE_OVER);
 	}
@@ -471,8 +482,13 @@ void CGameStateRun::OnShow()
 		ghost[i].OnShow();
 	}
 
-	// 顯示分數和關卡等級
+	// 顯示分數
 	myScore.OnShow();
+
+	// 顯示關卡等級
 	myLevel.OnShow();
+
+	// 顯示生命值
+	myLife.OnShow();
 }
 }

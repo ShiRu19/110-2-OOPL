@@ -4,6 +4,7 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
+	class CLife;
 	class CGhost;
 
 	class CPacman
@@ -18,7 +19,8 @@ namespace game_framework {
 		void SetTopLeft();
 		void OnMove();								         	// 移動
 		void OnShow();											// 將圖形貼到畫面
-
+		int  GetLife();                                         // 目前生命值
+		
 		void SetInitXY(int x, int y);                           // 設定初始位置
 		int  GetX1();                                           // 取得x1(左上角)
 		int  GetY1();                                           // 取得y1(左上角)
@@ -46,8 +48,10 @@ namespace game_framework {
 		CAnimation animation_4;                                 // Pacman的動畫_向右
 		CAnimation animation_die;                               // Pacman的動畫_死亡
 		CAnimation *animation = &animation_stop_4;              // 當前Pacman動畫方向(預設向右)
+
 		void restart();                                         // 失去生命時，關卡重來
 		int  delay = 0;                                         // 等待狀態結束
+		int  myLife = 4;
 
 		int init_X, init_Y;                                     // Pacman初始位置
 		int x, y;                                               // Pacman目前位置
@@ -61,7 +65,6 @@ namespace game_framework {
 		bool HitRectangle(int tx1, int ty1, int tx2, int ty2);  // 檢查是否有交集
 		bool is_alive;                                          // 生命狀態
 		bool is_gameover = false;                               // 遊戲結束
-		int  lifes = 4;                                         // 生命值
 		
 		int **map;                                              // 遊戲地圖
 		int MapIndex_X1;                                        // Pacman左上角位於地圖的座標(X軸)
