@@ -35,30 +35,6 @@
 #define IDB_LOADING                     156
 #define IDB_PNG1                        165
 #define IDB_PNG2                        166
-#define IDB_ELF_ORANGE_5                167
-#define IDB_ELF_BLUE_1                  168
-#define IDB_ELF_ORANGE_1                169
-#define IDB_ELF_PINK_1                  170
-#define IDB_ELF_RED_1                   171
-#define IDB_ELF_PINK_2                  173
-#define IDB_ELF_PINK_3                  174
-#define IDB_ELF_PINK_4                  175
-#define IDB_ELF_PINK_5                  176
-#define IDB_ELF_RED_2                   177
-#define IDB_ELF_RED_3                   178
-#define IDB_ELF_RED_4                   179
-#define IDB_ELF_RED_5                   180
-#define IDB_ELF_BLUE_2                  181
-#define IDB_ELF_BLUE_3                  182
-#define IDB_ELF_BLUE_4                  183
-#define IDB_ELF_BLUE_5                  184
-#define IDB_ELF_ORANGE_2                185
-#define IDB_ELF_ORANGE_3                186
-#define IDB_ELF_ORANGE_4                187
-#define IDB_GHOST_1                     188
-#define IDB_GHOST_2                     189
-#define IDB_GHOST_3                     190
-#define IDB_GHOST_4                     191
 #define IDB_Pacman_1_                   193
 #define IDB_PACMAN_RIGHT_1              195
 #define IDB_PACMAN_RIGHT_2              196
@@ -122,6 +98,11 @@
 #define IDB_MAGICFOOD                   250
 #define IDB_BITMAP2                     253
 #define IDB_LIFEMULTI                   253
+#define IDB_GHOST_BLUE_1                255
+#define IDB_GHOST_BLUE_2                256
+#define IDB_GHOST_WHITE_1               257
+#define IDB_BITMAP6                     258
+#define IDB_GHOST_WHITE_2               258
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -134,7 +115,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        254
+#define _APS_NEXT_RESOURCE_VALUE        259
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

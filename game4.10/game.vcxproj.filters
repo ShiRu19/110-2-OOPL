@@ -433,5 +433,17 @@
     <Image Include="RES\multi.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\ghost_blue_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost_blue_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost_white_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ghost_white_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

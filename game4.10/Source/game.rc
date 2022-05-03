@@ -104,54 +104,6 @@ IDB_HELP                BITMAP                  "..\\res\\help.bmp"
 
 IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
 
-IDB_ELF_ORANGE_5        BITMAP                  "..\\RES\\orange_5.bmp"
-
-IDB_ELF_BLUE_1          BITMAP                  "..\\RES\\blue_1.bmp"
-
-IDB_ELF_ORANGE_1        BITMAP                  "..\\RES\\orange_1.bmp"
-
-IDB_ELF_PINK_1          BITMAP                  "..\\RES\\pink_1.bmp"
-
-IDB_ELF_RED_1           BITMAP                  "..\\RES\\red_1.bmp"
-
-IDB_ELF_PINK_2          BITMAP                  "..\\RES\\pink_2.bmp"
-
-IDB_ELF_PINK_3          BITMAP                  "..\\RES\\pink_3.bmp"
-
-IDB_ELF_PINK_4          BITMAP                  "..\\RES\\pink_4.bmp"
-
-IDB_ELF_PINK_5          BITMAP                  "..\\RES\\pink_5.bmp"
-
-IDB_ELF_RED_2           BITMAP                  "..\\RES\\red_2.bmp"
-
-IDB_ELF_RED_3           BITMAP                  "..\\RES\\red_3.bmp"
-
-IDB_ELF_RED_4           BITMAP                  "..\\RES\\red_4.bmp"
-
-IDB_ELF_RED_5           BITMAP                  "..\\RES\\red_5.bmp"
-
-IDB_ELF_BLUE_2          BITMAP                  "..\\RES\\blue_2.bmp"
-
-IDB_ELF_BLUE_3          BITMAP                  "..\\RES\\blue_3.bmp"
-
-IDB_ELF_BLUE_4          BITMAP                  "..\\RES\\blue_4.bmp"
-
-IDB_ELF_BLUE_5          BITMAP                  "..\\RES\\blue_5.bmp"
-
-IDB_ELF_ORANGE_2        BITMAP                  "..\\RES\\orange_2.bmp"
-
-IDB_ELF_ORANGE_3        BITMAP                  "..\\RES\\orange_3.bmp"
-
-IDB_ELF_ORANGE_4        BITMAP                  "..\\RES\\orange_4.bmp"
-
-IDB_GHOST_1             BITMAP                  "..\\RES\\ghost_1.bmp"
-
-IDB_GHOST_2             BITMAP                  "..\\RES\\ghost_2.bmp"
-
-IDB_GHOST_3             BITMAP                  "..\\RES\\ghost_3.bmp"
-
-IDB_GHOST_4             BITMAP                  "..\\RES\\ghost_4.bmp"
-
 IDB_PACMAN_RIGHT_1      BITMAP                  "..\\RES\\Pacman_right_1.bmp"
 
 IDB_PACMAN_RIGHT_2      BITMAP                  "..\\RES\\Pacman_right_2.bmp"
@@ -237,6 +189,14 @@ IDB_LEVEL_TEXT          BITMAP                  "..\\RES\\LEVEL.bmp"
 IDB_MAGICFOOD           BITMAP                  "..\\RES\\magicFood.bmp"
 
 IDB_LIFEMULTI           BITMAP                  "..\\RES\\multi.bmp"
+
+IDB_GHOST_BLUE_1        BITMAP                  "..\\RES\\ghost_blue_1.bmp"
+												 
+IDB_GHOST_BLUE_2        BITMAP                  "..\\RES\\ghost_blue_2.bmp"
+												 
+IDB_GHOST_WHITE_1       BITMAP                  "..\\RES\\ghost_white_1.bmp"
+												 
+IDB_GHOST_WHITE_2       BITMAP                  "..\\RES\\ghost_white_2.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
