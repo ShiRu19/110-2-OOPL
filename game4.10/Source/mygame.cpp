@@ -368,30 +368,38 @@ void CGameStateRun::OnInit()  								// 笴栏の瓜砞﹚
 	// 更Life瓜ボ
 	myLife.LoadBitmap();
 
-	// 更︹碍
-	ghost[0].LoadBitmap(1,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // up
-	ghost[0].LoadBitmap(2,IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2); // down
-	ghost[0].LoadBitmap(3,IDB_GHOST_RED_LEFT_1, IDB_GHOST_RED_LEFT_2); // left
-	ghost[0].LoadBitmap(4,IDB_GHOST_RED_RIGHT_1, IDB_GHOST_RED_RIGHT_2); // right
-	
-	// 更屡︹碍
-	ghost[1].LoadBitmap(1, IDB_GHOST_BLUE_DOWN_1, IDB_GHOST_BLUE_DOWN_2); // up
-	ghost[1].LoadBitmap(2, IDB_GHOST_BLUE_DOWN_1, IDB_GHOST_BLUE_DOWN_2); // down
-	ghost[1].LoadBitmap(3, IDB_GHOST_BLUE_LEFT_1, IDB_GHOST_BLUE_LEFT_2); // left
-	ghost[1].LoadBitmap(4, IDB_GHOST_BLUE_RIGHT_1, IDB_GHOST_BLUE_RIGHT_2); // right
+	// 更 red ghost
+	int red[4][2] = {
+		{ IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2 },
+		{ IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2 },
+		{ IDB_GHOST_RED_LEFT_1, IDB_GHOST_RED_LEFT_2 },
+		{ IDB_GHOST_RED_RIGHT_1, IDB_GHOST_RED_RIGHT_2 } };
+	ghost[0].LoadBitmap(red);
 
-	// 更︹碍
-	ghost[2].LoadBitmap(1, IDB_GHOST_PINK_DOWN_1, IDB_GHOST_PINK_DOWN_2); // up
-	ghost[2].LoadBitmap(2, IDB_GHOST_PINK_DOWN_1, IDB_GHOST_PINK_DOWN_2); // down
-	ghost[2].LoadBitmap(3, IDB_GHOST_PINK_LEFT_1, IDB_GHOST_PINK_LEFT_2); // left
-	ghost[2].LoadBitmap(4, IDB_GHOST_PINK_RIGHT_1, IDB_GHOST_PINK_RIGHT_2); // right
-	
-	// 更撅︹碍
-	ghost[3].LoadBitmap(1, IDB_GHOST_ORANGE_DOWN_1, IDB_GHOST_ORANGE_DOWN_2); // up
-	ghost[3].LoadBitmap(2, IDB_GHOST_ORANGE_DOWN_1, IDB_GHOST_ORANGE_DOWN_2); // down
-	ghost[3].LoadBitmap(3, IDB_GHOST_ORANGE_LEFT_1, IDB_GHOST_ORANGE_LEFT_2); // left
-	ghost[3].LoadBitmap(4, IDB_GHOST_ORANGE_RIGHT_1, IDB_GHOST_ORANGE_RIGHT_2); // right
+	// 更 blue ghost
+	int blue[4][2] = {
+		{ IDB_GHOST_BLUE_DOWN_1, IDB_GHOST_BLUE_DOWN_2 },
+		{ IDB_GHOST_BLUE_DOWN_1, IDB_GHOST_BLUE_DOWN_2 },
+		{ IDB_GHOST_BLUE_LEFT_1, IDB_GHOST_BLUE_LEFT_2 },
+		{ IDB_GHOST_BLUE_RIGHT_1, IDB_GHOST_BLUE_RIGHT_2 } };
+	ghost[1].LoadBitmap(blue);
 
+	// 更 pink ghost
+	int pink[4][2] = {
+		{ IDB_GHOST_PINK_DOWN_1, IDB_GHOST_PINK_DOWN_2 },
+		{ IDB_GHOST_PINK_DOWN_1, IDB_GHOST_PINK_DOWN_2 },
+		{ IDB_GHOST_PINK_LEFT_1, IDB_GHOST_PINK_LEFT_2 },
+		{ IDB_GHOST_PINK_RIGHT_1, IDB_GHOST_PINK_RIGHT_2 } };
+	ghost[2].LoadBitmap(pink);
+
+	// 更 orange ghost
+	int orange[4][2] = {
+		{ IDB_GHOST_ORANGE_DOWN_1, IDB_GHOST_ORANGE_DOWN_2 },
+		{ IDB_GHOST_ORANGE_DOWN_1, IDB_GHOST_ORANGE_DOWN_2 },
+		{ IDB_GHOST_ORANGE_LEFT_1, IDB_GHOST_ORANGE_LEFT_2 },
+		{ IDB_GHOST_ORANGE_RIGHT_1, IDB_GHOST_ORANGE_RIGHT_2 } };
+	ghost[3].LoadBitmap(orange);
+	
 	// 砞竚竚
 	c_PacMan.SetTopLeft();
 	myScore.SetTopLeft();

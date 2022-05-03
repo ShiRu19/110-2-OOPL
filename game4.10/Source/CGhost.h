@@ -8,7 +8,7 @@ namespace game_framework {
 	{
 	public:
 		CGhost();
-		void LoadBitmap(int direction, int IDB1, int IDB2);		// 載入圖形
+		void LoadBitmap(int IDB[4][2]);		                    // 載入圖形
 		int  GetX1();                                           // 取得x1(左上角)
 		int  GetY1();                                           // 取得y1(左上角)
 		int  GetX2();                                           // 取得x2(右下角)
@@ -21,7 +21,7 @@ namespace game_framework {
 		CAnimation animation_2;                                 // 精靈動畫_下
 		CAnimation animation_3;                                 // 精靈動畫_左
 		CAnimation animation_4;                                 // 精靈動畫_右
-		CAnimation *animation = &animation_4;                                  // 目前方向動畫
+		CAnimation *animation = &animation_4;                   // 目前方向動畫
 		int x, y;
 	};
 }

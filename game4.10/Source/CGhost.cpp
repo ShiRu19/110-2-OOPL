@@ -20,14 +20,22 @@ namespace game_framework {
 		animation->OnMove();
 	}
 
-	void CGhost::LoadBitmap(int direction, int IDB1, int IDB2) {
-		if (direction == 1) animation = &animation_1;
-		else if (direction == 2) animation = &animation_2;
-		else if (direction == 3) animation = &animation_3;
-		else if (direction == 4) animation = &animation_4;
+	void CGhost::LoadBitmap(int IDB[4][2]) {
+		// up
+		animation_1.AddBitmap(IDB[0][0], RGB(0, 0, 0));
+		animation_1.AddBitmap(IDB[0][1], RGB(0, 0, 0));
 
-		animation->AddBitmap(IDB1, RGB(0, 0, 0));
-		animation->AddBitmap(IDB2, RGB(0, 0, 0));
+		// down
+		animation_2.AddBitmap(IDB[1][0], RGB(0, 0, 0));
+		animation_2.AddBitmap(IDB[1][1], RGB(0, 0, 0));
+
+		// left
+		animation_3.AddBitmap(IDB[2][0], RGB(0, 0, 0));
+		animation_3.AddBitmap(IDB[2][1], RGB(0, 0, 0));
+
+		// right
+		animation_4.AddBitmap(IDB[3][0], RGB(0, 0, 0));
+		animation_4.AddBitmap(IDB[3][1], RGB(0, 0, 0));
 	}
 	
 	int CGhost::GetX1() {
