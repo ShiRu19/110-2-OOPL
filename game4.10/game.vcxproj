@@ -355,6 +355,7 @@
     <Image Include="RES\ghost_4.bmp" />
     <Image Include="RES\ghost_blue_1.bmp" />
     <Image Include="RES\ghost_blue_2.bmp" />
+    <Image Include="RES\ghost_eyes_down.bmp" />
     <Image Include="RES\ghost_white_1.bmp" />
     <Image Include="RES\ghost_white_2.bmp" />
     <Image Include="RES\LEVEL.bmp" />

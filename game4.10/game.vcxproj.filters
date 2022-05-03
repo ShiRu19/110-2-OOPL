@@ -445,5 +445,8 @@
     <Image Include="RES\ghost_white_2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\ghost_eyes_down.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -265,6 +265,14 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		if ((*allFoods->at(i)).IsAlive() && (*allFoods->at(i)).HitPacman(&c_PacMan)) {
 			(*allFoods->at(i)).SetIsAlive(false);
 			myScore.setScore((*allFoods->at(i)).GetScore()); // 得分
+
+			// 如果是碰到大魔豆
+			if ((*allFoods->at(i)).GetScore() == 50) {
+				// ghost轉成躲避鬼模式
+				for (int i = 0; i < 4; i++) {
+					ghost[i].changeMode(1);
+				}
+			}
 		}
 	}
 	
@@ -272,8 +280,18 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 判斷Pacman是否碰到ghost
 	//
 	for (int i = 0; i < 4; i++) {
-		if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
-			c_PacMan.SetIsAlive(false); // Pacman死亡
+		// 若碰到正常鬼，Pacman死亡
+		if (ghost[i].isNormalMode()) {
+			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
+				c_PacMan.SetIsAlive(false); // Pacman死亡
+			}
+		}
+		// 若碰到躲避鬼或不穩定鬼，Pacman得分
+		else if (ghost[i].isNormalMode() != true) {
+			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
+				ghost[i].changeMode(3);
+				myScore.setScore(10); // 得分
+			}
 		}
 	}
 
