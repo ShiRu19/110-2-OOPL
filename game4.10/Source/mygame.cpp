@@ -289,7 +289,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		// 若碰到躲避鬼或不穩定鬼，Pacman得分
 		else if (ghost[i].isNormalMode() != true) {
 			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
-				ghost[i].changeMode(3);
+				ghost[i].changeMode(3); // 鬼變眼睛狀態
 				myScore.setScore(10); // 得分
 			}
 		}

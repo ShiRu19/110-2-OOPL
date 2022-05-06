@@ -26,24 +26,34 @@ namespace game_framework {
 		this->y = init_Y;
 	}
 
-	int CPacman::FindMapIndex_X(int x)
+	void CPacman::LoadBitmap()
 	{
-		return (x - MAP_START) / BITMAP_SIZE;
-	}
-	int CPacman::FindMapIndex_Y(int y)
-	{
-		return (y - MAP_START) / BITMAP_SIZE;
-	}
+		// STOP
+		animation_stop_1.AddBitmap(IDB_PACMAN_UP_1, RGB(255, 255, 255));        //靜止狀態(預設向上)
+		animation_stop_2.AddBitmap(IDB_PACMAN_DOWN_1, RGB(255, 255, 255));      //靜止狀態(預設向下)
+		animation_stop_3.AddBitmap(IDB_PACMAN_LEFT_1, RGB(255, 255, 255));      //靜止狀態(預設向左)
+		animation_stop_4.AddBitmap(IDB_PACMAN_RIGHT_1, RGB(255, 255, 255));     //靜止狀態(預設向右)
 
-	void CPacman::GetMapIndex() {
-		MapIndex_X1 = FindMapIndex_X(x);
-		MapIndex_X2 = FindMapIndex_X(x + 22);
-		MapIndex_Y1 = FindMapIndex_Y(y);
-		MapIndex_Y2 = FindMapIndex_Y(y + 22);
-	}
+		// DIE
+		animation_die.AddBitmap(IDB_PACMAN_UP_1, RGB(255, 255, 255));           //死亡(向上)
+		animation_die.AddBitmap(IDB_PACMAN_DIE_1, RGB(255, 255, 255));
+		animation_die.AddBitmap(IDB_PACMAN_DIE_2, RGB(255, 255, 255));
+		animation_die.AddBitmap(IDB_PACMAN_DIE_3, RGB(255, 255, 255));
+		animation_die.AddBitmap(IDB_PACMAN_DIE_4, RGB(255, 255, 255));
+		animation_die.AddBitmap(IDB_PACMAN_DIE_BLACK, RGB(255, 255, 255));      //全黑結束
 
-	void CPacman::SetMap(int **map) {
-		this->map = map;
+		// UP
+		animation_1.AddBitmap(IDB_PACMAN_UP_1, RGB(255, 255, 255));             //向上_open
+		animation_1.AddBitmap(IDB_PACMAN_UP_2, RGB(255, 255, 255));             //向上_close
+		// DOWN
+		animation_2.AddBitmap(IDB_PACMAN_DOWN_1, RGB(255, 255, 255));           //向下_open
+		animation_2.AddBitmap(IDB_PACMAN_DOWN_2, RGB(255, 255, 255));           //向下_close
+		// LEFT
+		animation_3.AddBitmap(IDB_PACMAN_LEFT_1, RGB(255, 255, 255));           //向左_open
+		animation_3.AddBitmap(IDB_PACMAN_LEFT_2, RGB(255, 255, 255));           //向左_close
+		// RIGHT
+		animation_4.AddBitmap(IDB_PACMAN_RIGHT_1, RGB(255, 255, 255));          //向右_open
+		animation_4.AddBitmap(IDB_PACMAN_RIGHT_2, RGB(255, 255, 255));          //向右_close
 	}
 
 	void CPacman::OnMove() {
@@ -97,6 +107,26 @@ namespace game_framework {
 		}
 	}
 
+	// 找座標在map陣列上的位置(X)
+	int CPacman::FindMapIndex_X(int x)
+	{
+		return (x - MAP_START) / BITMAP_SIZE;
+	}
+	// 找座標在map陣列上的位置(Y)
+	int CPacman::FindMapIndex_Y(int y)
+	{
+		return (y - MAP_START) / BITMAP_SIZE;
+	}
+
+	// 找Pacman四個點的陣列位置
+	void CPacman::GetMapIndex() {
+		MapIndex_X1 = FindMapIndex_X(x);         // 左
+		MapIndex_X2 = FindMapIndex_X(x + 22);    // 右
+		MapIndex_Y1 = FindMapIndex_Y(y);         // 上
+		MapIndex_Y2 = FindMapIndex_Y(y + 22);    // 下
+	}
+
+	// 向上移動
 	void CPacman::SetMovingUp(bool flag)
 	{
 		GetMapIndex();
@@ -120,6 +150,7 @@ namespace game_framework {
 		}
 	}
 
+	// 向下移動
 	void CPacman::SetMovingDown(bool flag)
 	{
 		GetMapIndex();
@@ -143,6 +174,7 @@ namespace game_framework {
 		}
 	}
 
+	// 向左移動
 	void CPacman::SetMovingLeft(bool flag)
 	{
 		GetMapIndex();
@@ -166,6 +198,7 @@ namespace game_framework {
 		}
 	}
 
+	// 向右移動
 	void CPacman::SetMovingRight(bool flag)
 	{
 		GetMapIndex();
@@ -189,36 +222,6 @@ namespace game_framework {
 		}
 	}
 
-	void CPacman::LoadBitmap()
-	{
-		// STOP
-		animation_stop_1.AddBitmap(IDB_PACMAN_UP_1, RGB(255, 255, 255));        //靜止狀態(預設向上)
-		animation_stop_2.AddBitmap(IDB_PACMAN_DOWN_1, RGB(255, 255, 255));      //靜止狀態(預設向下)
-		animation_stop_3.AddBitmap(IDB_PACMAN_LEFT_1, RGB(255, 255, 255));      //靜止狀態(預設向左)
-		animation_stop_4.AddBitmap(IDB_PACMAN_RIGHT_1, RGB(255, 255, 255));     //靜止狀態(預設向右)
-
-		// DIE
-		animation_die.AddBitmap(IDB_PACMAN_UP_1, RGB(255, 255, 255));           //死亡(向上)
-		animation_die.AddBitmap(IDB_PACMAN_DIE_1, RGB(255, 255, 255));
-		animation_die.AddBitmap(IDB_PACMAN_DIE_2, RGB(255, 255, 255));
-		animation_die.AddBitmap(IDB_PACMAN_DIE_3, RGB(255, 255, 255));
-		animation_die.AddBitmap(IDB_PACMAN_DIE_4, RGB(255, 255, 255));
-		animation_die.AddBitmap(IDB_PACMAN_DIE_BLACK, RGB(255, 255, 255));      //全黑結束
-
-		// UP
-		animation_1.AddBitmap(IDB_PACMAN_UP_1, RGB(255, 255, 255));             //向上_open
-		animation_1.AddBitmap(IDB_PACMAN_UP_2, RGB(255, 255, 255));             //向上_close
-		// DOWN
-		animation_2.AddBitmap(IDB_PACMAN_DOWN_1, RGB(255, 255, 255));           //向下_open
-		animation_2.AddBitmap(IDB_PACMAN_DOWN_2, RGB(255, 255, 255));           //向下_close
-		// LEFT
-		animation_3.AddBitmap(IDB_PACMAN_LEFT_1, RGB(255, 255, 255));           //向左_open
-		animation_3.AddBitmap(IDB_PACMAN_LEFT_2, RGB(255, 255, 255));           //向左_close
-		// RIGHT
-		animation_4.AddBitmap(IDB_PACMAN_RIGHT_1, RGB(255, 255, 255));          //向右_open
-		animation_4.AddBitmap(IDB_PACMAN_RIGHT_2, RGB(255, 255, 255));          //向右_close
-	}
-
 	// 檢查Pacman所構成的矩形是否碰到ghost
 	bool CPacman::HitGhost(CGhost *ghost)
 	{
@@ -232,6 +235,10 @@ namespace game_framework {
 		return (tx2 >= x && tx1 <= (x + animation->Width()) && ty2 >= y && ty1 <= (y + animation->Height()));
 	}
 
+	void CPacman::SetMap(int **map) {
+		this->map = map;
+	}
+
 	void CPacman::SetIsAlive(bool alive)
 	{
 		is_alive = alive;
@@ -240,6 +247,11 @@ namespace game_framework {
 	bool CPacman::IsAlive()
 	{
 		return is_alive;
+	}
+
+	int CPacman::GetLife()
+	{
+		return myLife;
 	}
 
 	int CPacman::GetX1()
@@ -262,10 +274,6 @@ namespace game_framework {
 		return y + animation->Height();
 	}
 
-	void CPacman::SetTopLeft() {
-		animation->SetTopLeft(x, y);
-	}
-
 	void CPacman::restart()
 	{
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
@@ -283,30 +291,31 @@ namespace game_framework {
 		return false;
 	}
 
-	int CPacman::GetLife()
-	{
-		return myLife;
+	void CPacman::SetTopLeft() {
+		animation->SetTopLeft(x, y);
 	}
 
 	void CPacman::OnShow()
 	{
 		if (is_alive)
 		{
-			if (isMovingUp && isStop) {
-				isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
-				animation = &animation_stop_1;
-			}
-			else if (isMovingDown && isStop) {
-				isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
-				animation = &animation_stop_2;
-			}
-			else if (isMovingLeft && isStop) {
-				isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
-				animation = &animation_stop_3;
-			}
-			else if (isMovingRight && isStop) {
-				isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
-				animation = &animation_stop_4;
+			if (isStop) {
+				if (isMovingUp) {
+					isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+					animation = &animation_stop_1; // 向上停止
+				}
+				else if (isMovingDown) {
+					isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+					animation = &animation_stop_2; // 向下停止
+				}
+				else if (isMovingLeft) {
+					isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+					animation = &animation_stop_3; // 向左停止
+				}
+				else if (isMovingRight) {
+					isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+					animation = &animation_stop_4; // 向右停止
+				}
 			}
 
 			animation->SetTopLeft(x, y);
@@ -314,12 +323,13 @@ namespace game_framework {
 		}
 		else {
 			animation = &animation_die;
-			delay++;
+			delay++; // 死亡動畫時間
 			animation->SetTopLeft(x, y);
 			animation->OnMove();
 			animation->OnShow();
 		}
-
+		
+		// 死亡動畫結束
 		if (delay == 29) {
 			myLife--;
 			if (myLife > -1) restart();

@@ -9,7 +9,7 @@
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
+	// CFood: Food class
 	/////////////////////////////////////////////////////////////////////////////
 
 	CFood::CFood()
@@ -53,30 +53,7 @@ namespace game_framework {
 	{
 		if (!is_alive)
 			return;
-		/*
-		delay_counter--;
-		if (delay_counter < 0) {
-			delay_counter = delay;
-			//
-			// 計算球向對於圓心的位移量dx, dy
-			//
-			const int STEPS = 18;
-			static const int DIFFX[] = { 35, 32, 26, 17, 6, -6, -17, -26, -32, -34, -32, -26, -17, -6, 6, 17, 26, 32, };
-			static const int DIFFY[] = { 0, 11, 22, 30, 34, 34, 30, 22, 11, 0, -11, -22, -30, -34, -34, -30, -22, -11, };
-			index++;
-			if (index >= STEPS)
-				index = 0;
-			dx = DIFFX[index];
-			dy = DIFFY[index];
-		}*/
 	}
-
-	/*
-	void CFood::SetDelay(int d)
-	{
-		delay = d;
-	}
-	*/
 
 	void CFood::SetIsAlive(bool alive)
 	{

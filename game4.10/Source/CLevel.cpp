@@ -8,7 +8,7 @@
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
+	// CLevel: Level class
 	/////////////////////////////////////////////////////////////////////////////
 
 	CLevel::CLevel()
@@ -22,16 +22,6 @@ namespace game_framework {
 	void CLevel::LoadBitmap() {
 		LEVEL_text.LoadBitmap(IDB_LEVEL_TEXT, RGB(255, 255, 255));
 		myLevel.LoadBitmap();
-	}
-
-	void CLevel::OnShow() {
-		LEVEL_text.ShowBitmap();
-		myLevel.ShowBitmap();
-	}
-
-	void CLevel::SetTopLeft() {
-		LEVEL_text.SetTopLeft(800, 130);
-		myLevel.SetTopLeft(820, 155);
 	}
 	
 	void CLevel::setLevel(int LV) {
@@ -54,6 +44,16 @@ namespace game_framework {
 	
 	int CLevel::getLevel() {
 		return myLevel.GetInteger();
+	}
+
+	void CLevel::SetTopLeft() {
+		LEVEL_text.SetTopLeft(800, 130);
+		myLevel.SetTopLeft(820, 155);
+	}
+
+	void CLevel::OnShow() {
+		LEVEL_text.ShowBitmap();
+		myLevel.ShowBitmap();
 	}
 	
 }
