@@ -25,8 +25,9 @@ namespace game_framework {
 		CAnimation animation_4;                                 // 精靈動畫_右
 		CAnimation animation_avoid;                             // 躲避精靈動畫_深藍色
 		CAnimation animation_change;                            // 不穩定精靈動畫_深藍+白色交錯
-		CAnimation animation_eyes;
+		CAnimation animation_eyes;                              // 死亡精靈
 		CAnimation *animation = &animation_4;                   // 目前方向動畫
 		int x, y;
+		int avoidTime = 0;                                      // 躲避狀態持續時間
 	};
 }

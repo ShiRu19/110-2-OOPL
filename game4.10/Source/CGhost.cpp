@@ -93,6 +93,21 @@ namespace game_framework {
 	}
 
 	void CGhost::OnShow() {
+		if (animation == &animation_avoid || animation == &animation_change) {
+			avoidTime++;
+		}
+
+		// 躲避9秒後，躲避鬼轉為不穩定狀態
+		if (avoidTime == 200) {
+			changeMode(2);
+		}
+		
+		// 再經過3秒，從不穩定狀態回到正常狀態
+		if (avoidTime == 250) {
+			avoidTime = 0;
+			changeMode(0);
+		}
+
 		animation->SetTopLeft(x,y);
 		animation->OnShow();
 	}
