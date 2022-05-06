@@ -13,11 +13,22 @@ namespace game_framework {
 
 	// Golst
 	CGhost::CGhost() {
-		x = y = 0;
+	}
+
+	void CGhost::SetInitXY(int x, int y) {
+		init_x = x;
+		init_y = y;
+		this->x = init_x;
+		this->y = init_y;
 	}
 
 	void CGhost::OnMove() {
 		animation->OnMove();
+
+		if (animation == &animation_eyes) {
+			x = init_x;
+			y = init_y;
+		}
 	}
 
 	void CGhost::LoadBitmap(int IDB[4][2]) {
@@ -93,19 +104,30 @@ namespace game_framework {
 	}
 
 	void CGhost::OnShow() {
+		// ***************************
+		// * 當狀態為躲避或不穩定時
+		// ***************************
 		if (animation == &animation_avoid || animation == &animation_change) {
 			avoidTime++;
 		}
-
-		// 躲避9秒後，躲避鬼轉為不穩定狀態
-		if (avoidTime == 200) {
+		
+		// 躲避約8秒後，躲避鬼轉為不穩定狀態
+		if (avoidTime == 180) {
 			changeMode(2);
 		}
-		
-		// 再經過3秒，從不穩定狀態回到正常狀態
-		if (avoidTime == 250) {
+		// 再經過約3秒，從不穩定狀態回到正常狀態
+		if (avoidTime == 230) {
 			avoidTime = 0;
 			changeMode(0);
+		}
+
+		// ************************************
+		// * 當狀態為死亡時 (animation_eyes)
+		// ************************************
+		if (animation == &animation_eyes) {
+			if (x == init_x && y == init_y) {
+				animation = &animation_1;
+			}
 		}
 
 		animation->SetTopLeft(x,y);

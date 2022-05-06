@@ -14,6 +14,7 @@ namespace game_framework {
 		int  GetY1();                                           // 取得y1(左上角)
 		int  GetX2();                                           // 取得x2(右下角)
 		int  GetY2();                                           // 取得y2(右下角)
+		void SetInitXY(int x, int y);                           // 設定初始位置
 		void SetTopLeft(int x, int y);
 		void OnMove();											// 移動
 		void OnShow();											// 將圖形貼到畫面
@@ -26,6 +27,8 @@ namespace game_framework {
 		CAnimation animation_change;                            // 不穩定精靈動畫_深藍+白色交錯
 		CAnimation animation_eyes;                              // 死亡精靈
 		CAnimation *animation = &animation_4;                   // 目前方向動畫
+
+		int init_x, init_y;                                     // 初始位置
 		int x, y;                                               // 目前位置
 		int avoidTime = 0;                                      // 躲避狀態持續時間
 	};
