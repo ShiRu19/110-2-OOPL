@@ -191,12 +191,16 @@ IDB_MAGICFOOD           BITMAP                  "..\\RES\\magicFood.bmp"
 IDB_LIFEMULTI           BITMAP                  "..\\RES\\multi.bmp"
 
 IDB_GHOST_BLUE_1        BITMAP                  "..\\RES\\ghost_blue_1.bmp"
-												 
+
 IDB_GHOST_BLUE_2        BITMAP                  "..\\RES\\ghost_blue_2.bmp"
-												 
+
 IDB_GHOST_WHITE_1       BITMAP                  "..\\RES\\ghost_white_1.bmp"
-												 
+
 IDB_GHOST_WHITE_2       BITMAP                  "..\\RES\\ghost_white_2.bmp"
+
+IDB_WALL_GREEN          BITMAP                  "..\\res\\wall_blu.bmp"
+
+IDB_WALL_RED            BITMAP                  "..\\res\\wall_gre.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

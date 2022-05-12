@@ -411,6 +411,8 @@
     <Image Include="RES\red_right_2.bmp" />
     <Image Include="RES\SCORE.bmp" />
     <Image Include="RES\SCORE.png" />
+    <Image Include="res\wall_blu.bmp" />
+    <Image Include="res\wall_gre.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

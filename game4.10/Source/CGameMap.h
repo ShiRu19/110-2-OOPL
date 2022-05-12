@@ -10,8 +10,8 @@ namespace game_framework {
 	enum MAP_ID					// 定義各種地圖的編號
 	{
 		MAP_BLUE,				// 0
-		MAP_PINK,				// 1
-		MAP_ORANGE				// 2
+		MAP_GREEN,				// 1
+		MAP_RED					// 2
 	};
 
 	using namespace std;
@@ -34,5 +34,6 @@ namespace game_framework {
 		const int X, Y;					// 大地圖左上角的座標
 		const int MW, MH;				// 小地圖的長跟寬
 		int foodCount;					// 小豆子數量
+		int MapType;					// 地圖類型
 	};
 }
