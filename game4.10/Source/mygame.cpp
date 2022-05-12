@@ -412,6 +412,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 		{ IDB_GHOST_PINK_RIGHT_1, IDB_GHOST_PINK_RIGHT_2 } };
 	ghost[2].LoadBitmap(pink);
 	ghost[2].SetInitXY(MAP_START + 14 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
+	ghost[2].SetMap(gamemap1.GetMap());
 
 	// 載入 orange ghost
 	int orange[4][2] = {
@@ -430,7 +431,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 	ghost[0].SetTopLeft(MAP_START + 12 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[1].SetTopLeft(MAP_START + 13 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
-	ghost[2].SetTopLeft(MAP_START + 25 * BITMAP_SIZE, MAP_START + 23 * BITMAP_SIZE);
+	ghost[2].SetTopLeft(MAP_START + 26 * BITMAP_SIZE, MAP_START + 22 * BITMAP_SIZE);
 	ghost[3].SetTopLeft(MAP_START + 15 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 }
 

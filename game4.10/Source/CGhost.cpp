@@ -2,6 +2,7 @@
 #include "Resource.h"
 #include <mmsystem.h>
 #include <ddraw.h>
+#include <cmath>
 #include "audio.h"
 #include "gamelib.h"
 #include "CGhost.h"
@@ -22,13 +23,204 @@ namespace game_framework {
 		this->y = init_y;
 	}
 
+	void CGhost::SetMap(int **map) {
+		this->map = map;
+	}
+
 	void CGhost::OnMove() {
 		animation->OnMove();
 
 		if (animation == &animation_eyes) {
-			x = init_x;
-			y = init_y;
+			GoHome();
 		}
+	}
+
+	void CGhost::GoHome() {
+		if (x == init_x && y == init_y) {
+			return;
+		}
+
+		GetMapIndex();
+		
+		double distance;              // 下一步到 home 的距離
+		double minDistance = INT_MAX; // 在所有方向到 home 的距離中取最短距離
+		
+		// ********************
+		// direction 代號表示：
+		// 0 => 無方向
+		// 1 => 向上
+		// 2 => 向下
+		// 3 => 向左
+		// 4 => 向右
+		// ********************
+		
+		// 若前一步為向上或向下，則先判斷上下方向
+		if (eyesDirection == 1 || eyesDirection == 2) {
+			// 向上
+			distance = turnUp();
+			if (distance < minDistance) {
+				minDistance = distance;
+				eyesDirection = 1; // 1 為向上
+			}
+
+			// 向下
+			distance = turnDown();
+			if (distance < minDistance) {
+				minDistance = distance;
+				eyesDirection = 2; // 2 為向下
+			}
+
+			// 向左
+			distance = turnLeft();
+			if (distance < minDistance) {
+				minDistance = distance;
+				eyesDirection = 3; // 3 為向左
+			}
+
+			// 向右
+			distance = turnRight();
+			if (distance < minDistance) {
+				minDistance = distance;
+				eyesDirection = 4; // 4 為向右
+			}
+		}
+		// 若前一步為向左或向右，則先判斷左右方向
+		else {
+			// 向左
+			distance = turnLeft();
+			if (distance < minDistance) {
+				minDistance = distance;
+				eyesDirection = 3; // 3 為向左
+			}
+
+			// 向右
+			distance = turnRight();
+			if (distance < minDistance) {
+				minDistance = distance;
+				eyesDirection = 4; // 4 為向右
+			}
+
+			// 向上
+			distance = turnUp();
+			if (distance < minDistance) {
+				minDistance = distance;
+				eyesDirection = 1; // 1 為向上
+			}
+
+			// 向下
+			distance = turnDown();
+			if (distance < minDistance) {
+				minDistance = distance;
+				eyesDirection = 2; // 2 為向下
+			}
+		}
+
+		const int STEP_SIZE = 3;
+		switch (eyesDirection) {
+			case 0:
+				break;
+			case 1:
+				y -= STEP_SIZE;
+				break;
+			case 2:
+				y += STEP_SIZE;
+				break;
+			case 3:
+				x -= STEP_SIZE;
+				break;
+			case 4:
+				x += STEP_SIZE;
+				break;
+		}
+	}
+
+	double CGhost::turnUp() {
+		int next_x, next_y;           // 下一步的座標位置
+		double distance = INT_MAX;
+
+		// 向上可以走
+		if (map[MapIndex_Y2 - 1][MapIndex_X1] != 1 && map[MapIndex_Y2 - 1][MapIndex_X2] != 1) {
+			if (eyesDirection != 2) {
+				next_x = MAP_START + BITMAP_SIZE * (MapIndex_X1);
+				next_y = MAP_START + BITMAP_SIZE * (MapIndex_Y1 - 1);
+				distance = GetDistance(init_x, next_x, init_y, next_y);
+			}
+		}
+
+		return distance;
+	}
+
+	double CGhost::turnDown() {
+		int next_x, next_y;           // 下一步的座標位置
+		double distance = INT_MAX;
+
+		// 向下可以走
+		if (map[MapIndex_Y1 + 1][MapIndex_X1] != 1 && map[MapIndex_Y1 + 1][MapIndex_X2] != 1) {
+			if (eyesDirection != 1) {
+				next_x = MAP_START + BITMAP_SIZE * (MapIndex_X1);
+				next_y = MAP_START + BITMAP_SIZE * (MapIndex_Y1 + 1);
+				distance = GetDistance(init_x, next_x, init_y, next_y);
+			}
+		}
+
+		return distance;
+	}
+
+	double CGhost::turnLeft() {
+		int next_x, next_y;           // 下一步的座標位置
+		double distance = INT_MAX;
+
+		// 向左可以走
+		if (map[MapIndex_Y1][MapIndex_X2 - 1] != 1 && map[MapIndex_Y2][MapIndex_X2 - 1] != 1) {
+			if (eyesDirection != 4) {
+				next_x = MAP_START + BITMAP_SIZE * (MapIndex_X1 - 1);
+				next_y = MAP_START + BITMAP_SIZE * (MapIndex_Y1);
+				distance = GetDistance(init_x, next_x, init_y, next_y);
+			}
+		}
+
+		return distance;
+	}
+
+	double CGhost::turnRight() {
+		int next_x, next_y;           // 下一步的座標位置
+		double distance = INT_MAX;
+
+		// 向右可以走
+		if (map[MapIndex_Y1][MapIndex_X1 + 1] != 1 && map[MapIndex_Y2][MapIndex_X1 + 1] != 1) {
+			if (eyesDirection != 3) {
+				next_x = MAP_START + BITMAP_SIZE * (MapIndex_X1 + 1);
+				next_y = MAP_START + BITMAP_SIZE * (MapIndex_Y1);
+				distance = GetDistance(init_x, next_x, init_y, next_y);
+			}
+		}
+
+		return distance;
+	}
+
+	double CGhost::GetDistance(int x1, int x2, int y1, int y2) {
+		int distance_x = x1 - x2;
+		int distance_y = y1 - y2;
+		return sqrt(distance_x * distance_x + distance_y * distance_y);
+	}
+
+	// 找座標在map陣列上的位置(X)
+	int CGhost::FindMapIndex_X(int x)
+	{
+		return (x - MAP_START) / BITMAP_SIZE;
+	}
+	// 找座標在map陣列上的位置(Y)
+	int CGhost::FindMapIndex_Y(int y)
+	{
+		return (y - MAP_START) / BITMAP_SIZE;
+	}
+
+	// 找Ghost四個點的陣列位置
+	void CGhost::GetMapIndex() {
+		MapIndex_X1 = FindMapIndex_X(x);         // 左
+		MapIndex_X2 = FindMapIndex_X(x + 22);    // 右
+		MapIndex_Y1 = FindMapIndex_Y(y);         // 上
+		MapIndex_Y2 = FindMapIndex_Y(y + 22);    // 下
 	}
 
 	void CGhost::LoadBitmap(int IDB[4][2]) {

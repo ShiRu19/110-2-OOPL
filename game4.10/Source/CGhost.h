@@ -16,6 +16,15 @@ namespace game_framework {
 		int  GetY2();                                           // 取得y2(右下角)
 		void SetInitXY(int x, int y);                           // 設定初始位置
 		void SetTopLeft(int x, int y);
+
+		void GoHome();                                          // 眼睛回家路徑
+		double GetDistance(int x1, int x2, int y1, int y2);     // 取得下一步到家的直線距離
+
+		void SetMap(int **map);                                 // 初始化地圖
+		int FindMapIndex_X(int x);                              // 取得座標在矩陣的位置(X軸)
+		int FindMapIndex_Y(int y);                              // 取得座標在矩陣的位置(Y軸)
+		void GetMapIndex();                                     // 取得左上角及右下角在地圖的座標
+
 		void OnMove();											// 移動
 		void OnShow();											// 將圖形貼到畫面
 	private:
@@ -31,5 +40,16 @@ namespace game_framework {
 		int init_x, init_y;                                     // 初始位置
 		int x, y;                                               // 目前位置
 		int avoidTime = 0;                                      // 躲避狀態持續時間
+		int eyesDirection = 0;                                  // 眼睛行走方向
+		double turnUp();                                        // 判斷是否可向上走，並回傳下一步距離目的地的距離
+		double turnDown();                                      // 判斷是否可向下走，並回傳下一步距離目的地的距離
+		double turnLeft();                                      // 判斷是否可向左走，並回傳下一步距離目的地的距離
+		double turnRight();                                     // 判斷是否可向右走，並回傳下一步距離目的地的距離
+
+		int **map;                                              // 遊戲地圖
+		int MapIndex_X1;                                        // Pacman左上角位於地圖的座標(X軸)
+		int MapIndex_Y1;                                        // Pacman左上角位於地圖的座標(Y軸)
+		int MapIndex_X2;                                        // Pacman右下角位於地圖的座標(X軸)
+		int MapIndex_Y2;                                        // Pacman右下角位於地圖的座標(Y軸)
 	};
 }
