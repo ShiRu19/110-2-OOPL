@@ -282,6 +282,18 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 
 	myLife.setLife(c_PacMan.GetLife());
 
+	//
+	// 更新目前關卡
+	// 
+	if (gamemap == &gamemap1) {
+		myLevel.setLevel(1);
+	}
+	else if (gamemap == &gamemap2) {
+		myLevel.setLevel(2);
+	}
+	else if (gamemap == &gamemap3) {
+		myLevel.setLevel(3);
+	}
 
 	//
 	// 移動PacMan
@@ -352,7 +364,12 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	
 	// 載入地圖
 	gamemap1.SetMap(MAP_BLUE);
+	gamemap2.SetMap(MAP_GREEN);
+	gamemap3.SetMap(MAP_RED);
 	gamemap1.LoadBitmap();
+	gamemap2.LoadBitmap();
+	gamemap3.LoadBitmap();
+	gamemap = &gamemap1;
 
 	// 載入PacMan
 	c_PacMan.LoadBitmap();
@@ -410,6 +427,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
+	const char KEY_ENTER = 0xD;  // keyboard Enter
+	const char KEY_ESC = 0x1B;   // keyboard Esc
 	
 	if (nChar == KEY_UP)
 		c_PacMan.SetMovingUp(true);
@@ -419,6 +438,10 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		c_PacMan.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
 		c_PacMan.SetMovingRight(true);
+	if (nChar == KEY_ENTER)
+		gamemap = &gamemap2;
+	if (nChar == KEY_ESC)
+		gamemap = &gamemap3;
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -467,7 +490,7 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 void CGameStateRun::OnShow()
 {
 	// 顯示地圖
-	gamemap1.OnShow();
+	gamemap->OnShow();
 	
 	// 顯示Pacman
 	c_PacMan.OnShow();
