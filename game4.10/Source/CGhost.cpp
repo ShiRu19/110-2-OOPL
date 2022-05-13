@@ -376,6 +376,13 @@ namespace game_framework {
 		this->y = y;
 	}
 
+	void CGhost::restart()
+	{
+		animation = &animation_1;
+		y = init_y;
+		x = init_x;
+	}
+
 	void CGhost::OnShow() {
 		// ***************************
 		// * 當狀態為躲避或不穩定時

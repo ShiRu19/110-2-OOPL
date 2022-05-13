@@ -12,6 +12,7 @@ namespace game_framework {
 		CPacman();
 		bool HitGhost(CGhost *ghost);    						// 是否碰到正常的ghost
 		bool IsAlive();                                         // 是否活著
+		void restart();                                         // 失去生命或切換關卡時回到起始點
 		bool IsGameover();                                      // 遊戲是否結束 (生命值<0時)
 		void SetIsAlive(bool alive);                            // 設定是否活著
 		void LoadBitmap();										// 載入圖形
@@ -48,7 +49,7 @@ namespace game_framework {
 		CAnimation animation_die;                               // Pacman的動畫_死亡
 		CAnimation *animation = &animation_stop_4;              // 當前Pacman動畫方向(預設向右)
 
-		void restart();                                         // 失去生命時，關卡重來
+		
 		int  delay = 0;                                         // 等待狀態結束
 		int  myLife = 4;
 

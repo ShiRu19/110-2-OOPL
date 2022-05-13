@@ -260,7 +260,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 判斷Pacman是否碰到food
 	//
-	vector<CFood *>* allFoods = gamemap1.getAllFoods();
+	vector<CFood *>* allFoods = gamemap->getAllFoods();
 	for (int i = 0; i < gamemap1.getFoodCount(); i++) {
 		if ((*allFoods->at(i)).IsAlive() && (*allFoods->at(i)).HitPacman(&c_PacMan)) {
 			(*allFoods->at(i)).SetIsAlive(false);
@@ -284,6 +284,9 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		if (ghost[i].isNormalMode()) {
 			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
 				c_PacMan.SetIsAlive(false); // Pacman死亡
+				for (int j = 0; j < 4; j++) {
+					ghost[j].restart();
+				}
 			}
 		}
 		// 若碰到躲避鬼或不穩定鬼，Pacman得分
@@ -392,7 +395,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	// 載入PacMan
 	c_PacMan.LoadBitmap();
 	c_PacMan.SetInitXY(14, 17);
-	c_PacMan.SetMap(gamemap1.GetMap());
+	c_PacMan.SetMap(gamemap->GetMap());
 
 	// 載入Score文字
 	myScore.LoadBitmap();
@@ -412,7 +415,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	ghost[0].LoadBitmap(red);
 	ghost[0].SetInitXY(MAP_START + 12 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[0].SetInitTargetXY(MAP_START + 14 * BITMAP_SIZE, MAP_START + 11 * BITMAP_SIZE);
-	ghost[0].SetMap(gamemap1.GetMap());
+	ghost[0].SetMap(gamemap->GetMap());
 
 	// 載入 blue ghost
 	int blue[4][2] = {
@@ -423,7 +426,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	ghost[1].LoadBitmap(blue);
 	ghost[1].SetInitXY(MAP_START + 13 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[1].SetInitTargetXY(MAP_START + 14 * BITMAP_SIZE, MAP_START + 11 * BITMAP_SIZE);
-	ghost[1].SetMap(gamemap1.GetMap());
+	ghost[1].SetMap(gamemap->GetMap());
 
 	// 載入 pink ghost
 	int pink[4][2] = {
@@ -434,7 +437,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	ghost[2].LoadBitmap(pink);
 	ghost[2].SetInitXY(MAP_START + 14 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[2].SetInitTargetXY(MAP_START + 13 * BITMAP_SIZE, MAP_START + 11 * BITMAP_SIZE);
-	ghost[2].SetMap(gamemap1.GetMap());
+	ghost[2].SetMap(gamemap->GetMap());
 
 	// 載入 orange ghost
 	int orange[4][2] = {
@@ -445,7 +448,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	ghost[3].LoadBitmap(orange);
 	ghost[3].SetInitXY(MAP_START + 15 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[3].SetInitTargetXY(MAP_START + 13 * BITMAP_SIZE, MAP_START + 11 * BITMAP_SIZE);
-	ghost[3].SetMap(gamemap1.GetMap());
+	ghost[3].SetMap(gamemap->GetMap());
 	
 	// 設置位置
 	c_PacMan.SetTopLeft();
@@ -476,10 +479,26 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		c_PacMan.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
 		c_PacMan.SetMovingRight(true);
-	if (nChar == KEY_ENTER)
+	if (nChar == KEY_ENTER) {
+		c_PacMan.restart();
+		for (int i = 0; i < 4; i++) {
+			ghost[i].restart();
+		}
 		gamemap = &gamemap2;
-	if (nChar == KEY_ESC)
+	}
+	if (nChar == KEY_ESC) {
+		c_PacMan.restart();
+		for (int i = 0; i < 4; i++) {
+			ghost[i].restart();
+		}
 		gamemap = &gamemap3;
+	}
+
+	c_PacMan.SetMap(gamemap->GetMap());
+	ghost[0].SetMap(gamemap->GetMap());
+	ghost[1].SetMap(gamemap->GetMap());
+	ghost[2].SetMap(gamemap->GetMap());
+	ghost[3].SetMap(gamemap->GetMap());
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)

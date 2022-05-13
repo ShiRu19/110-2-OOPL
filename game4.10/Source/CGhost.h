@@ -26,6 +26,7 @@ namespace game_framework {
 		int FindMapIndex_Y(int y);                              // 取得座標在矩陣的位置(Y軸)
 		void GetMapIndex();                                     // 取得左上角及右下角在地圖的座標
 
+		void restart();                                         // Pacman死亡或切換關卡時，回到基地
 		void OnMove(int pacman_x, int pacman_y);				// 移動
 		void OnShow();											// 將圖形貼到畫面
 	private:
