@@ -445,7 +445,14 @@
     <Image Include="RES\ghost_white_2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+<<<<<<< HEAD
     <Image Include="RES\ghost_eyes_down.bmp">
+=======
+    <Image Include="res\wall_blu.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\wall_gre.bmp">
+>>>>>>> Map
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

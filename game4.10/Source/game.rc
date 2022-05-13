@@ -200,6 +200,10 @@ IDB_GHOST_WHITE_2       BITMAP                  "..\\RES\\ghost_white_2.bmp"
 
 IDB_GHOST_EYES_DOWN     BITMAP                  "..\\RES\\ghost_eyes_down.bmp"
 
+IDB_WALL_GREEN          BITMAP                  "..\\res\\wall_blu.bmp"
+
+IDB_WALL_RED            BITMAP                  "..\\res\\wall_gre.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
