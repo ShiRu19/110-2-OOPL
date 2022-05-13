@@ -311,7 +311,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 移動ghosts
 	//
 	for (int i = 0; i < 4; i++) {
-		ghost[i].OnMove();
+		ghost[i].OnMove(c_PacMan.GetX1(), c_PacMan.GetY1());
 	}
 
 	/*
@@ -394,6 +394,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 		{ IDB_GHOST_RED_RIGHT_1, IDB_GHOST_RED_RIGHT_2 } };
 	ghost[0].LoadBitmap(red);
 	ghost[0].SetInitXY(MAP_START + 12 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
+	ghost[0].SetInitTargetXY(MAP_START + 14 * BITMAP_SIZE, MAP_START + 11 * BITMAP_SIZE);
+	ghost[0].SetMap(gamemap1.GetMap());
 
 	// 載入 blue ghost
 	int blue[4][2] = {
@@ -403,6 +405,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 		{ IDB_GHOST_BLUE_RIGHT_1, IDB_GHOST_BLUE_RIGHT_2 } };
 	ghost[1].LoadBitmap(blue);
 	ghost[1].SetInitXY(MAP_START + 13 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
+	ghost[1].SetInitTargetXY(MAP_START + 14 * BITMAP_SIZE, MAP_START + 11 * BITMAP_SIZE);
+	ghost[1].SetMap(gamemap1.GetMap());
 
 	// 載入 pink ghost
 	int pink[4][2] = {
@@ -412,6 +416,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 		{ IDB_GHOST_PINK_RIGHT_1, IDB_GHOST_PINK_RIGHT_2 } };
 	ghost[2].LoadBitmap(pink);
 	ghost[2].SetInitXY(MAP_START + 14 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
+	ghost[2].SetInitTargetXY(MAP_START + 13 * BITMAP_SIZE, MAP_START + 11 * BITMAP_SIZE);
 	ghost[2].SetMap(gamemap1.GetMap());
 
 	// 載入 orange ghost
@@ -422,6 +427,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 		{ IDB_GHOST_ORANGE_RIGHT_1, IDB_GHOST_ORANGE_RIGHT_2 } };
 	ghost[3].LoadBitmap(orange);
 	ghost[3].SetInitXY(MAP_START + 15 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
+	ghost[3].SetInitTargetXY(MAP_START + 13 * BITMAP_SIZE, MAP_START + 11 * BITMAP_SIZE);
+	ghost[3].SetMap(gamemap1.GetMap());
 	
 	// 設置位置
 	c_PacMan.SetTopLeft();
@@ -431,7 +438,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 	ghost[0].SetTopLeft(MAP_START + 12 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[1].SetTopLeft(MAP_START + 13 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
-	ghost[2].SetTopLeft(MAP_START + 26 * BITMAP_SIZE, MAP_START + 22 * BITMAP_SIZE);
+	ghost[2].SetTopLeft(MAP_START + 14 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[3].SetTopLeft(MAP_START + 15 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 }
 

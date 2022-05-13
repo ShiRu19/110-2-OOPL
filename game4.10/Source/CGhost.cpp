@@ -23,27 +23,48 @@ namespace game_framework {
 		this->y = init_y;
 	}
 
+	void CGhost::SetInitTargetXY(int x, int y) {
+		init_target_x = x;
+		init_target_y = y;
+	}
+
 	void CGhost::SetMap(int **map) {
 		this->map = map;
 	}
 
-	void CGhost::OnMove() {
+	void CGhost::OnMove(int pacman_x, int pacman_y) {
 		animation->OnMove();
 
 		if (animation == &animation_eyes) {
-			GoHome();
+			if (x == init_x && y == init_y) {
+				animation = &animation_1;
+				isGoOut = false;
+				return;
+			}
+			GoToDestination(init_x, init_y);
+		}
+		else if (animation == &animation_avoid) {
+			return;
+		}
+		else {
+			if (isGoOut) {
+				GoToDestination(pacman_x, pacman_y);
+			}
+			else {
+				if (x == init_target_x && y == init_target_y) {
+					isGoOut = true;
+					return;
+				}
+				GoToDestination(init_target_x, init_target_y);
+			}
 		}
 	}
 
-	void CGhost::GoHome() {
-		if (x == init_x && y == init_y) {
-			return;
-		}
-
-		GetMapIndex();
+	void CGhost::GoToDestination(int des_x, int des_y) {
+		GetMapIndex();                // 取得四個點的陣列位置
 		
-		double distance;              // 下一步到 home 的距離
-		double minDistance = INT_MAX; // 在所有方向到 home 的距離中取最短距離
+		double distance;              // 下一步到目的地的距離
+		double minDistance = INT_MAX; // 在所有方向到目的地的距離中取最短距離
 		
 		// ********************
 		// direction 代號表示：
@@ -57,28 +78,28 @@ namespace game_framework {
 		// 若前一步為向上或向下，則先判斷上下方向
 		if (eyesDirection == 1 || eyesDirection == 2) {
 			// 向上
-			distance = turnUp();
+			distance = turnUp(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
 				eyesDirection = 1; // 1 為向上
 			}
 
 			// 向下
-			distance = turnDown();
+			distance = turnDown(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
 				eyesDirection = 2; // 2 為向下
 			}
 
 			// 向左
-			distance = turnLeft();
+			distance = turnLeft(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
 				eyesDirection = 3; // 3 為向左
 			}
 
 			// 向右
-			distance = turnRight();
+			distance = turnRight(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
 				eyesDirection = 4; // 4 為向右
@@ -87,35 +108,35 @@ namespace game_framework {
 		// 若前一步為向左或向右，則先判斷左右方向
 		else {
 			// 向左
-			distance = turnLeft();
+			distance = turnLeft(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
 				eyesDirection = 3; // 3 為向左
 			}
 
 			// 向右
-			distance = turnRight();
+			distance = turnRight(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
 				eyesDirection = 4; // 4 為向右
 			}
 
 			// 向上
-			distance = turnUp();
+			distance = turnUp(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
 				eyesDirection = 1; // 1 為向上
 			}
 
 			// 向下
-			distance = turnDown();
+			distance = turnDown(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
 				eyesDirection = 2; // 2 為向下
 			}
 		}
 
-		const int STEP_SIZE = 3;
+		const int STEP_SIZE = 2;
 		switch (eyesDirection) {
 			case 0:
 				break;
@@ -134,64 +155,124 @@ namespace game_framework {
 		}
 	}
 
-	double CGhost::turnUp() {
+	double CGhost::turnUp(int des_x, int des_y) {
 		int next_x, next_y;           // 下一步的座標位置
 		double distance = INT_MAX;
+		bool canTurn = false;
+
+		if (animation == &animation_eyes || !isGoOut) {
+			// 狀態為眼睛時，可進入基地
+			// 或尚未從基地出去的鬼才可待在基地
+			if (map[MapIndex_Y2 - 1][MapIndex_X1] != 1 && map[MapIndex_Y2 - 1][MapIndex_X2] != 1) {
+				canTurn = true;
+			}
+		}
+		else {
+			// 狀態不為眼睛時，不可進入基地
+			if (map[MapIndex_Y2 - 1][MapIndex_X1] == 0 && map[MapIndex_Y2 - 1][MapIndex_X2] == 0) {
+				canTurn = true;
+			}
+		}
 
 		// 向上可以走
-		if (map[MapIndex_Y2 - 1][MapIndex_X1] != 1 && map[MapIndex_Y2 - 1][MapIndex_X2] != 1) {
+		if (canTurn) {
 			if (eyesDirection != 2) {
 				next_x = MAP_START + BITMAP_SIZE * (MapIndex_X1);
 				next_y = MAP_START + BITMAP_SIZE * (MapIndex_Y1 - 1);
-				distance = GetDistance(init_x, next_x, init_y, next_y);
+				distance = GetDistance(des_x, next_x, des_y, next_y);
 			}
 		}
 
 		return distance;
 	}
 
-	double CGhost::turnDown() {
+	double CGhost::turnDown(int des_x, int des_y) {
 		int next_x, next_y;           // 下一步的座標位置
 		double distance = INT_MAX;
+		bool canTurn = false;
+
+		if (animation == &animation_eyes || !isGoOut) {
+			// 狀態為眼睛時，可進入基地
+			// 或尚未從基地出去的鬼才可待在基地
+			if (map[MapIndex_Y1 + 1][MapIndex_X1] != 1 && map[MapIndex_Y1 + 1][MapIndex_X2] != 1) {
+				canTurn = true;
+			}
+		}
+		else {
+			// 狀態不為眼睛時，不可進入基地
+			if (map[MapIndex_Y1 + 1][MapIndex_X1] == 0 && map[MapIndex_Y1 + 1][MapIndex_X2] == 0) {
+				canTurn = true;
+			}
+		}
 
 		// 向下可以走
-		if (map[MapIndex_Y1 + 1][MapIndex_X1] != 1 && map[MapIndex_Y1 + 1][MapIndex_X2] != 1) {
+		if (canTurn) {
 			if (eyesDirection != 1) {
 				next_x = MAP_START + BITMAP_SIZE * (MapIndex_X1);
 				next_y = MAP_START + BITMAP_SIZE * (MapIndex_Y1 + 1);
-				distance = GetDistance(init_x, next_x, init_y, next_y);
+				distance = GetDistance(des_x, next_x, des_y, next_y);
 			}
 		}
 
 		return distance;
 	}
 
-	double CGhost::turnLeft() {
+	double CGhost::turnLeft(int des_x, int des_y) {
 		int next_x, next_y;           // 下一步的座標位置
 		double distance = INT_MAX;
+		bool canTurn = false;
+
+		if (animation == &animation_eyes || !isGoOut) {
+			// 狀態為眼睛時，可進入基地
+			// 或尚未從基地出去的鬼才可待在基地
+			if (map[MapIndex_Y1][MapIndex_X2 - 1] != 1 && map[MapIndex_Y2][MapIndex_X2 - 1] != 1) {
+				canTurn = true;
+			}
+		}
+		else {
+			// 狀態不為眼睛時，不可進入基地
+			if (map[MapIndex_Y1][MapIndex_X2 - 1] == 0 && map[MapIndex_Y2][MapIndex_X2 - 1] == 0) {
+				canTurn = true;
+			}
+		}
 
 		// 向左可以走
-		if (map[MapIndex_Y1][MapIndex_X2 - 1] != 1 && map[MapIndex_Y2][MapIndex_X2 - 1] != 1) {
+		if (canTurn) {
 			if (eyesDirection != 4) {
 				next_x = MAP_START + BITMAP_SIZE * (MapIndex_X1 - 1);
 				next_y = MAP_START + BITMAP_SIZE * (MapIndex_Y1);
-				distance = GetDistance(init_x, next_x, init_y, next_y);
+				distance = GetDistance(des_x, next_x, des_y, next_y);
 			}
 		}
 
 		return distance;
 	}
 
-	double CGhost::turnRight() {
+	double CGhost::turnRight(int des_x, int des_y) {
 		int next_x, next_y;           // 下一步的座標位置
 		double distance = INT_MAX;
+		bool canTurn = false;
+
+		if (animation == &animation_eyes || !isGoOut) {
+			// 狀態為眼睛時，可進入基地
+			// 或尚未從基地出去的鬼才可待在基地
+			if (map[MapIndex_Y1][MapIndex_X1 + 1] != 1 && map[MapIndex_Y2][MapIndex_X1 + 1] != 1) {
+				canTurn = true;
+			}
+		}
+		else {
+			// 狀態不為眼睛時，不可進入基地
+			if (map[MapIndex_Y1][MapIndex_X1 + 1] == 0 && map[MapIndex_Y2][MapIndex_X1 + 1] == 0) {
+				canTurn = true;
+			}
+		}
 
 		// 向右可以走
-		if (map[MapIndex_Y1][MapIndex_X1 + 1] != 1 && map[MapIndex_Y2][MapIndex_X1 + 1] != 1) {
+		if (canTurn) {
 			if (eyesDirection != 3) {
 				next_x = MAP_START + BITMAP_SIZE * (MapIndex_X1 + 1);
 				next_y = MAP_START + BITMAP_SIZE * (MapIndex_Y1);
-				distance = GetDistance(init_x, next_x, init_y, next_y);
+				distance = GetDistance(des_x, next_x, des_y, next_y);
 			}
 		}
 
@@ -316,11 +397,12 @@ namespace game_framework {
 		// ************************************
 		// * 當狀態為死亡時 (animation_eyes)
 		// ************************************
-		if (animation == &animation_eyes) {
-			if (x == init_x && y == init_y) {
-				animation = &animation_1;
-			}
-		}
+		//if (animation == &animation_eyes) {
+		//	if (x == init_x && y == init_y) {
+		//
+		//		animation = &animation_1;
+		//	}
+		//}
 
 		animation->SetTopLeft(x,y);
 		animation->OnShow();
