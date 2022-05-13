@@ -76,33 +76,33 @@ namespace game_framework {
 		// ********************
 		
 		// 若前一步為向上或向下，則先判斷上下方向
-		if (eyesDirection == 1 || eyesDirection == 2) {
+		if (direction == 1 || direction == 2) {
 			// 向上
 			distance = turnUp(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				eyesDirection = 1; // 1 為向上
+				direction = 1; // 1 為向上
 			}
 
 			// 向下
 			distance = turnDown(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				eyesDirection = 2; // 2 為向下
+				direction = 2; // 2 為向下
 			}
 
 			// 向左
 			distance = turnLeft(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				eyesDirection = 3; // 3 為向左
+				direction = 3; // 3 為向左
 			}
 
 			// 向右
 			distance = turnRight(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				eyesDirection = 4; // 4 為向右
+				direction = 4; // 4 為向右
 			}
 		}
 		// 若前一步為向左或向右，則先判斷左右方向
@@ -111,33 +111,33 @@ namespace game_framework {
 			distance = turnLeft(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				eyesDirection = 3; // 3 為向左
+				direction = 3; // 3 為向左
 			}
 
 			// 向右
 			distance = turnRight(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				eyesDirection = 4; // 4 為向右
+				direction = 4; // 4 為向右
 			}
 
 			// 向上
 			distance = turnUp(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				eyesDirection = 1; // 1 為向上
+				direction = 1; // 1 為向上
 			}
 
 			// 向下
 			distance = turnDown(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				eyesDirection = 2; // 2 為向下
+				direction = 2; // 2 為向下
 			}
 		}
 
 		const int STEP_SIZE = 2;
-		switch (eyesDirection) {
+		switch (direction) {
 			case 0:
 				break;
 			case 1:
@@ -176,7 +176,7 @@ namespace game_framework {
 
 		// 向上可以走
 		if (canTurn) {
-			if (eyesDirection != 2) {
+			if (direction != 2) {
 				next_x = MAP_START + BITMAP_SIZE * (MapIndex_X1);
 				next_y = MAP_START + BITMAP_SIZE * (MapIndex_Y1 - 1);
 				distance = GetDistance(des_x, next_x, des_y, next_y);
@@ -207,7 +207,7 @@ namespace game_framework {
 
 		// 向下可以走
 		if (canTurn) {
-			if (eyesDirection != 1) {
+			if (direction != 1) {
 				next_x = MAP_START + BITMAP_SIZE * (MapIndex_X1);
 				next_y = MAP_START + BITMAP_SIZE * (MapIndex_Y1 + 1);
 				distance = GetDistance(des_x, next_x, des_y, next_y);
@@ -238,7 +238,7 @@ namespace game_framework {
 
 		// 向左可以走
 		if (canTurn) {
-			if (eyesDirection != 4) {
+			if (direction != 4) {
 				next_x = MAP_START + BITMAP_SIZE * (MapIndex_X1 - 1);
 				next_y = MAP_START + BITMAP_SIZE * (MapIndex_Y1);
 				distance = GetDistance(des_x, next_x, des_y, next_y);
@@ -269,7 +269,7 @@ namespace game_framework {
 
 		// 向右可以走
 		if (canTurn) {
-			if (eyesDirection != 3) {
+			if (direction != 3) {
 				next_x = MAP_START + BITMAP_SIZE * (MapIndex_X1 + 1);
 				next_y = MAP_START + BITMAP_SIZE * (MapIndex_Y1);
 				distance = GetDistance(des_x, next_x, des_y, next_y);
@@ -381,6 +381,9 @@ namespace game_framework {
 		animation = &animation_1;
 		y = init_y;
 		x = init_x;
+		avoidTime = 0;
+		direction = 0;
+		isGoOut = false;
 	}
 
 	void CGhost::OnShow() {
