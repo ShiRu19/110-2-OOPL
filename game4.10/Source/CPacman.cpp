@@ -87,6 +87,12 @@ namespace game_framework {
 		}
 		else if (isMovingLeft)
 		{
+			if (map[MapIndex_Y1][MapIndex_X1] == 4 && x == MAP_START + BITMAP_SIZE * (0)) {
+				x = MAP_START + BITMAP_SIZE * (27);
+				SetMovingLeft(true);
+				return;
+			}
+
 			if (x - wall_pixel > STEP_SIZE) {
 				x -= STEP_SIZE;
 			}
@@ -97,6 +103,12 @@ namespace game_framework {
 		}
 		else if (isMovingRight)
 		{
+			if (map[MapIndex_Y1][MapIndex_X1] == 4 && x == MAP_START + BITMAP_SIZE * (27)) {
+				x = MAP_START + BITMAP_SIZE * (0);
+				SetMovingRight(true);
+				//return;
+			}
+
 			if (wall_pixel - x > STEP_SIZE) {
 				x += STEP_SIZE;
 			}
