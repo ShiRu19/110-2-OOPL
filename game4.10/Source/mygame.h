@@ -105,10 +105,8 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		CGameMap		gamemap1;	// 地圖1
-		CGameMap		gamemap2;	// 地圖1
-		CGameMap		gamemap3;	// 地圖1
-		CGameMap		*gamemap;	// 地圖
+		CGameMap        gameMap;    // 地圖
+		const int       NUMMAPS;    // 地圖的總數
 		const int		NUMBALLS;	// 球的總數
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
@@ -121,7 +119,8 @@ namespace game_framework {
 		int             picX, picY; // PacMan座標位置
 		CPacman         c_PacMan;   // 黃色小精靈
 		CGhost          *ghost;     // 幽靈們
-		vector<CFood>   foods;      // 小豆子
+		vector<CFood>   foods;      // 小豆子+大魔豆
+		int             remainFoods;// 場上剩餘豆子
 		CScore          myScore;    // 總分數
 		CLevel          myLevel;    // 關卡等級
 		CLife           myLife;     // 生命值

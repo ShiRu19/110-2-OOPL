@@ -41,6 +41,11 @@ namespace game_framework {
 
 		}
 	}
+
+	void CLevel::levelUp() {
+		int nextLevel = myLevel.GetInteger() + 1;
+		setLevel(nextLevel);
+	}
 	
 	int CLevel::getLevel() {
 		return myLevel.GetInteger();

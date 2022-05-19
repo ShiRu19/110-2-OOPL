@@ -30,7 +30,7 @@ namespace game_framework {
 	}
 	
 	void CScore::setScore(int profit) {
-		int newScore = myScore.GetInteger() + profit;
+		int newScore = profit;
 		myScore.SetInteger(newScore);
 
 		// 計算score的位數

@@ -13,12 +13,32 @@ namespace game_framework {
 	// CGameMap: Map class
 	/////////////////////////////////////////////////////////////////////////////
 
+	void CGameMap::setFoods(int map_info[31][28]) {
+		foodCount = 0;
 
-
+		for (int i = 0; i < 31; i++)
+		{
+			for (int j = 0; j < 28; j++)
+			{
+				map[i][j] = map_info[i][j];
+				if (map_info[i][j] == 0) { // 小豆子
+					allFoods.push_back(new CFood(10));
+					allFoods.at(foodCount)->LoadBitmap(IDB_FOOD, IDB_FOOD);
+					foodCount++;
+				}
+				else if (map_info[i][j] == 3) { // 大魔豆
+					allFoods.push_back(new CFood(50));
+					allFoods.at(foodCount)->LoadBitmap(IDB_MAGICFOOD, IDB_BLACKBMP);
+					foodCount++;
+				}
+			}
+		}
+	}
 
 	void CGameMap::SetMap(int maptype)
 	{
 		MapType = maptype;
+
 		if (MapType == MAP_BLUE)
 		{
 			int map_info[31][28] = {
@@ -53,26 +73,8 @@ namespace game_framework {
 			{1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
 			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1} };
-			
-			foodCount = 0;
 
-			for (int i = 0; i < 31; i++)
-			{
-				for (int j = 0; j < 28; j++)
-				{
-					map[i][j] = map_info[i][j];
-					if (map_info[i][j] == 0) { // 小豆子
-						allFoods.push_back(new CFood(10));
-						allFoods.at(foodCount)->LoadBitmap(IDB_FOOD, IDB_FOOD);
-						foodCount++;
-					}
-					else if (map_info[i][j] == 3) { // 大魔豆
-						allFoods.push_back(new CFood(50));
-						allFoods.at(foodCount)->LoadBitmap(IDB_MAGICFOOD, IDB_BLACKBMP);
-						foodCount++;
-					}
-				}
-			}
+			setFoods(map_info);
 		}
 		else if (MapType == MAP_GREEN)
 		{
@@ -110,25 +112,7 @@ namespace game_framework {
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 			};
 
-			foodCount = 0;
-
-			for (int i = 0; i < 31; i++)
-			{
-				for (int j = 0; j < 28; j++)
-				{
-					map[i][j] = map_info[i][j];
-					if (map_info[i][j] == 0) { // 小豆子
-						allFoods.push_back(new CFood(10));
-						allFoods.at(foodCount)->LoadBitmap(IDB_FOOD, IDB_FOOD);
-						foodCount++;
-					}
-					else if (map_info[i][j] == 3) { // 大魔豆
-						allFoods.push_back(new CFood(50));
-						allFoods.at(foodCount)->LoadBitmap(IDB_MAGICFOOD, IDB_BLACKBMP);
-						foodCount++;
-					}
-				}
-			}
+			setFoods(map_info);
 		}
 		else if (MapType == MAP_RED)
 		{
@@ -166,39 +150,38 @@ namespace game_framework {
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 			};
 
-			foodCount = 0;
-
-			for (int i = 0; i < 31; i++)
-			{
-				for (int j = 0; j < 28; j++)
-				{
-					map[i][j] = map_info[i][j];
-					if (map_info[i][j] == 0) { // 小豆子
-						allFoods.push_back(new CFood(10));
-						allFoods.at(foodCount)->LoadBitmap(IDB_FOOD, IDB_FOOD);
-						foodCount++;
-					}
-					else if (map_info[i][j] == 3) { // 大魔豆
-						allFoods.push_back(new CFood(50));
-						allFoods.at(foodCount)->LoadBitmap(IDB_MAGICFOOD, IDB_BLACKBMP);
-						foodCount++;
-					}
-				}
-			}
+			setFoods(map_info);
 		}
+	}
+
+	void CGameMap::nextMap() {
+		currentLevel++;
+		SetMap(gameMaps[currentLevel]);
+		MapType = gameMaps[currentLevel];
+		currentWall = &walls[currentLevel];
 	}
 
 	int CGameMap::getFoodCount() {
 		return foodCount;
 	}
 
-	CGameMap::CGameMap():X(20), Y(20), MW(24), MH(24)
+	CGameMap::CGameMap():X(20), Y(20), MW(24), MH(24), NUMMAPS(3)
 	{
 		map = new int*[31];
 		for (int i = 0; i < 31; i++)
 		{
 			map[i] = new int[28];
 		}
+
+		gameMaps = new int [NUMMAPS];
+		walls = new CMovingBitmap[NUMMAPS];
+
+		gameMaps[0] = MAP_BLUE;
+		gameMaps[1] = MAP_GREEN;
+		gameMaps[2] = MAP_RED;
+
+		MapType = gameMaps[0];
+		currentWall = &walls[0];
 	}
 
 	CGameMap::~CGameMap()
@@ -211,23 +194,15 @@ namespace game_framework {
 			delete[] map[i];
 		}
 		delete[] map;
-		
+		delete[] walls;
+		delete[] gameMaps;
 	}
 
 	void CGameMap::LoadBitmap()
 	{
-		if (MapType == MAP_BLUE)
-		{
-			wall.LoadBitmap(IDB_WALL_BLUE);
-		}
-		else if (MapType == MAP_GREEN)
-		{
-			wall.LoadBitmap(IDB_WALL_GREEN);
-		}
-		else if (MapType == MAP_RED)
-		{
-			wall.LoadBitmap(IDB_WALL_RED);
-		}
+		walls[0].LoadBitmap(IDB_WALL_BLUE);
+		walls[1].LoadBitmap(IDB_WALL_GREEN);
+		walls[2].LoadBitmap(IDB_WALL_RED);
 	}
 
 	vector<CFood *>* CGameMap::getAllFoods() {
@@ -249,8 +224,8 @@ namespace game_framework {
 					currentFoodIndex++;
 					break;
 				case 1:
-					wall.SetTopLeft(X + (MW*j), Y + (MH*i));
-					wall.ShowBitmap();
+					currentWall->SetTopLeft(X + (MW*j), Y + (MH*i));
+					currentWall->ShowBitmap();
 					break;
 				case 3:
 					allFoods.at(currentFoodIndex)->SetTopLeft(X + (MW*j), Y + (MH*i));

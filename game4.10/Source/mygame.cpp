@@ -189,7 +189,7 @@ void CGameStateOver::OnShow()
 /////////////////////////////////////////////////////////////////////////////
 
 CGameStateRun::CGameStateRun(CGame *g)
-: CGameState(g), NUMBALLS(28)
+: CGameState(g), NUMBALLS(28), NUMMAPS(3)
 {
 	//ball = new CBall [NUMBALLS];
 	ghost = new CGhost [4];
@@ -260,11 +260,12 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 判斷Pacman是否碰到food
 	//
-	vector<CFood *>* allFoods = gamemap->getAllFoods();
-	for (int i = 0; i < gamemap1.getFoodCount(); i++) {
+	vector<CFood *>* allFoods = gameMap.getAllFoods();
+	for (int i = 0; i < gameMap.getFoodCount(); i++) {
 		if ((*allFoods->at(i)).IsAlive() && (*allFoods->at(i)).HitPacman(&c_PacMan)) {
 			(*allFoods->at(i)).SetIsAlive(false);
-			myScore.setScore((*allFoods->at(i)).GetScore()); // 得分
+			remainFoods--;
+			myScore.setScore(myScore.getScore() + (*allFoods->at(i)).GetScore()); // 得分
 
 			// 如果是碰到大魔豆
 			if ((*allFoods->at(i)).GetScore() == 50) {
@@ -293,7 +294,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		else if (ghost[i].isNormalMode() != true) {
 			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
 				ghost[i].changeMode(3); // 鬼變眼睛狀態
-				myScore.setScore(10); // 得分
+				myScore.setScore(myScore.getScore() + 10); // 得分
 			}
 		}
 	}
@@ -306,14 +307,11 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 更新目前關卡
 	// 
-	if (gamemap == &gamemap1) {
-		myLevel.setLevel(1);
-	}
-	else if (gamemap == &gamemap2) {
-		myLevel.setLevel(2);
-	}
-	else if (gamemap == &gamemap3) {
-		myLevel.setLevel(3);
+	if (remainFoods == 0 && myLevel.getLevel() < NUMMAPS) {
+		gameMap.nextMap();
+		myLevel.levelUp();
+		myScore.setScore(myScore.getScore() - 10);
+		remainFoods = gameMap.getFoodCount();
 	}
 
 	//
@@ -384,18 +382,16 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	
 	// 載入地圖
-	gamemap1.SetMap(MAP_BLUE);
-	gamemap2.SetMap(MAP_GREEN);
-	gamemap3.SetMap(MAP_RED);
-	gamemap1.LoadBitmap();
-	gamemap2.LoadBitmap();
-	gamemap3.LoadBitmap();
-	gamemap = &gamemap1;
+	gameMap.SetMap(MAP_BLUE);
+	gameMap.LoadBitmap();
 
 	// 載入PacMan
 	c_PacMan.LoadBitmap();
 	c_PacMan.SetInitXY(14, 17);
-	c_PacMan.SetMap(gamemap->GetMap());
+	c_PacMan.SetMap(gameMap.GetMap());
+
+	// 載入豆子數
+	remainFoods = gameMap.getFoodCount();
 
 	// 載入Score文字
 	myScore.LoadBitmap();
@@ -415,7 +411,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	ghost[0].LoadBitmap(red);
 	ghost[0].SetInitXY(MAP_START + 12 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[0].SetInitTargetXY(MAP_START + 14 * BITMAP_SIZE, MAP_START + 11 * BITMAP_SIZE);
-	ghost[0].SetMap(gamemap->GetMap());
+	ghost[0].SetMap(gameMap.GetMap());
 
 	// 載入 blue ghost
 	int blue[4][2] = {
@@ -426,7 +422,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	ghost[1].LoadBitmap(blue);
 	ghost[1].SetInitXY(MAP_START + 13 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[1].SetInitTargetXY(MAP_START + 14 * BITMAP_SIZE, MAP_START + 11 * BITMAP_SIZE);
-	ghost[1].SetMap(gamemap->GetMap());
+	ghost[1].SetMap(gameMap.GetMap());
 
 	// 載入 pink ghost
 	int pink[4][2] = {
@@ -437,7 +433,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	ghost[2].LoadBitmap(pink);
 	ghost[2].SetInitXY(MAP_START + 14 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[2].SetInitTargetXY(MAP_START + 13 * BITMAP_SIZE, MAP_START + 11 * BITMAP_SIZE);
-	ghost[2].SetMap(gamemap->GetMap());
+	ghost[2].SetMap(gameMap.GetMap());
 
 	// 載入 orange ghost
 	int orange[4][2] = {
@@ -448,7 +444,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	ghost[3].LoadBitmap(orange);
 	ghost[3].SetInitXY(MAP_START + 15 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[3].SetInitTargetXY(MAP_START + 13 * BITMAP_SIZE, MAP_START + 11 * BITMAP_SIZE);
-	ghost[3].SetMap(gamemap->GetMap());
+	ghost[3].SetMap(gameMap.GetMap());
 	
 	// 設置位置
 	c_PacMan.SetTopLeft();
@@ -484,21 +480,22 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		for (int i = 0; i < 4; i++) {
 			ghost[i].restart();
 		}
-		gamemap = &gamemap2;
+		//gamemap = &gamemap2;
+		remainFoods = 0;
 	}
-	if (nChar == KEY_ESC) {
-		c_PacMan.restart();
-		for (int i = 0; i < 4; i++) {
-			ghost[i].restart();
-		}
-		gamemap = &gamemap3;
-	}
+	//if (nChar == KEY_ESC) {
+	//	c_PacMan.restart();
+	//	for (int i = 0; i < 4; i++) {
+	//		ghost[i].restart();
+	//	}
+	//	gamemap = &gamemap3;
+	//}
 
-	c_PacMan.SetMap(gamemap->GetMap());
-	ghost[0].SetMap(gamemap->GetMap());
-	ghost[1].SetMap(gamemap->GetMap());
-	ghost[2].SetMap(gamemap->GetMap());
-	ghost[3].SetMap(gamemap->GetMap());
+	c_PacMan.SetMap(gameMap.GetMap());
+	ghost[0].SetMap(gameMap.GetMap());
+	ghost[1].SetMap(gameMap.GetMap());
+	ghost[2].SetMap(gameMap.GetMap());
+	ghost[3].SetMap(gameMap.GetMap());
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -547,7 +544,7 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 void CGameStateRun::OnShow()
 {
 	// 顯示地圖
-	gamemap->OnShow();
+	gameMap.OnShow();
 	
 	// 顯示Pacman
 	c_PacMan.OnShow();

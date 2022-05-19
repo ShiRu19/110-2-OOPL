@@ -11,6 +11,7 @@ namespace game_framework {
 		void SetTopLeft();
 		void OnShow();
 		void setLevel(int LV);          // 紀錄關卡等級
+		void levelUp();                 // 關卡升級
 		int  getLevel();                // 取得關卡等級
 	private:
 		CMovingBitmap LEVEL_text;       // LEVEL文字
