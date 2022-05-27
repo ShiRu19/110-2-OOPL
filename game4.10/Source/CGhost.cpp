@@ -43,8 +43,8 @@ namespace game_framework {
 			}
 			GoToDestination(init_x, init_y);
 		}
-		else if (animation == &animation_avoid) {
-			return;
+		else if (animation == &animation_avoid || animation == &animation_change) {
+			GoToDestination(pacman_x, pacman_y);
 		}
 		else {
 			if (isGoOut) {
@@ -64,7 +64,10 @@ namespace game_framework {
 		GetMapIndex();                // 取得四個點的陣列位置
 		
 		double distance;              // 下一步到目的地的距離
-		double minDistance = INT_MAX; // 在所有方向到目的地的距離中取最短距離
+		int direction_min;            // 下一步方向 (正常用)
+		int direction_max;            // 下一步方向 (躲避用)
+		double minDistance = INT_MAX; // 在所有方向到目的地的距離中取最短距離 (正常用)
+		double maxDistance = INT_MIN; // 在所有方向到目的地的距離中取最長距離 (躲避用)
 		
 		// ********************
 		// direction 代號表示：
@@ -81,28 +84,44 @@ namespace game_framework {
 			distance = turnUp(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				direction = 1; // 1 為向上
+				direction_min = 1; // 1 為向上
+			}
+			if (distance > maxDistance && distance != INT_MAX) {
+				maxDistance = distance;
+				direction_max = 1; // 1 為向上
 			}
 
 			// 向下
 			distance = turnDown(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				direction = 2; // 2 為向下
+				direction_min = 2; // 2 為向下
+			}
+			if (distance > maxDistance && distance != INT_MAX) {
+				maxDistance = distance;
+				direction_max = 2; // 2 為向下
 			}
 
 			// 向左
 			distance = turnLeft(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				direction = 3; // 3 為向左
+				direction_min = 3; // 3 為向左
+			}
+			if (distance > maxDistance && distance != INT_MAX) {
+				maxDistance = distance;
+				direction_max = 3; // 3 為向左
 			}
 
 			// 向右
 			distance = turnRight(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				direction = 4; // 4 為向右
+				direction_min = 4; // 4 為向右
+			}
+			if (distance > maxDistance && distance != INT_MAX) {
+				maxDistance = distance;
+				direction_max = 4; // 4 為向右
 			}
 		}
 		// 若前一步為向左或向右，則先判斷左右方向
@@ -111,29 +130,52 @@ namespace game_framework {
 			distance = turnLeft(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				direction = 3; // 3 為向左
+				direction_min = 3; // 3 為向左
+			}
+			if (distance > maxDistance && distance != INT_MAX) {
+				maxDistance = distance;
+				direction_max = 3; // 3 為向左
 			}
 
 			// 向右
 			distance = turnRight(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				direction = 4; // 4 為向右
+				direction_min = 4; // 4 為向右
+			}
+			if (distance > maxDistance && distance != INT_MAX) {
+				maxDistance = distance;
+				direction_max = 4; // 4 為向右
 			}
 
 			// 向上
 			distance = turnUp(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				direction = 1; // 1 為向上
+				direction_min = 1; // 1 為向上
+			}
+			if (distance > maxDistance && distance != INT_MAX) {
+				maxDistance = distance;
+				direction_max = 1; // 1 為向上
 			}
 
 			// 向下
 			distance = turnDown(des_x, des_y);
 			if (distance < minDistance) {
 				minDistance = distance;
-				direction = 2; // 2 為向下
+				direction_min = 2; // 2 為向下
 			}
+			if (distance > maxDistance && distance != INT_MAX) {
+				maxDistance = distance;
+				direction_max = 2; // 2 為向下
+			}
+		}
+
+		if (animation == &animation_avoid || animation == &animation_change) {
+			direction = direction_max;
+		}
+		else {
+			direction = direction_min;
 		}
 
 		const int STEP_SIZE = 2;
@@ -345,6 +387,8 @@ namespace game_framework {
 		else if (mode == 1) animation = &animation_avoid;  // 躲避鬼
 		else if (mode == 2) animation = &animation_change; // 不穩定鬼
 		else if (mode == 3) animation = &animation_eyes;   // 眼睛
+
+		direction = 0;
 	}
 
 	bool CGhost::isNormalMode() {
