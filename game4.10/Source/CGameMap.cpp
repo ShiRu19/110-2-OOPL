@@ -14,6 +14,8 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 
 	void CGameMap::setFoods(int map_info[31][28]) {
+		allFoods.clear();
+
 		foodCount = 0;
 
 		for (int i = 0; i < 31; i++)
