@@ -58,6 +58,17 @@ namespace game_framework {
 				GoToDestination(init_target_x, init_target_y);
 			}
 		}
+
+		if (map[MapIndex_Y1][MapIndex_X1] == 4 && x == MAP_START + BITMAP_SIZE * (0) && direction == 3) {
+			x = MAP_START + BITMAP_SIZE * (27);
+			GetMapIndex();
+		}
+		if (map[MapIndex_Y1][MapIndex_X2] == 4 && x == MAP_START + BITMAP_SIZE * (27) && direction == 4) {
+			x = MAP_START + BITMAP_SIZE * (0);
+			GetMapIndex();
+		}
+
+		
 	}
 
 	void CGhost::GoToDestination(int des_x, int des_y) {
@@ -211,7 +222,7 @@ namespace game_framework {
 		}
 		else {
 			// 狀態不為眼睛時，不可進入基地
-			if (map[MapIndex_Y2 - 1][MapIndex_X1] == 0 && map[MapIndex_Y2 - 1][MapIndex_X2] == 0) {
+			if (map[MapIndex_Y2 - 1][MapIndex_X1] != 1 && map[MapIndex_Y2 - 1][MapIndex_X2] != 1 && map[MapIndex_Y2 - 1][MapIndex_X1] != 2 && map[MapIndex_Y2 - 1][MapIndex_X2] != 2) {
 				canTurn = true;
 			}
 		}
@@ -242,7 +253,7 @@ namespace game_framework {
 		}
 		else {
 			// 狀態不為眼睛時，不可進入基地
-			if (map[MapIndex_Y1 + 1][MapIndex_X1] == 0 && map[MapIndex_Y1 + 1][MapIndex_X2] == 0) {
+			if (map[MapIndex_Y1 + 1][MapIndex_X1] != 1 && map[MapIndex_Y1 + 1][MapIndex_X2] != 1 && map[MapIndex_Y1 + 1][MapIndex_X1] != 2 && map[MapIndex_Y1 + 1][MapIndex_X2] != 2) {
 				canTurn = true;
 			}
 		}
@@ -273,7 +284,7 @@ namespace game_framework {
 		}
 		else {
 			// 狀態不為眼睛時，不可進入基地
-			if (map[MapIndex_Y1][MapIndex_X2 - 1] == 0 && map[MapIndex_Y2][MapIndex_X2 - 1] == 0) {
+			if (map[MapIndex_Y1][MapIndex_X2 - 1] != 1 && map[MapIndex_Y2][MapIndex_X2 - 1] != 1 && map[MapIndex_Y1][MapIndex_X2 - 1] != 2 && map[MapIndex_Y2][MapIndex_X2 - 1] != 2) {
 				canTurn = true;
 			}
 		}
@@ -304,7 +315,7 @@ namespace game_framework {
 		}
 		else {
 			// 狀態不為眼睛時，不可進入基地
-			if (map[MapIndex_Y1][MapIndex_X1 + 1] == 0 && map[MapIndex_Y2][MapIndex_X1 + 1] == 0) {
+			if (map[MapIndex_Y1][MapIndex_X1 + 1] != 1 && map[MapIndex_Y2][MapIndex_X1 + 1] != 1 && map[MapIndex_Y1][MapIndex_X1 + 1] != 2 && map[MapIndex_Y2][MapIndex_X1 + 1] != 2) {
 				canTurn = true;
 			}
 		}
