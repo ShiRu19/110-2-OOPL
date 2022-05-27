@@ -106,7 +106,7 @@ namespace game_framework {
 			if (map[MapIndex_Y1][MapIndex_X1] == 4 && x == MAP_START + BITMAP_SIZE * (27)) {
 				x = MAP_START + BITMAP_SIZE * (0);
 				SetMovingRight(true);
-				//return;
+				return;
 			}
 
 			if (wall_pixel - x > STEP_SIZE) {
@@ -166,7 +166,7 @@ namespace game_framework {
 	void CPacman::SetMovingDown(bool flag)
 	{
 		GetMapIndex();
-		if (map[MapIndex_Y2 + 1][MapIndex_X1] != 1 && map[MapIndex_Y2 + 1][MapIndex_X2] != 1) {
+		if (map[MapIndex_Y2 + 1][MapIndex_X1] != 1 && map[MapIndex_Y2 + 1][MapIndex_X2] != 1 && map[MapIndex_Y2 + 1][MapIndex_X1] != 2 && map[MapIndex_Y2 + 1][MapIndex_X2] != 2) {
 			animation = &animation_2;
 			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 			isMovingDown = flag;
