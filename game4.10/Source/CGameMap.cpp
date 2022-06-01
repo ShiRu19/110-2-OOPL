@@ -18,6 +18,18 @@ namespace game_framework {
 
 		foodCount = 0;
 
+		if (MapType == MAP_RED_END) {
+			for (int i = 0 ; i < 31; i++) {
+				for (int j = 0; j < 28; j++) {
+					map[i][j] = map_info[i][j];
+				}
+			}
+			allFoods.push_back(new CFood(10));
+			allFoods.at(0)->LoadBitmap(IDB_FOOD, IDB_FOOD);
+			foodCount++;
+			return;
+		}
+
 		for (int i = 0; i < 31; i++)
 		{
 			for (int j = 0; j < 28; j++)
@@ -154,6 +166,44 @@ namespace game_framework {
 
 			setFoods(map_info);
 		}
+		else if (MapType == MAP_RED_END)
+		{
+			int map_info[31][28] = {
+			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+			{1, 3, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 3, 1},
+			{1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+			{1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1},
+			{1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1},
+			{1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1},
+			{1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1},
+			{1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1},
+			{4, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 4},
+			{1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1},
+			{1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1},
+			{1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 2, 2, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1},
+			{1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1},
+			{1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1},
+			{1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1},
+			{1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1},
+			{1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1},
+			{1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1},
+			{1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1},
+			{1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1},
+			{1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1},
+			{1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1},
+			{1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1},
+			{1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1},
+			{1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1},
+			{1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1},
+			{1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1},
+			{1, 3, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 3, 1},
+			{1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1},
+			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+			};
+
+			setFoods(map_info);
+		}
 	}
 
 	void CGameMap::nextMap() {
@@ -163,11 +213,17 @@ namespace game_framework {
 		currentWall = &walls[currentLevel];
 	}
 
+	void CGameMap::lastMap() {
+		SetMap(gameMaps[3]);
+		MapType = gameMaps[3];
+		currentWall = &walls[3];
+	}
+
 	int CGameMap::getFoodCount() {
 		return foodCount;
 	}
 
-	CGameMap::CGameMap():X(20), Y(20), MW(24), MH(24), NUMMAPS(3)
+	CGameMap::CGameMap():X(20), Y(20), MW(24), MH(24), NUMMAPS(4)
 	{
 		map = new int*[31];
 		for (int i = 0; i < 31; i++)
@@ -181,6 +237,7 @@ namespace game_framework {
 		gameMaps[0] = MAP_BLUE;
 		gameMaps[1] = MAP_GREEN;
 		gameMaps[2] = MAP_RED;
+		gameMaps[3] = MAP_RED_END;
 
 		MapType = gameMaps[0];
 		currentWall = &walls[0];
@@ -205,6 +262,7 @@ namespace game_framework {
 		walls[0].LoadBitmap(IDB_WALL_BLUE);
 		walls[1].LoadBitmap(IDB_WALL_GREEN);
 		walls[2].LoadBitmap(IDB_WALL_RED);
+		walls[3].LoadBitmap(IDB_WALL_RED);
 	}
 
 	vector<CFood *>* CGameMap::getAllFoods() {
@@ -214,33 +272,46 @@ namespace game_framework {
 	void CGameMap::OnShow()
 	{
 		int currentFoodIndex = 0;
-		for (int i = 0; i < 31; i++)
-		{
-			for (int j = 0; j < 28; j++)
+		if (MapType == MAP_RED_END) {
+			for (int i = 0; i < 31; i++) {
+				for (int j = 0; j < 28; j++) {
+					if (map[i][j] == 1) {
+						currentWall->SetTopLeft(X + (MW*j), Y + (MH*i));
+						currentWall->ShowBitmap();
+					}
+				}
+			}
+			allFoods.at(0)->SetTopLeft(X + (MW * 16), Y + (MH * 17));
+			allFoods.at(0)->OnShow();
+		}
+		else {
+			for (int i = 0; i < 31; i++)
 			{
-				switch (map[i][j])
+				for (int j = 0; j < 28; j++)
 				{
-				case 0:
-					allFoods.at(currentFoodIndex)->SetTopLeft(X + (MW*j), Y + (MH*i));
-					allFoods.at(currentFoodIndex)->OnShow();
-					currentFoodIndex++;
-					break;
-				case 1:
-					currentWall->SetTopLeft(X + (MW*j), Y + (MH*i));
-					currentWall->ShowBitmap();
-					break;
-				case 3:
-					allFoods.at(currentFoodIndex)->SetTopLeft(X + (MW*j), Y + (MH*i));
-					allFoods.at(currentFoodIndex)->OnShow();
-					currentFoodIndex++;
-					break;
-				case 4:
-					allFoods.at(currentFoodIndex)->SetTopLeft(X + (MW*j), Y + (MH*i));
-					allFoods.at(currentFoodIndex)->OnShow();
-					currentFoodIndex++;
-					break;
-				default:
-					break;
+					switch (map[i][j]){
+						case 0:
+							allFoods.at(currentFoodIndex)->SetTopLeft(X + (MW*j), Y + (MH*i));
+							allFoods.at(currentFoodIndex)->OnShow();
+							currentFoodIndex++;
+							break;
+						case 1:
+							currentWall->SetTopLeft(X + (MW*j), Y + (MH*i));
+							currentWall->ShowBitmap();
+							break;
+						case 3:
+							allFoods.at(currentFoodIndex)->SetTopLeft(X + (MW*j), Y + (MH*i));
+							allFoods.at(currentFoodIndex)->OnShow();
+							currentFoodIndex++;
+							break;
+						case 4:
+							allFoods.at(currentFoodIndex)->SetTopLeft(X + (MW*j), Y + (MH*i));
+							allFoods.at(currentFoodIndex)->OnShow();
+							currentFoodIndex++;
+							break;
+						default:
+							break;
+					}
 				}
 			}
 		}

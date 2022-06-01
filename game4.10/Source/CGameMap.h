@@ -10,7 +10,8 @@ namespace game_framework {
 	{
 		MAP_BLUE,				// 0
 		MAP_GREEN,				// 1
-		MAP_RED					// 2
+		MAP_RED,				// 2
+		MAP_RED_END             // 3
 	};
 
 	using namespace std;
@@ -26,7 +27,8 @@ namespace game_framework {
 		int  getFoodCount();			// 眔ě计秖
 		vector<CFood *>* getAllFoods();	// 眔┮Τě
 		int **GetMap();					// 眔瓜
-		void nextMap();
+		void nextMap();					// ち传眎瓜
+		void lastMap();                 // ち传程眎瓜
 	protected:
 		const int NUMMAPS;              // 羆瓜计
 		void setFoods(int map_info[31][28]); // 皌竚瓜ě竚

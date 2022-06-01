@@ -193,6 +193,9 @@ CGameStateRun::CGameStateRun(CGame *g)
 {
 	//ball = new CBall [NUMBALLS];
 	ghost = new CGhost [4];
+	ghostDelay = 0;
+	remainFoods = 299;
+	initFoods = 299;
 	//picX = picY = 0;
 }
 
@@ -285,6 +288,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		if (ghost[i].isNormalMode()) {
 			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
 				c_PacMan.SetIsAlive(false); // Pacman死亡
+				initFoods = remainFoods;
 				for (int j = 0; j < 4; j++) {
 					ghost[j].restart();
 				}
@@ -307,11 +311,16 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 更新目前關卡
 	// 
-	if (remainFoods == 0 && myLevel.getLevel() < NUMMAPS) {
+	if (remainFoods == 0) {
 		gameMap.nextMap();
 		myLevel.levelUp();
 		myScore.setScore(myScore.getScore() - 10);
+		c_PacMan.restart();
+		for (int i = 0; i < 4; i++) {
+			ghost[i].restart();
+		}
 		remainFoods = gameMap.getFoodCount();
+		initFoods = remainFoods;
 	}
 
 	//
@@ -323,10 +332,29 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 移動ghosts
 	//
-	for (int i = 0; i < 4; i++) {
-		ghost[i].OnMove(c_PacMan.GetX1(), c_PacMan.GetY1());
-	}
+	double eat_rate = (initFoods - remainFoods - 0.0) / initFoods;
 
+	// 馬上出發
+	ghost[0].OnMove(c_PacMan.GetX1(), c_PacMan.GetY1());
+
+	// 約吃到10顆豆子時出發
+	if (eat_rate >= 0.03) ghost[1].OnMove(c_PacMan.GetX1(), c_PacMan.GetY1());
+	else ghost[1].OnMove(-1, -1);
+
+	// 約吃到30顆豆子時出發
+	if (eat_rate >= 0.1) ghost[2].OnMove(c_PacMan.GetX1(), c_PacMan.GetY1());
+	else ghost[2].OnMove(-1, -1);
+
+	// 約吃到40顆豆子時出發
+	if (eat_rate >= 0.13) ghost[3].OnMove(c_PacMan.GetX1(), c_PacMan.GetY1());
+	else ghost[3].OnMove(-1, -1);
+
+	//if ((initFoods - remainFoods) / initFoods >= 1/8) {
+	//	ghost[2].OnMove(c_PacMan.GetX1(), c_PacMan.GetY1());
+	//}
+	//if (gameMap.getFoodCount() - remainFoods >= 50) {
+	//	ghost[3].OnMove(c_PacMan.GetX1(), c_PacMan.GetY1());
+	//}
 	/*
 	for (i=0; i < NUMBALLS; i++)
 		if (ball[i].IsAlive() && ball[i].HitEraser(&eraser)) {
@@ -465,8 +493,9 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_ENTER = 0xD;  // keyboard Enter
-	const char KEY_ESC = 0x1B;   // keyboard Esc
-	
+	const char KEY_CTRL  = 0x11; // keyboard Ctrl
+	const char KEY_SHIFT = 0x10; // keyboard Shift
+
 	if (nChar == KEY_UP)
 		c_PacMan.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
@@ -475,27 +504,36 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		c_PacMan.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
 		c_PacMan.SetMovingRight(true);
-	if (nChar == KEY_ENTER) {
-		c_PacMan.restart();
-		for (int i = 0; i < 4; i++) {
-			ghost[i].restart();
-		}
-		//gamemap = &gamemap2;
-		remainFoods = 0;
-	}
-	//if (nChar == KEY_ESC) {
-	//	c_PacMan.restart();
-	//	for (int i = 0; i < 4; i++) {
-	//		ghost[i].restart();
-	//	}
-	//	gamemap = &gamemap3;
-	//}
 
-	c_PacMan.SetMap(gameMap.GetMap());
-	ghost[0].SetMap(gameMap.GetMap());
-	ghost[1].SetMap(gameMap.GetMap());
-	ghost[2].SetMap(gameMap.GetMap());
-	ghost[3].SetMap(gameMap.GetMap());
+	if (nChar == KEY_ENTER) {
+		if (myLevel.getLevel() < NUMMAPS) {
+			c_PacMan.restart();
+			for (int i = 0; i < 4; i++) {
+				ghost[i].restart();
+			}
+			remainFoods = 0;
+		}
+	}
+	
+	if (nChar == KEY_CTRL) {
+		c_PacMan.restart();
+		ghost[0].SetTopLeft(MAP_START + 4 * BITMAP_SIZE, MAP_START + 5 * BITMAP_SIZE);
+		ghost[1].SetTopLeft(MAP_START + 4 * BITMAP_SIZE, MAP_START + 20 * BITMAP_SIZE);
+		ghost[2].SetTopLeft(MAP_START + 18 * BITMAP_SIZE, MAP_START + 28 * BITMAP_SIZE);
+		ghost[3].SetTopLeft(MAP_START + 26 * BITMAP_SIZE, MAP_START + 26 * BITMAP_SIZE);
+		remainFoods = 0;
+		gameMap.lastMap();
+		myLevel.setLevel(3);
+		myScore.setScore(7790);
+		remainFoods = gameMap.getFoodCount();
+	}
+	
+	if (nChar == KEY_SHIFT) {
+		for (int i = 0; i < 4; i++) {
+			ghost[i].changeMode(1);
+		}
+	}
+
 }
 
 void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)

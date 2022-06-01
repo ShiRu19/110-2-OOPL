@@ -120,10 +120,12 @@ namespace game_framework {
 		CPacman         c_PacMan;   // 黃色小精靈
 		CGhost          *ghost;     // 幽靈們
 		vector<CFood>   foods;      // 小豆子+大魔豆
+		int             initFoods;  // 原始豆子數量
 		int             remainFoods;// 場上剩餘豆子
 		CScore          myScore;    // 總分數
 		CLevel          myLevel;    // 關卡等級
 		CLife           myLife;     // 生命值
+		int             ghostDelay; // 幽靈出發的delay時間
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

@@ -14,6 +14,7 @@ namespace game_framework {
 
 	// Golst
 	CGhost::CGhost() {
+		animation = &animation_4;
 	}
 
 	void CGhost::SetInitXY(int x, int y) {
@@ -32,7 +33,7 @@ namespace game_framework {
 		this->map = map;
 	}
 
-	void CGhost::OnMove(int pacman_x, int pacman_y) {
+	void CGhost::OnMove(int des_x, int des_y) {
 		animation->OnMove();
 
 		if (animation == &animation_eyes) {
@@ -44,11 +45,14 @@ namespace game_framework {
 			GoToDestination(init_x, init_y);
 		}
 		else if (animation == &animation_avoid || animation == &animation_change) {
-			GoToDestination(pacman_x, pacman_y);
+			GoToDestination(des_x, des_y);
 		}
 		else {
-			if (isGoOut) {
-				GoToDestination(pacman_x, pacman_y);
+			if (des_x == -1 && des_y == -1) {
+				return;
+			}
+			else if (isGoOut) {
+				GoToDestination(des_x, des_y);
 			}
 			else {
 				if (x == init_target_x && y == init_target_y) {
