@@ -19,6 +19,14 @@ namespace game_framework {
 		is_alive = true;
 	}
 
+	CPacman::~CPacman() {
+		for (int i = 0; i < 31; i++)
+		{
+			delete[] map[i];
+		}
+		delete[] map;
+	}
+
 	void CPacman::SetInitXY(int x, int y) {
 		init_X = MAP_START + x * BITMAP_SIZE;									// 設定Pacman起始的Y座標
 		init_Y = MAP_START + y * BITMAP_SIZE;									// 設定Pacman起始的X座標

@@ -13,7 +13,44 @@ namespace game_framework {
 	// CGameMap: Map class
 	/////////////////////////////////////////////////////////////////////////////
 
+	CGameMap::CGameMap() :X(20), Y(20), MW(24), MH(24), NUMMAPS(4)
+	{
+		map = new int*[31];
+		for (int i = 0; i < 31; i++)
+		{
+			map[i] = new int[28];
+		}
+
+		gameMaps = new int[NUMMAPS];
+		walls = new CMovingBitmap[NUMMAPS];
+
+		gameMaps[0] = MAP_BLUE;
+		gameMaps[1] = MAP_GREEN;
+		gameMaps[2] = MAP_RED;
+		gameMaps[3] = MAP_RED_END;
+
+		MapType = gameMaps[0];
+		currentWall = &walls[0];
+	}
+
+	CGameMap::~CGameMap()
+	{
+		for (int i = 0; i < (int)allFoods.size(); i++) {
+			delete allFoods.at(i);
+		}
+		for (int i = 0; i < 31; i++)
+		{
+			delete[] map[i];
+		}
+		delete[] map;
+		delete[] walls;
+		delete[] gameMaps;
+	}
+
 	void CGameMap::setFoods(int map_info[31][28]) {
+		for (int i = 0; i < foodCount; i++) {
+			delete allFoods.at(i);
+		}
 		allFoods.clear();
 
 		foodCount = 0;
@@ -223,40 +260,6 @@ namespace game_framework {
 		return foodCount;
 	}
 
-	CGameMap::CGameMap():X(20), Y(20), MW(24), MH(24), NUMMAPS(4)
-	{
-		map = new int*[31];
-		for (int i = 0; i < 31; i++)
-		{
-			map[i] = new int[28];
-		}
-
-		gameMaps = new int [NUMMAPS];
-		walls = new CMovingBitmap[NUMMAPS];
-
-		gameMaps[0] = MAP_BLUE;
-		gameMaps[1] = MAP_GREEN;
-		gameMaps[2] = MAP_RED;
-		gameMaps[3] = MAP_RED_END;
-
-		MapType = gameMaps[0];
-		currentWall = &walls[0];
-	}
-
-	CGameMap::~CGameMap()
-	{
-		for (int i = 0; i < (int)allFoods.size(); i++) {
-			delete allFoods.at(i);
-		}
-		for (int i = 0; i < 31; i++)
-		{
-			delete[] map[i];
-		}
-		delete[] map;
-		delete[] walls;
-		delete[] gameMaps;
-	}
-
 	void CGameMap::LoadBitmap()
 	{
 		walls[0].LoadBitmap(IDB_WALL_BLUE);
@@ -318,6 +321,19 @@ namespace game_framework {
 	}
 	int **CGameMap::GetMap()
 	{
-		return map;
+		int **new_map;
+		new_map = new int*[31];
+		for (int i = 0; i < 31; i++)
+		{
+			new_map[i] = new int[28];
+		}
+
+		for (int i = 0; i < 31; i++) {
+			for (int j = 0; j < 28; j++)
+			{
+				new_map[i][j] = map[i][j];
+			}
+		}
+		return new_map;
 	}
 }

@@ -7,6 +7,7 @@ namespace game_framework {
 	{
 	public:
 		CGhost();
+		~CGhost();
 		void LoadBitmap(int IDB[4][2]);		                    // 載入圖形
 		void changeMode(int mode);                              // 切換模式(正常鬼/躲避鬼)
 		bool isNormalMode();                                    // 精靈的狀態是否為正常狀態

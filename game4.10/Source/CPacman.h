@@ -10,6 +10,7 @@ namespace game_framework {
 	{
 	public:
 		CPacman();
+		~CPacman();
 		bool HitGhost(CGhost *ghost);    						// 是否碰到正常的ghost
 		bool IsAlive();                                         // 是否活著
 		void restart();                                         // 失去生命或切換關卡時回到起始點
@@ -37,7 +38,6 @@ namespace game_framework {
 		int FindMapIndex_X(int x);                              // 取得座標在矩陣的位置(X軸)
 		int FindMapIndex_Y(int y);                              // 取得座標在矩陣的位置(Y軸)
 	private:
-		//CMovingBitmap pic;                                    // 載入角色
 		CAnimation animation_stop_1;                            // Pacman的動畫_靜止狀態(預設向上)
 		CAnimation animation_stop_2;                            // Pacman的動畫_靜止狀態(預設向下)
 		CAnimation animation_stop_3;                            // Pacman的動畫_靜止狀態(預設向左)
@@ -48,7 +48,6 @@ namespace game_framework {
 		CAnimation animation_4;                                 // Pacman的動畫_向右
 		CAnimation animation_die;                               // Pacman的動畫_死亡
 		CAnimation *animation = &animation_stop_4;              // 當前Pacman動畫方向(預設向右)
-
 		
 		int  delay = 0;                                         // 等待狀態結束
 		int  myLife = 4;

@@ -17,6 +17,14 @@ namespace game_framework {
 		animation = &animation_4;
 	}
 
+	CGhost::~CGhost() {
+		for (int i = 0; i < 31; i++)
+		{
+			delete[] map[i];
+		}
+		delete[] map;
+	}
+
 	void CGhost::SetInitXY(int x, int y) {
 		init_x = x;
 		init_y = y;

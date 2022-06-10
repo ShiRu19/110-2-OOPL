@@ -110,15 +110,8 @@ namespace game_framework {
 		const int		NUMBALLS;	// 球的總數
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
-		CBall			*ball;		// 球的陣列
-		CMovingBitmap	corner;		// 角落圖
-		CEraser			eraser;		// 拍子
-		CInteger		hits_left;	// 剩下的撞擊數
-		CBouncingBall   bball;		// 反覆彈跳的球
-		CMovingBitmap   PacMan;     // 黃色小精靈
-		int             picX, picY; // PacMan座標位置
 		CPacman         c_PacMan;   // 黃色小精靈
-		CGhost          *ghost;     // 幽靈們
+		CGhost          ghost[4];     // 幽靈們
 		vector<CFood>   foods;      // 小豆子+大魔豆
 		int             initFoods;  // 原始豆子數量
 		int             remainFoods;// 場上剩餘豆子
