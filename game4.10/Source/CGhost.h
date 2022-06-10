@@ -45,7 +45,8 @@ namespace game_framework {
 		bool isGoOut = false;                                   // 鬼是否離開基地
 		int init_target_x, init_target_y;                       // 初始目標位置
 		int avoidTime = 0;                                      // 躲避狀態持續時間
-		int direction = 0;                                      // 眼睛行走方向
+		int direction = 0;                                      // 行走方向
+		bool stop;                                              // Pacman死亡時暫停動作
 		double turnUp(int des_x, int des_y);                    // 判斷是否可向上走，並回傳下一步距離目的地的距離
 		double turnDown(int des_x, int des_y);                  // 判斷是否可向下走，並回傳下一步距離目的地的距離
 		double turnLeft(int des_x, int des_y);                  // 判斷是否可向左走，並回傳下一步距離目的地的距離

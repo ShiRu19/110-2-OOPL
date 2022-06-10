@@ -305,6 +305,10 @@ namespace game_framework {
 		is_alive = true;
 	}
 
+	int CPacman::GetDelay() {
+		return delay;
+	}
+
 	bool CPacman::IsGameover()
 	{
 		if (myLife < 0) {

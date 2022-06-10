@@ -15,6 +15,7 @@ namespace game_framework {
 	// Golst
 	CGhost::CGhost() {
 		animation = &animation_4;
+		stop = false;
 	}
 
 	CGhost::~CGhost() {
@@ -60,7 +61,9 @@ namespace game_framework {
 				return;
 			}
 			else if (isGoOut) {
-				GoToDestination(des_x, des_y);
+				if (!stop) {
+					GoToDestination(des_x, des_y);
+				}
 			}
 			else {
 				if (x == init_target_x && y == init_target_y) {
@@ -410,6 +413,7 @@ namespace game_framework {
 		else if (mode == 1) animation = &animation_avoid;  // ¸úÁ×°­
 		else if (mode == 2) animation = &animation_change; // ¤£Ã­©w°­
 		else if (mode == 3) animation = &animation_eyes;   // ²´·ú
+		else if (mode == 4) stop = true;                 // ÀR¤îª¬ºA
 
 		direction = 0;
 	}
@@ -451,6 +455,7 @@ namespace game_framework {
 		avoidTime = 0;
 		direction = 0;
 		isGoOut = false;
+		stop = false;
 	}
 
 	void CGhost::OnShow() {

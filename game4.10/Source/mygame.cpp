@@ -237,9 +237,6 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
 				c_PacMan.SetIsAlive(false); // Pacman死亡
 				initFoods = remainFoods;
-				for (int j = 0; j < 4; j++) {
-					ghost[j].restart();
-				}
 			}
 		}
 		// 若碰到躲避鬼或不穩定鬼，Pacman得分
@@ -247,6 +244,19 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
 				ghost[i].changeMode(3); // 鬼變眼睛狀態
 				myScore.setScore(myScore.getScore() + 10); // 得分
+			}
+		}
+	}
+
+	if (!c_PacMan.IsAlive()) {
+		if (c_PacMan.GetDelay() == 28) {
+			for (int i = 0; i < 4; i++) {
+				ghost[i].restart(); // 重新開始
+			}
+		}
+		else {
+			for (int i = 0; i < 4; i++) {
+				ghost[i].changeMode(4); // 靜止
 			}
 		}
 	}

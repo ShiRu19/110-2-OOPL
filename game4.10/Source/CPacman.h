@@ -14,6 +14,7 @@ namespace game_framework {
 		bool HitGhost(CGhost *ghost);    						// 是否碰到正常的ghost
 		bool IsAlive();                                         // 是否活著
 		void restart();                                         // 失去生命或切換關卡時回到起始點
+		int  GetDelay();                                        // 取得目前死亡的delay時間
 		bool IsGameover();                                      // 遊戲是否結束 (生命值<0時)
 		void SetIsAlive(bool alive);                            // 設定是否活著
 		void LoadBitmap();										// 載入圖形
