@@ -245,14 +245,16 @@ namespace game_framework {
 	// 檢查Pacman所構成的矩形是否碰到ghost
 	bool CPacman::HitGhost(CGhost *ghost)
 	{
-		return HitRectangle(ghost->GetX1(), ghost->GetY1(),
-			ghost->GetX2(), ghost->GetY2());
+		int adjust = 2;
+		return HitRectangle(ghost->GetX1() + adjust, ghost->GetY1() + adjust,
+			ghost->GetX2() - adjust, ghost->GetY2() - adjust);
 	}
 
 	bool CPacman::HitRectangle(int tx1, int ty1, int tx2, int ty2)
 	{
+		int adjust = 2;
 		// 檢查是否有交集
-		return (tx2 >= x && tx1 <= (x + animation->Width()) && ty2 >= y && ty1 <= (y + animation->Height()));
+		return (tx2 >= x + adjust && tx1 <= (x + animation->Width() - adjust) && ty2 >= y + adjust && ty1 <= (y + animation->Height() - adjust));
 	}
 
 	void CPacman::SetMap(int **map) {

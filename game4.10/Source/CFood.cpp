@@ -27,15 +27,17 @@ namespace game_framework {
 
 	bool CFood::HitPacman(CPacman *pacman)
 	{
+		int adjust = 4;
 		// 檢測Pacman所構成的矩形是否碰到food
-		return HitRectangle(pacman->GetX1(), pacman->GetY1(),
-			pacman->GetX2(), pacman->GetY2());
+		return HitRectangle(pacman->GetX1() + adjust, pacman->GetY1() + adjust,
+			pacman->GetX2() - adjust, pacman->GetY2() - adjust);
 	}
 
 	bool CFood::HitRectangle(int tx1, int ty1, int tx2, int ty2)
 	{
+		int adjust = 4;
 		// 檢查是否有交集
-		return (tx2 >= x+1 && tx1 <= (x + foods.Width()-1) && ty2 >= y+1 && ty1 <= (y + foods.Height()-1));
+		return (tx2 >= x + adjust && tx1 <= (x + foods.Width() - adjust) && ty2 >= y + adjust && ty1 <= (y + foods.Height() - adjust));
 	}
 
 	bool CFood::IsAlive()

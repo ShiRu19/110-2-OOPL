@@ -423,6 +423,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (nChar == KEY_RIGHT)
 		c_PacMan.SetMovingRight(true);
 
+	// 組合鍵 - 跳至下一關
 	if (nChar == KEY_ENTER) {
 		if (myLevel.getLevel() < NUMMAPS) {
 			c_PacMan.restart();
@@ -433,6 +434,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		}
 	}
 	
+	// 組合鍵 - 跳至最後關卡
 	if (nChar == KEY_CTRL) {
 		c_PacMan.restart();
 		ghost[0].SetTopLeft(MAP_START + 4 * BITMAP_SIZE, MAP_START + 5 * BITMAP_SIZE);
@@ -446,6 +448,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		remainFoods = gameMap.getFoodCount();
 	}
 	
+	// 組合鍵 - 轉為逃避鬼模式
 	if (nChar == KEY_SHIFT) {
 		for (int i = 0; i < 4; i++) {
 			ghost[i].changeMode(1);
