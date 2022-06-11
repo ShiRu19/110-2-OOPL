@@ -65,8 +65,7 @@ namespace game_framework {
 // 這個class為遊戲的遊戲開頭畫面物件
 /////////////////////////////////////////////////////////////////////////////
 
-CGameStateInit::CGameStateInit(CGame *g)
-: CGameState(g)
+CGameStateInit::CGameStateInit(CGame *g): CGameState(g)
 {
 }
 
@@ -103,7 +102,8 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+	
+	GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
 }
 
 void CGameStateInit::OnShow()
@@ -135,8 +135,7 @@ void CGameStateInit::OnShow()
 // 這個class為遊戲的結束狀態(Game Over)
 /////////////////////////////////////////////////////////////////////////////
 
-CGameStateOver::CGameStateOver(CGame *g)
-: CGameState(g)
+CGameStateOver::CGameStateOver(CGame *g): CGameState(g)
 {
 }
 
@@ -191,45 +190,20 @@ void CGameStateOver::OnShow()
 CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g), NUMBALLS(28), NUMMAPS(3)
 {
-	//ball = new CBall [NUMBALLS];
 	ghost = new CGhost [4];
 	ghostDelay = 0;
 	remainFoods = 299;
 	initFoods = 299;
-	//picX = picY = 0;
 }
 
 CGameStateRun::~CGameStateRun()
 {
-	//delete [] ball;
 	delete [] ghost;
 }
 
 void CGameStateRun::OnBeginState()
 {
-	/*const int BALL_GAP = 90;
-	const int BALL_XY_OFFSET = 45;
-	const int BALL_PER_ROW = 7;
-	const int HITS_LEFT = 10;
-	const int HITS_LEFT_X = 590;
-	const int HITS_LEFT_Y = 0;
-	const int BACKGROUND_X = 60;
-	const int ANIMATION_SPEED = 15;
-	for (int i = 0; i < NUMBALLS; i++) {				// 設定球的起始座標
-		int x_pos = i % BALL_PER_ROW;
-		int y_pos = i / BALL_PER_ROW;
-		ball[i].SetXY(x_pos * BALL_GAP + BALL_XY_OFFSET, y_pos * BALL_GAP + BALL_XY_OFFSET);
-		ball[i].SetDelay(x_pos);
-		ball[i].SetIsAlive(true);
-	}
-	eraser.Initialize();
-	background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
-	help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
-	hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
-	hits_left.SetTopLeft(HITS_LEFT_X,HITS_LEFT_Y);		// 指定剩下撞擊數的座標
-	CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
-	CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
-	CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI*/
+	CAudio::Instance()->Play(AUDIO_START);				// 播放 START
 	hits_left.SetInteger(0);
 	hits_left.SetTopLeft(590, 0);
 
@@ -238,44 +212,30 @@ void CGameStateRun::OnBeginState()
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
 	//
-	// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
-	//
-	// SetCursor(AfxGetApp()->LoadCursor(IDC_GAMECURSOR));
-	//
-	// 移動背景圖的座標
-	//
-	/*if (background.Top() > SIZE_Y)
-		background.SetTopLeft(60 ,-background.Height());
-	background.SetTopLeft(background.Left(),background.Top()+1);*/
-	//
-	// 移動球
-	//
-	/*
-	int i;
-	for (i=0; i < NUMBALLS; i++)
-		ball[i].OnMove();
-	*/
-	//
-	// 移動擦子
-	//
-	// eraser.OnMove();
-
-	//
 	// 判斷Pacman是否碰到food
 	//
 	vector<CFood *>* allFoods = gameMap.getAllFoods();
-	for (int i = 0; i < gameMap.getFoodCount(); i++) {
-		if ((*allFoods->at(i)).IsAlive() && (*allFoods->at(i)).HitPacman(&c_PacMan)) {
+	for (int i = 0; i < gameMap.getFoodCount(); i++) 
+	{
+		if ((*allFoods->at(i)).IsAlive() && (*allFoods->at(i)).HitPacman(&c_PacMan))
+		{
 			(*allFoods->at(i)).SetIsAlive(false);
 			remainFoods--;
 			myScore.setScore(myScore.getScore() + (*allFoods->at(i)).GetScore()); // 得分
-
 			// 如果是碰到大魔豆
-			if ((*allFoods->at(i)).GetScore() == 50) {
+			if ((*allFoods->at(i)).GetScore() == 50) 
+			{
+				CAudio::Instance()->Stop(AUDIO_EAT);
+				CAudio::Instance()->Play(AUDIO_EATGHOST);
 				// ghost轉成躲避鬼模式
-				for (int i = 0; i < 4; i++) {
+				for (int i = 0; i < 4; i++) 
+				{
 					ghost[i].changeMode(1);
 				}
+			}
+			else
+			{
+				CAudio::Instance()->Play(AUDIO_EAT);				// 播放 START
 			}
 		}
 	}
@@ -283,11 +243,15 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 判斷Pacman是否碰到ghost
 	//
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 4; i++) 
+	{
 		// 若碰到正常鬼，Pacman死亡
-		if (ghost[i].isNormalMode()) {
-			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
+		if (ghost[i].isNormalMode()) 
+		{
+			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) 
+			{
 				c_PacMan.SetIsAlive(false); // Pacman死亡
+				CAudio::Instance()->Play(AUDIO_DEADTH);
 				initFoods = remainFoods;
 				for (int j = 0; j < 4; j++) {
 					ghost[j].restart();
@@ -295,8 +259,10 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 			}
 		}
 		// 若碰到躲避鬼或不穩定鬼，Pacman得分
-		else if (ghost[i].isNormalMode() != true) {
-			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
+		else if (ghost[i].isNormalMode() != true)
+		{
+			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) 
+			{
 				ghost[i].changeMode(3); // 鬼變眼睛狀態
 				myScore.setScore(myScore.getScore() + 10); // 得分
 			}
@@ -348,13 +314,6 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 約吃到40顆豆子時出發
 	if (eat_rate >= 0.13) ghost[3].OnMove(c_PacMan.GetX1(), c_PacMan.GetY1());
 	else ghost[3].OnMove(-1, -1);
-
-	//if ((initFoods - remainFoods) / initFoods >= 1/8) {
-	//	ghost[2].OnMove(c_PacMan.GetX1(), c_PacMan.GetY1());
-	//}
-	//if (gameMap.getFoodCount() - remainFoods >= 50) {
-	//	ghost[3].OnMove(c_PacMan.GetX1(), c_PacMan.GetY1());
-	//}
 	/*
 	for (i=0; i < NUMBALLS; i++)
 		if (ball[i].IsAlive() && ball[i].HitEraser(&eraser)) {
@@ -371,44 +330,19 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 			}
 		}
 	*/
-	
-	//
-	// 移動彈跳的球
-	//
-	/*
-	bball.OnMove();
-	*/
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 {
-	// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
-	//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
-	//
-	//ShowInitProgress(33);	// 接個前一個狀態的進度，此處進度視為33%
-	//
-	// 開始載入資料
-	//
-	//background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
-	//background.SetTopLeft(50, 50);
-	//background.ShowBitmap();
-	//
-	// 完成部分Loading動作，提高進度
-	//
-	//ShowInitProgress(50);
-	//Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
-	//
-	// 繼續載入其他資料
-	//
-	// help.LoadBitmap(IDB_HELP,RGB(255,255,255));				// 載入說明的圖形			
-	// CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
-	// CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
-	// CAudio::Instance()->Load(AUDIO_NTUT,  "sounds\\ntut.mid");	// 載入編號2的聲音ntut.mid
+	// 載入AUDIO
+	CAudio::Instance()->Load(AUDIO_START,  "sounds\\pacman_beginning.wav");		// 載入編號0(遊戲開始)的聲音pacman_beginning.wav
+	CAudio::Instance()->Load(AUDIO_EAT,  "sounds\\pacman_chomp.wav");			// 載入編號1(吃豆子)的聲音pacman_chomp.wav
+	CAudio::Instance()->Load(AUDIO_DEADTH,  "sounds\\pacman_death.wav");		// 載入編號2(碰到鬼死亡)的聲音pacman_death.wav
+	CAudio::Instance()->Load(AUDIO_EATGHOST, "sounds\\pacman_eatghost.wav");	// 載入編號3(碰到大豆子)的聲音pacman_eatghost.wav
 	//
 	// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 	//
 	//
-	
 	// 載入地圖
 	gameMap.SetMap(MAP_BLUE);
 	gameMap.LoadBitmap();
@@ -431,7 +365,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	myLife.LoadBitmap();
 
 	// 載入 red ghost
-	int red[4][2] = {
+	int red[4][2] = 
+	{
 		{ IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2 },
 		{ IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2 },
 		{ IDB_GHOST_RED_LEFT_1, IDB_GHOST_RED_LEFT_2 },
@@ -542,41 +477,26 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
-	/*
-	if (nChar == KEY_LEFT)
-		eraser.SetMovingLeft(false);
-	if (nChar == KEY_RIGHT)
-		eraser.SetMovingRight(false);
-	if (nChar == KEY_UP)
-		eraser.SetMovingUp(false);
-	if (nChar == KEY_DOWN)
-		eraser.SetMovingDown(false);
-	*/
 }
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
-	//eraser.SetMovingLeft(true);
 }
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	//eraser.SetMovingLeft(false);
 }
 
 void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	// 沒事。如果需要處理滑鼠移動的話，寫code在這裡
 }
 
 void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
-	//eraser.SetMovingRight(true);
 }
 
 void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	//eraser.SetMovingRight(false);
 }
 
 void CGameStateRun::OnShow()

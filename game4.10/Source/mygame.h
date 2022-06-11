@@ -57,10 +57,12 @@ namespace game_framework {
 	// Constants
 	/////////////////////////////////////////////////////////////////////////////
 
-	enum AUDIO_ID {				// 定義各種音效的編號
-		AUDIO_DING,				// 0
-		AUDIO_LAKE,				// 1
-		AUDIO_NTUT				// 2
+	enum AUDIO_ID 
+	{							// 定義各種音效的編號
+		AUDIO_START,			// 0
+		AUDIO_EAT,				// 1
+		AUDIO_DEADTH,			// 2
+		AUDIO_EATGHOST			// 3
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
