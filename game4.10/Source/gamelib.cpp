@@ -997,7 +997,9 @@ namespace game_framework {
 	{
 		ddrval = lpDD->SetCooperativeLevel(AfxGetMainWnd()->m_hWnd, DDSCL_EXCLUSIVE | DDSCL_FULLSCREEN);
 		CheckDDFail("Can not SetCooperativeLevel Exclusive");
-		ddrval = lpDD->SetDisplayMode(size_x, size_y, 32, 0, 0);
+		ddrval = lpDD->SetDisplayMode(1920, 1080, 32, 0, 0);
+		size_x = 1920;
+		size_y = 1080;
 		if (ddrval != DD_OK) {
 			ddrval = lpDD->SetCooperativeLevel(AfxGetMainWnd()->m_hWnd, DDSCL_NORMAL);
 			CheckDDFail("Can not SetCooperativeLevel Normal");
@@ -1065,6 +1067,8 @@ namespace game_framework {
 		ddsd.dwFlags = DDSD_CAPS;
 		ddsd.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE;
 		ddrval = lpDD->CreateSurface(&ddsd, &lpDDSPrimary, NULL);
+		size_x = 1100;
+		size_y = 800;
 		CheckDDFail("Create Primary Surface failed");
 
 		// Create clippers for the primary and back surfaces
