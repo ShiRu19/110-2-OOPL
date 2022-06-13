@@ -206,20 +206,23 @@ namespace game_framework {
 		}
 	}
 
-	void CGameMap::nextMap() {
+	void CGameMap::nextMap() 
+	{
 		currentLevel++;
 		SetMap(gameMaps[currentLevel]);
 		MapType = gameMaps[currentLevel];
 		currentWall = &walls[currentLevel];
 	}
 
-	void CGameMap::lastMap() {
+	void CGameMap::lastMap() 
+	{
 		SetMap(gameMaps[3]);
 		MapType = gameMaps[3];
 		currentWall = &walls[3];
 	}
 
-	int CGameMap::getFoodCount() {
+	int CGameMap::getFoodCount() 
+	{
 		return foodCount;
 	}
 

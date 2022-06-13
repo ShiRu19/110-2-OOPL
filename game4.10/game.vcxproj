@@ -372,6 +372,7 @@
     <Image Include="RES\orange_left_2.bmp" />
     <Image Include="RES\orange_right_1.bmp" />
     <Image Include="RES\orange_right_2.bmp" />
+    <Image Include="RES\Pacman.bmp" />
     <Image Include="RES\pacman_1.bmp" />
     <Image Include="RES\Pacman_2.bmp" />
     <Image Include="RES\Pacman_3.bmp" />
@@ -384,6 +385,7 @@
     <Image Include="RES\Pacman_down_2.bmp" />
     <Image Include="RES\Pacman_left_1.bmp" />
     <Image Include="RES\Pacman_left_2.bmp" />
+    <Image Include="RES\Pacman_logo.bmp" />
     <Image Include="RES\Pacman_right_1.bmp" />
     <Image Include="RES\Pacman_right_2.bmp" />
     <Image Include="RES\Pacman_up_1.bmp" />

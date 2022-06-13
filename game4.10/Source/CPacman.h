@@ -32,10 +32,10 @@ namespace game_framework {
 		void SetMovingDown(bool flag);                          // 設定是否正在往下移動
 		void SetMovingLeft(bool flag);                          // 設定是否正在往左移動
 		void SetMovingRight(bool flag);                         // 設定是否正在往右移動
-
 		void SetMap(int **map);                                 // 初始化地圖
 		int FindMapIndex_X(int x);                              // 取得座標在矩陣的位置(X軸)
 		int FindMapIndex_Y(int y);                              // 取得座標在矩陣的位置(Y軸)
+		void SetLastKey(UINT key);								// 設定最後一個按下的KEY
 	private:
 		//CMovingBitmap pic;                                    // 載入角色
 		CAnimation animation_stop_1;                            // Pacman的動畫_靜止狀態(預設向上)
@@ -48,11 +48,8 @@ namespace game_framework {
 		CAnimation animation_4;                                 // Pacman的動畫_向右
 		CAnimation animation_die;                               // Pacman的動畫_死亡
 		CAnimation *animation = &animation_stop_4;              // 當前Pacman動畫方向(預設向右)
-
-		
 		int  delay = 0;                                         // 等待狀態結束
 		int  myLife = 4;
-
 		int init_X, init_Y;                                     // Pacman初始位置
 		int x, y;                                               // Pacman目前位置
 		int move;                                               // 移動方向
@@ -61,16 +58,17 @@ namespace game_framework {
 		bool isMovingRight;		                             	// 是否正在往右移動
 		bool isMovingUp;		                             	// 是否正在往上移動
 		bool isStop = false;                                    // 是否撞牆停止移動
-
 		bool HitRectangle(int tx1, int ty1, int tx2, int ty2);  // 檢查是否有交集
 		bool is_alive;                                          // 生命狀態
 		bool is_gameover = false;                               // 遊戲結束
-		
 		int **map;                                              // 遊戲地圖
 		int MapIndex_X1;                                        // Pacman左上角位於地圖的座標(X軸)
 		int MapIndex_Y1;                                        // Pacman左上角位於地圖的座標(Y軸)
 		int MapIndex_X2;                                        // Pacman右下角位於地圖的座標(X軸)
 		int MapIndex_Y2;                                        // Pacman右下角位於地圖的座標(Y軸)
 		int wall_pixel;                                         // 牆壁位置
+		UINT LastKey;
+		bool RecordKeyHold;
+		int recording_step;
 	};
 }

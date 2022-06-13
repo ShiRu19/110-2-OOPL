@@ -71,19 +71,7 @@ CGameStateInit::CGameStateInit(CGame *g): CGameState(g)
 
 void CGameStateInit::OnInit()
 {
-	//
-	// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
-	//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
-	//
-	ShowInitProgress(0);	// 一開始的loading進度為0%
-	//
-	// 開始載入資料
-	//
-	logo.LoadBitmap(IDB_BACKGROUND);
-	Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
-	//
-	// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
-	//
+	logo.LoadBitmap(IDB_LOGO);
 }
 
 void CGameStateInit::OnBeginState()
@@ -118,15 +106,18 @@ void CGameStateInit::OnShow()
 	//
 	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 	CFont f,*fp;
-	f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
-	fp=pDC->SelectObject(&f);					// 選用 font f
+	f.CreatePointFont(300,"Times New Roman");	// 產生 font f; 160表示16 point的字
+	fp = pDC->SelectObject(&f);					// 選用 font f
 	pDC->SetBkColor(RGB(0,0,0));
 	pDC->SetTextColor(RGB(255,255,0));
-	pDC->TextOut(120,220,"Please click mouse or press SPACE to begin.");
-	pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
-	if (ENABLE_GAME_PAUSE)
+	int mid_y = SIZE_Y / 2;
+	string pacman_word = "Pacmac!";
+	int pacman_word_width = (SIZE_X - logo.Width()) / 2 + 10;
+	pDC->TextOut(pacman_word_width, mid_y, "Pacman!");
+	// pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
+	/*if (ENABLE_GAME_PAUSE)
 		pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
-	pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");
+	// pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");*/
 	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 }								
@@ -206,7 +197,6 @@ void CGameStateRun::OnBeginState()
 	CAudio::Instance()->Play(AUDIO_START);				// 播放 START
 	hits_left.SetInteger(0);
 	hits_left.SetTopLeft(590, 0);
-
 }
 
 void CGameStateRun::OnMove()							// 移動遊戲元素
@@ -225,6 +215,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 			// 如果是碰到大魔豆
 			if ((*allFoods->at(i)).GetScore() == 50) 
 			{
+				// 播放吃到大魔豆的音效
 				CAudio::Instance()->Stop(AUDIO_EAT);
 				CAudio::Instance()->Play(AUDIO_EATGHOST);
 				// ghost轉成躲避鬼模式
@@ -235,7 +226,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 			}
 			else
 			{
-				CAudio::Instance()->Play(AUDIO_EAT);				// 播放 START
+				CAudio::Instance()->Play(AUDIO_EAT);				// 播放吃豆子的音效
 			}
 		}
 	}
@@ -251,6 +242,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) 
 			{
 				c_PacMan.SetIsAlive(false); // Pacman死亡
+				c_PacMan.SetLastKey(0);
 				CAudio::Instance()->Play(AUDIO_DEADTH);
 				initFoods = remainFoods;
 				for (int j = 0; j < 4; j++) {
@@ -431,6 +423,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_CTRL  = 0x11; // keyboard Ctrl
 	const char KEY_SHIFT = 0x10; // keyboard Shift
 
+	c_PacMan.SetLastKey(nChar);
+	/*
 	if (nChar == KEY_UP)
 		c_PacMan.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
@@ -439,8 +433,10 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		c_PacMan.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
 		c_PacMan.SetMovingRight(true);
+	*/
 
-	if (nChar == KEY_ENTER) {
+	if (nChar == KEY_ENTER) 
+	{
 		if (myLevel.getLevel() < NUMMAPS) {
 			c_PacMan.restart();
 			for (int i = 0; i < 4; i++) {
