@@ -194,6 +194,7 @@ CGameStateRun::CGameStateRun(CGame *g)
 	ghostDelay = 0;
 	remainFoods = 299;
 	initFoods = 299;
+	isCompleted = false;
 }
 
 CGameStateRun::~CGameStateRun()
@@ -269,16 +270,22 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 更新目前關卡
 	// 
-	if (remainFoods == 0) {
+	if (remainFoods == 0 && myLevel.getLevel() != 3) {
 		gameMap.nextMap();
 		myLevel.levelUp();
 		myScore.setScore(myScore.getScore() - 10);
 		c_PacMan.restart();
+		c_PacMan.SetMap(gameMap.GetMap());
 		for (int i = 0; i < 4; i++) {
 			ghost[i].restart();
+			ghost[i].SetMap(gameMap.GetMap());
 		}
+		
 		remainFoods = gameMap.getFoodCount();
 		initFoods = remainFoods;
+	}
+	else if (remainFoods == 0 && myLevel.getLevel() == 3) {
+		isCompleted = true;
 	}
 
 	//
@@ -455,6 +462,12 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		gameMap.lastMap();
 		myLevel.setLevel(3);
 		myScore.setScore(7790);
+		c_PacMan.SetLife(0);
+		myLife.setLife(0);
+		c_PacMan.SetMap(gameMap.GetMap());
+		for (int i = 0; i < 4; i++) {
+			ghost[i].SetMap(gameMap.GetMap());
+		}
 		remainFoods = gameMap.getFoodCount();
 	}
 	
@@ -520,6 +533,10 @@ void CGameStateRun::OnShow()
 	
 	// 轉換狀態
 	if (c_PacMan.IsGameover()) {
+		GotoGameState(GAME_STATE_OVER);
+	}
+
+	if (isCompleted) {
 		GotoGameState(GAME_STATE_OVER);
 	}
 

@@ -76,7 +76,7 @@
 #define ENABLE_GAME_PAUSE	 true		// 是否允許以 Ctrl-Q 暫停遊戲
 #define ENABLE_AUDIO		 true		// 啟動音效介面
 #define BITMAP_SIZE			 24			// 一個基礎Bitmap的大小
-#define MAP_START			 24			// 地圖的起始位置
+#define MAP_START			 20			// 地圖的起始位置
 
 /////////////////////////////////////////////////////////////////////////////
 // 定義CGame及CGameState所使用的三個狀態常數

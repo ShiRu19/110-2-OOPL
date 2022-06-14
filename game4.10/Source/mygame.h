@@ -119,6 +119,7 @@ namespace game_framework {
 		CLevel          myLevel;    // 關卡等級
 		CLife           myLife;     // 生命值
 		int             ghostDelay; // 幽靈出發的delay時間
+		bool            isCompleted;// 通關
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

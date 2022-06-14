@@ -21,8 +21,8 @@ namespace game_framework {
 		void SetTopLeft();
 		void OnMove();								         	// 移動
 		void OnShow();											// 將圖形貼到畫面
+		void SetLife(int life);                                 // 設定生命值
 		int  GetLife();                                         // 目前生命值
-		
 		void SetInitXY(int x, int y);                           // 設定初始位置
 		int  GetX1();                                           // 取得x1(左上角)
 		int  GetY1();                                           // 取得y1(左上角)
