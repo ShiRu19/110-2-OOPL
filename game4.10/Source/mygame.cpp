@@ -71,9 +71,50 @@ CGameStateInit::CGameStateInit(CGame *g): CGameState(g)
 
 void CGameStateInit::OnInit()
 {
+	isAbout = false;
+	for (int i = 0; i < 3; i++) {
+		label[i] = false;
+	}
 	logo.LoadBitmap(IDB_LOGO);
 	startGame.LoadBitmap(IDB_START_STARTGAME);
 	about.LoadBitmap(IDB_START_ABOUT);
+	about_gameContent.LoadBitmap(IDB_START_ABOUT_GAMECONTENT);
+	about_gameOperation.LoadBitmap(IDB_START_ABOUT_GAMEOPERATION);
+	about_gameCombination.LoadBitmap(IDB_START_ABOUT_GAMECOMBINATION);
+	back.LoadBitmap(IDB_START_ABOUT_BACK);
+	label_gameContent.LoadBitmap(IDB_LABEL_GAMECONTENT);
+	label_operation.LoadBitmap(IDB_LABEL_OPERATION);
+	label_combination.LoadBitmap(IDB_LABEL_COMBINATION);
+
+	startGame_x1 = (SIZE_X - startGame.Width()) / 2;
+	startGame_y1 = SIZE_Y * 6 / 8;
+	startGame_x2 = (SIZE_X - startGame.Width()) / 2 + startGame.Width();
+	startGame_y2 = SIZE_Y * 6 / 8 + startGame.Height();
+
+	about_x1 = (SIZE_X - about.Width()) / 2;
+	about_y1 = SIZE_Y * 7 / 8;
+	about_x2 = (SIZE_X - about.Width()) / 2 + about.Width();
+	about_y2 = SIZE_Y * 7 / 8 + about.Height();
+
+	back_x1 = 0;
+	back_x2 = back.Width();
+	back_y1 = 0;
+	back_y2 = back.Height();
+
+	content_x1 = 0;
+	content_x2 = label_gameContent.Width();
+	content_y1 = back_y2;
+	content_y2 = back_y2 + label_gameContent.Height();
+
+	operation_x1 = 0;
+	operation_x2 = label_operation.Width();
+	operation_y1 = content_y2;
+	operation_y2 = content_y2 + label_operation.Height();
+
+	combination_x1 = 0;
+	combination_x2 = label_combination.Width();
+	combination_y1 = operation_y2;
+	combination_y2 = operation_y2 + label_combination.Height();
 }
 
 void CGameStateInit::OnBeginState()
@@ -92,45 +133,117 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
+	double point_x = point.x;
+	double point_y = point.y;
 	
-	GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
+	if (!isAbout) {
+		if (point_x >= startGame_x1 && point_x <= startGame_x2 && point_y >= startGame_y1 && point_y <= startGame_y2) {
+			GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
+		}
+		else if (point_x >= about_x1 && point_x <= about_x2 && point_y >= about_y1 && point_y <= about_y2) {
+			isAbout = true;
+			label[0] = true;
+		}
+	}
+	else {
+		if (point_x >= back_x1 && point_x <= back_x2 && point_y >= back_y1 && point_y <= back_y2) {
+			isAbout = false;
+			for (int i = 0; i < 3; i++) {
+				label[i] = false;
+			}
+		}
+		
+		if (point_x >= content_x1 && point_x <= content_x2 && point_y >= content_y1 && point_y <= content_y2) {
+			isAbout = true;
+			for (int i = 0; i < 3; i++) {
+				label[i] = false;
+			}
+			label[0] = true;
+		}
+		
+		if (point_x >= operation_x1 && point_x <= operation_x2 && point_y >= operation_y1 && point_y <= operation_y2) {
+			isAbout = true;
+			for (int i = 0; i < 3; i++) {
+				label[i] = false;
+			}
+			label[1] = true;
+		}
+		
+		if (point_x >= combination_x1 && point_x <= combination_x2 && point_y >= combination_y1 && point_y <= combination_y2) {
+			isAbout = true;
+			for (int i = 0; i < 3; i++) {
+				label[i] = false;
+			}
+			label[2] = true;
+		}
+	}
 }
 
 void CGameStateInit::OnShow()
 {
-	//
-	// 貼上logo
-	//
-	logo.SetTopLeft((SIZE_X - logo.Width())/2, SIZE_Y / 8);
-	logo.ShowBitmap();
+	if (!isAbout) {
+		// 貼上logo
+		logo.SetTopLeft((SIZE_X - logo.Width())/2, SIZE_Y / 8);
+		logo.ShowBitmap();
 
-	//
-	// 貼上文字
-	//
-	startGame.SetTopLeft((SIZE_X - startGame.Width()) / 2, SIZE_Y * 6 / 8);
-	startGame.ShowBitmap();
-	about.SetTopLeft((SIZE_X - about.Width()) / 2, SIZE_Y * 7 / 8);
-	about.ShowBitmap();
+		// 貼上文字
+		startGame.SetTopLeft((SIZE_X - startGame.Width()) / 2, SIZE_Y * 6 / 8);
+		startGame.ShowBitmap();
+		about.SetTopLeft((SIZE_X - about.Width()) / 2, SIZE_Y * 7 / 8);
+		about.ShowBitmap();
+	}
+	else {
+		// 貼上文字
+		about.SetTopLeft((SIZE_X - about.Width()) / 2, SIZE_Y / 10);
+		about.ShowBitmap();
+
+		// 貼上返回鍵
+		back.SetTopLeft(0, 0);
+		back.ShowBitmap();
+
+		// 貼上標籤
+		label_gameContent.SetTopLeft(0, back.Height());
+		label_gameContent.ShowBitmap();
+		label_operation.SetTopLeft(0, back.Height() + label_gameContent.Height());
+		label_operation.ShowBitmap();
+		label_combination.SetTopLeft(0, back.Height() + label_gameContent.Height() + label_operation.Height());
+		label_combination.ShowBitmap();
+		
+		// 貼上說明文字
+		if (label[0]) {
+			about_gameContent.SetTopLeft((SIZE_X - about_gameContent.Width()) / 2, SIZE_Y * 2 / 10);
+			about_gameContent.ShowBitmap();
+		}
+		else if (label[1]) {
+			about_gameOperation.SetTopLeft((SIZE_X - about_gameOperation.Width()) / 2, SIZE_Y * 2 / 10);
+			about_gameOperation.ShowBitmap();
+		}
+		else if (label[2]) {
+			about_gameCombination.SetTopLeft((SIZE_X - about_gameCombination.Width()) / 2, SIZE_Y * 2 / 10);
+			about_gameCombination.ShowBitmap();
+		}
+	}
 
 	//
 	// Demo螢幕字型的使用，不過開發時請盡量避免直接使用字型，改用CMovingBitmap比較好
 	//
-	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-	CFont f,*fp;
-	f.CreatePointFont(300,"Times New Roman");	// 產生 font f; 160表示16 point的字
-	fp = pDC->SelectObject(&f);					// 選用 font f
-	pDC->SetBkColor(RGB(0,0,0));
-	pDC->SetTextColor(RGB(255,255,0));
-	int mid_y = SIZE_Y / 2;
-	string pacman_word = "Pacmac!";
-	int pacman_word_width = (SIZE_X - logo.Width()) / 2 + 10;
-	pDC->TextOut(pacman_word_width, mid_y, "Pacman!");
-	// pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
-	/*if (ENABLE_GAME_PAUSE)
-		pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
-	// pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");*/
-	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	// CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+	// CFont f,*fp;
+	// f.CreatePointFont(300,"Times New Roman");	// 產生 font f; 160表示16 point的字
+	// fp = pDC->SelectObject(&f);					// 選用 font f
+	// pDC->SetBkColor(RGB(0,0,0));
+	// pDC->SetTextColor(RGB(255,255,0));
+	// int mid_y = SIZE_Y / 2;
+	
+	// string pacman_word = "Pacmac!";
+	// int pacman_word_width = (SIZE_X - logo.Width()) / 2 + 10;
+	// pDC->TextOut(pacman_word_width, mid_y, "Pacman!");
+	// // pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
+	// /*if (ENABLE_GAME_PAUSE)
+	// 	pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
+	// // pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");*/
+	// pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+	// CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 }								
 
 /////////////////////////////////////////////////////////////////////////////

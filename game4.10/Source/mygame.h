@@ -83,6 +83,45 @@ namespace game_framework {
 		CMovingBitmap logo;								// csie的logo
 		CMovingBitmap startGame;                        // start game 標籤
 		CMovingBitmap about;                            // about 標籤
+		CMovingBitmap about_gameContent;                // 遊戲內容說明
+		CMovingBitmap about_gameOperation;              // 遊戲操作說明
+		CMovingBitmap about_gameCombination;            // 遊戲組合密技說明
+		CMovingBitmap back;                             // 回到主頁面
+		CMovingBitmap label_gameContent;                // 遊戲內容標籤
+		CMovingBitmap label_operation;                  // 操作按鍵標籤
+		CMovingBitmap label_combination;                // 組合按鍵標籤
+		bool          isAbout;                          // 是否在about頁面
+		bool          label[3];                         // 目前點擊標籤
+
+		double startGame_x1;
+		double startGame_y1;
+		double startGame_x2;
+		double startGame_y2;
+
+		double about_x1;
+		double about_y1;
+		double about_x2;
+		double about_y2;
+
+		double back_x1;
+		double back_x2;
+		double back_y1;
+		double back_y2;
+
+		double content_x1;
+		double content_x2;
+		double content_y1;
+		double content_y2;
+
+		double operation_x1;
+		double operation_x2;
+		double operation_y1;
+		double operation_y2;
+
+		double combination_x1;
+		double combination_x2;
+		double combination_y1;
+		double combination_y2;
 	};
 
 

@@ -212,6 +212,20 @@ IDB_START_ABOUT         BITMAP                  "..\\RES\\about.bmp"
 
 IDB_START_STARTGAME     BITMAP                  "..\\RES\\startGame.bmp"
 
+IDB_START_ABOUT_GAMECONTENT BITMAP                  "..\\RES\\gameContent.bmp"
+
+IDB_START_ABOUT_BACK    BITMAP                  "..\\RES\\back.bmp"
+
+IDB_LABEL_COMBINATION   BITMAP                  "..\\RES\\label_combination.bmp"
+
+IDB_LABEL_GAMECONTENT   BITMAP                  "..\\RES\\label_gameContent.bmp"
+
+IDB_LABEL_OPERATION     BITMAP                  "..\\RES\\label_operationKey.bmp"
+
+IDB_START_ABOUT_GAMECOMBINATION BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\gameCombination.bmp"
+
+IDB_START_ABOUT_GAMEOPERATION BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\gameOperationKey.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

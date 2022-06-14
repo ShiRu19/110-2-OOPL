@@ -335,6 +335,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="RES\about.bmp" />
+    <Image Include="RES\back.bmp" />
+    <Image Include="RES\backMenu.bmp" />
     <Image Include="res\bitmap2.bmp" />
     <Image Include="res\bitmap3.bmp" />
     <Image Include="res\bitmap4.bmp" />
@@ -350,6 +352,9 @@
     <Image Include="RES\blue_left_2.bmp" />
     <Image Include="RES\blue_right_1.bmp" />
     <Image Include="RES\blue_right_2.bmp" />
+    <Image Include="RES\gameCombination.bmp" />
+    <Image Include="RES\gameContent.bmp" />
+    <Image Include="RES\gameOperationKey.bmp" />
     <Image Include="RES\ghost_1.bmp" />
     <Image Include="RES\ghost_2.bmp" />
     <Image Include="RES\ghost_3.bmp" />
@@ -359,6 +364,9 @@
     <Image Include="RES\ghost_eyes_down.bmp" />
     <Image Include="RES\ghost_white_1.bmp" />
     <Image Include="RES\ghost_white_2.bmp" />
+    <Image Include="RES\label_combination.bmp" />
+    <Image Include="RES\label_gameContent.bmp" />
+    <Image Include="RES\label_operationKey.bmp" />
     <Image Include="RES\LEVEL.bmp" />
     <Image Include="RES\magicFood.bmp" />
     <Image Include="RES\multi.bmp" />

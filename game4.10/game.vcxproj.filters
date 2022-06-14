@@ -129,6 +129,14 @@
     <Image Include="RES\Pacman_logo.bmp" />
     <Image Include="RES\about.bmp" />
     <Image Include="RES\startGame.bmp" />
+    <Image Include="RES\gameContent.bmp" />
+    <Image Include="RES\backMenu.bmp" />
+    <Image Include="RES\back.bmp" />
+    <Image Include="RES\label_combination.bmp" />
+    <Image Include="RES\label_gameContent.bmp" />
+    <Image Include="RES\label_operationKey.bmp" />
+    <Image Include="RES\gameCombination.bmp" />
+    <Image Include="RES\gameOperationKey.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />
