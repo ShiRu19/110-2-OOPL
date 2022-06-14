@@ -127,6 +127,8 @@
     <Image Include="res\wall_gre.bmp" />
     <Image Include="RES\Pacman.bmp" />
     <Image Include="RES\Pacman_logo.bmp" />
+    <Image Include="RES\about.bmp" />
+    <Image Include="RES\startGame.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

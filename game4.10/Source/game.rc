@@ -208,6 +208,10 @@ IDB_BITMAP3             BITMAP                  "..\\RES\\Pacman.bmp"
 
 IDB_LOGO                BITMAP                  "..\\RES\\Pacman_logo.bmp"
 
+IDB_START_ABOUT         BITMAP                  "..\\RES\\about.bmp"
+
+IDB_START_STARTGAME     BITMAP                  "..\\RES\\startGame.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

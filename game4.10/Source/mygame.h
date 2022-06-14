@@ -81,6 +81,8 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		CMovingBitmap logo;								// csie的logo
+		CMovingBitmap startGame;                        // start game 標籤
+		CMovingBitmap about;                            // about 標籤
 	};
 
 

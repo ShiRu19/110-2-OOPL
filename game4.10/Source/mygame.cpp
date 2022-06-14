@@ -72,6 +72,8 @@ CGameStateInit::CGameStateInit(CGame *g): CGameState(g)
 void CGameStateInit::OnInit()
 {
 	logo.LoadBitmap(IDB_LOGO);
+	startGame.LoadBitmap(IDB_START_STARTGAME);
+	about.LoadBitmap(IDB_START_ABOUT);
 }
 
 void CGameStateInit::OnBeginState()
@@ -99,8 +101,17 @@ void CGameStateInit::OnShow()
 	//
 	// 貼上logo
 	//
-	logo.SetTopLeft((SIZE_X - logo.Width())/2, SIZE_Y/8);
+	logo.SetTopLeft((SIZE_X - logo.Width())/2, SIZE_Y / 8);
 	logo.ShowBitmap();
+
+	//
+	// 貼上文字
+	//
+	startGame.SetTopLeft((SIZE_X - startGame.Width()) / 2, SIZE_Y * 6 / 8);
+	startGame.ShowBitmap();
+	about.SetTopLeft((SIZE_X - about.Width()) / 2, SIZE_Y * 7 / 8);
+	about.ShowBitmap();
+
 	//
 	// Demo螢幕字型的使用，不過開發時請盡量避免直接使用字型，改用CMovingBitmap比較好
 	//
