@@ -36,7 +36,7 @@ namespace game_framework {
 	void CGhost::SetMap(int **m) {
 		for (int i = 0; i < 31; i++)
 		{
-			for (int j = 0; j < 27; j++) {
+			for (int j = 0; j < 28; j++) {
 				map[i][j] = m[i][j];
 			}
 		}
@@ -74,11 +74,11 @@ namespace game_framework {
 			}
 		}
 
-		if (map[MapIndex_Y1][MapIndex_X1] == 4 && x == MAP_START + BITMAP_SIZE * (0) && direction == 3) {
+		if (x < MAP_START + BITMAP_SIZE * (0) + 5 && direction == 3) {
 			x = MAP_START + BITMAP_SIZE * (27);
 			GetMapIndex();
 		}
-		if (map[MapIndex_Y1][MapIndex_X2] == 4 && x == MAP_START + BITMAP_SIZE * (27) && direction == 4) {
+		if (x > MAP_START + BITMAP_SIZE * (27) - 5 && direction == 4) {
 			x = MAP_START + BITMAP_SIZE * (0);
 			GetMapIndex();
 		}

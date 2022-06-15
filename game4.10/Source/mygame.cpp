@@ -483,7 +483,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 移動PacMan
 	//
-	if(c_PacMan.IsAlive())
+	if (c_PacMan.IsAlive())
 		c_PacMan.OnMove();
 
 	//

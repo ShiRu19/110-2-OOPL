@@ -102,7 +102,7 @@ namespace game_framework
 		}
 		else if (isMovingLeft)
 		{
-			if (x == MAP_START + BITMAP_SIZE * (0)) 
+			if (x < MAP_START + BITMAP_SIZE * (0) + 5)
 			{
 				x = MAP_START + BITMAP_SIZE * (27);
 				SetMovingLeft(true);
@@ -121,7 +121,7 @@ namespace game_framework
 		}
 		else if (isMovingRight)
 		{
-			if (x == MAP_START + BITMAP_SIZE * (27)) 
+			if (x > MAP_START + BITMAP_SIZE * (27) - 5) 
 			{
 				x = MAP_START + BITMAP_SIZE * (0);
 				SetMovingRight(true);
@@ -277,7 +277,7 @@ namespace game_framework
 	{
 		for (int i = 0; i < 31; i++)
 		{
-			for (int j = 0; j < 27; j++) {
+			for (int j = 0; j < 28; j++) {
 				map[i][j] = m[i][j];
 			}
 		}
