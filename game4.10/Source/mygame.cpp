@@ -329,6 +329,7 @@ void CGameStateRun::OnMove()							// ²¾°Ê¹CÀ¸¤¸¯À
 	runningTime++;
 
 	if (runningTime < 120) {
+		myScore.setScore(0);
 		return;
 	}
 	
