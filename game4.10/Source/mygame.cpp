@@ -378,7 +378,6 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	runningTime++;
 
 	if (runningTime < 120) {
-		myScore.setScore(0);
 		return;
 	}
 	
@@ -463,7 +462,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	if (remainFoods == 0 && myLevel.getLevel() != 3) {
 		gameMap.nextMap();
 		myLevel.levelUp();
-		myScore.setScore(myScore.getScore() - 10);
+		myScore.setScore(myScore.getScore());
 		c_PacMan.restart();
 		c_PacMan.SetMap(gameMap.GetMap());
 		for (int i = 0; i < 4; i++) {
@@ -629,6 +628,12 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (nChar == KEY_RIGHT)
 		c_PacMan.SetLastKey(3);
 
+	if (nChar == KEY_CTRL) ctrlDown = true;
+	else if (nChar != KEY_E && nChar != KEY_M && nChar != KEY_ENTER) {
+		ctrlDown = false;
+	}
+	
+	// 切至下一關
 	if (nChar == KEY_ENTER) 
 	{
 		if (myLevel.getLevel() < NUMMAPS) {
@@ -637,14 +642,12 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				ghost[i].restart();
 			}
 			remainFoods = 0;
+			if (myLevel.getLevel() == 1) myScore.setScore(3130);
+			if (myLevel.getLevel() == 2) myScore.setScore(6320);
 		}
 		ctrlDown = false;
 	}
 
-	if (nChar == KEY_CTRL) ctrlDown = true;
-	else if (nChar != KEY_E && nChar != KEY_M && nChar != KEY_ENTER) {
-		ctrlDown = false;
-	}
 	
 	// 組合鍵 - 跳至最後關卡
 	if (ctrlDown && nChar == KEY_E) {
@@ -656,7 +659,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		remainFoods = 0;
 		gameMap.lastMap();
 		myLevel.setLevel(3);
-		myScore.setScore(7790);
+		myScore.setScore(9720);
 		c_PacMan.SetLife(0);
 		myLife.setLife(0);
 		c_PacMan.SetMap(gameMap.GetMap());
