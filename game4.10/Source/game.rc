@@ -212,7 +212,7 @@ IDB_START_ABOUT         BITMAP                  "..\\RES\\about.bmp"
 
 IDB_START_STARTGAME     BITMAP                  "..\\RES\\startGame.bmp"
 
-IDB_START_ABOUT_GAMECONTENT BITMAP              "..\\RES\\gameContent.bmp"
+IDB_START_ABOUT_GAMECONTENT BITMAP                  "..\\RES\\gameContent.bmp"
 
 IDB_START_ABOUT_BACK    BITMAP                  "..\\RES\\back.bmp"
 
@@ -222,15 +222,17 @@ IDB_LABEL_GAMECONTENT   BITMAP                  "..\\RES\\label_gameContent.bmp"
 
 IDB_LABEL_OPERATION     BITMAP                  "..\\RES\\label_operationKey.bmp"
 
-IDB_START_ABOUT_GAMECOMBINATION BITMAP          "..\\RES\\gameCombination.bmp"
+IDB_START_ABOUT_GAMECOMBINATION BITMAP                  "..\\RES\\gameCombination.bmp"
 
-IDB_START_ABOUT_GAMEOPERATION BITMAP            "..\\RES\\gameOperationKey.bmp"
+IDB_START_ABOUT_GAMEOPERATION BITMAP                  "..\\RES\\gameOperationKey.bmp"
 
 IDB_MAP1                BITMAP                  "..\\RES\\map1.bmp"
-												 
+
 IDB_MAP2                BITMAP                  "..\\RES\\map2.bmp"
-												 
+
 IDB_MAP3                BITMAP                  "..\\RES\\map3.bmp"
+
+IDB_STARTLOGO           BITMAP                  "..\\RES\\startLogo.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

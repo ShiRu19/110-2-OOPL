@@ -75,7 +75,8 @@ void CGameStateInit::OnInit()
 	for (int i = 0; i < 3; i++) {
 		label[i] = false;
 	}
-	logo.LoadBitmap(IDB_LOGO);
+
+	logo.LoadBitmap(IDB_STARTLOGO);
 	startGame.LoadBitmap(IDB_START_STARTGAME);
 	about.LoadBitmap(IDB_START_ABOUT);
 	about_gameContent.LoadBitmap(IDB_START_ABOUT_GAMECONTENT);
@@ -85,6 +86,18 @@ void CGameStateInit::OnInit()
 	label_gameContent.LoadBitmap(IDB_LABEL_GAMECONTENT);
 	label_operation.LoadBitmap(IDB_LABEL_OPERATION);
 	label_combination.LoadBitmap(IDB_LABEL_COMBINATION);
+
+	// LEFT
+	Pacman_left.AddBitmap(IDB_PACMAN_LEFT_1, RGB(255, 255, 255));           //向左_open
+	Pacman_left.AddBitmap(IDB_PACMAN_LEFT_2, RGB(255, 255, 255));           //向左_close
+	Pacman_x = (SIZE_X - startGame.Width()) / 2 + startGame.Width();
+	Pacman_left.SetTopLeft(Pacman_x, SIZE_Y * 4 / 8);
+	// RIGHT
+	Pacman_right.AddBitmap(IDB_PACMAN_RIGHT_1, RGB(255, 255, 255));          //向右_open
+	Pacman_right.AddBitmap(IDB_PACMAN_RIGHT_2, RGB(255, 255, 255));          //向右_close
+	Pacman_x = (SIZE_X - startGame.Width()) / 2;
+	Pacman_right.SetTopLeft(Pacman_x, SIZE_Y * 4 / 8);
+	isPacmanRight = true;
 
 	startGame_x1 = (SIZE_X - startGame.Width()) / 2;
 	startGame_y1 = SIZE_Y * 6 / 8;
@@ -179,12 +192,49 @@ void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 	}
 }
 
+void CGameStateInit::OnMove()
+{
+	if (!isAbout) {
+		if (isPacmanRight) {
+			Pacman_right.OnMove();
+			if (Pacman_x <= (SIZE_X - startGame.Width()) / 2 + startGame.Width()) {
+				Pacman_x += 2;
+				Pacman_right.SetTopLeft(Pacman_x, SIZE_Y * 4 / 8);
+			}
+			else {
+				isPacmanRight = false;
+			}
+		}
+		else {
+			Pacman_left.OnMove();
+			if (Pacman_x >= (SIZE_X - startGame.Width()) / 2) {
+				Pacman_x -= 2;
+				Pacman_left.SetTopLeft(Pacman_x, SIZE_Y * 4 / 8);
+			}
+			else {
+				isPacmanRight = true;
+			}
+		}
+	}
+}
+
 void CGameStateInit::OnShow()
 {
 	if (!isAbout) {
 		// 貼上logo
-		logo.SetTopLeft((SIZE_X - logo.Width())/2, SIZE_Y / 8);
+		logo.SetTopLeft((SIZE_X - logo.Width())/2, SIZE_Y * 2 / 8);
 		logo.ShowBitmap();
+
+		// 顯示 Pacman
+		if (isPacmanRight) {
+			Pacman_right.OnShow();
+			Pacman_left.SetTopLeft((SIZE_X - startGame.Width()) / 2 + startGame.Width(), SIZE_Y * 4 / 8);
+		}
+		else {
+			Pacman_left.OnShow();
+			Pacman_right.SetTopLeft((SIZE_X - startGame.Width()) / 2, SIZE_Y * 4 / 8);
+		}
+		
 
 		// 貼上文字
 		startGame.SetTopLeft((SIZE_X - startGame.Width()) / 2, SIZE_Y * 6 / 8);

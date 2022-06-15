@@ -335,6 +335,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="RES\about.bmp" />
+    <Image Include="RES\allGhost.bmp" />
     <Image Include="RES\back.bmp" />
     <Image Include="RES\backMenu.bmp" />
     <Image Include="res\bitmap2.bmp" />
@@ -427,6 +428,7 @@
     <Image Include="RES\SCORE.bmp" />
     <Image Include="RES\SCORE.png" />
     <Image Include="RES\startGame.bmp" />
+    <Image Include="RES\startLogo.bmp" />
     <Image Include="res\wall_blu.bmp" />
     <Image Include="res\wall_gre.bmp" />
   </ItemGroup>

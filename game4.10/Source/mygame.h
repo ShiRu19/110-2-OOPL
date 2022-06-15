@@ -79,7 +79,14 @@ namespace game_framework {
 		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
+		void OnMove();									// 顯示這個狀態的遊戲動畫
 	private:
+		CAnimation    Pacman_right;                     // Pacman 動畫(右)
+		CAnimation    Pacman_left;                      // Pacman 動畫(左)
+		CAnimation    ghosts[4];                        // ghost 動畫
+		int           Pacman_x;                         // Pacman 位置
+		bool          isPacmanRight;                    // Pacman 是否向右
+
 		CMovingBitmap logo;								// csie的logo
 		CMovingBitmap startGame;                        // start game 標籤
 		CMovingBitmap about;                            // about 標籤
