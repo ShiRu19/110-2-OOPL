@@ -174,7 +174,7 @@ namespace game_framework {
 		bool            isCompleted;// 通關
 		bool            ctrlDown;   // 是否按下Ctrl鍵
 		int             runningTime;// 執行時間
-		int             overDelay;  // 進入Over狀態前的Delay
+		int             stateDelay; // 進入Over狀態前的Delay
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

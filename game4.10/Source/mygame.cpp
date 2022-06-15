@@ -532,6 +532,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	c_PacMan.LoadBitmap();
 	c_PacMan.SetInitXY(14, 17);
 	c_PacMan.SetMap(gameMap.GetMap());
+	c_PacMan.SetLastKey(-1);
 
 	// 載入豆子數
 	remainFoods = gameMap.getFoodCount();
@@ -605,7 +606,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	gameover.LoadBitmap(IDB_OVER_GAMEOVER);
 	completed.SetTopLeft(MAP_START + 12 * BITMAP_SIZE, MAP_START + 17 * BITMAP_SIZE);
 	gameover.SetTopLeft(MAP_START + 12 * BITMAP_SIZE, MAP_START + 17 * BITMAP_SIZE);
-	overDelay = 0;
+	stateDelay = 0;
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -618,9 +619,6 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_CTRL  = 0x11; // keyboard Ctrl
 	const char KEY_E     = 0x45; // keyboard E
 	const char KEY_M     = 0x4D; // keyboard M
-
-
-	//c_PacMan.SetLastKey(nChar);
 	
 	if (nChar == KEY_UP)
 		c_PacMan.SetLastKey(0);
@@ -662,6 +660,7 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		c_PacMan.SetLife(0);
 		myLife.setLife(0);
 		c_PacMan.SetMap(gameMap.GetMap());
+		c_PacMan.SetLastKey(-1);
 		for (int i = 0; i < 4; i++) {
 			ghost[i].SetMap(gameMap.GetMap());
 		}
@@ -709,17 +708,23 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 
 void CGameStateRun::OnShow()
 {
-	//bitMap.ShowBitmap();
 	// 顯示地圖
 	gameMap.OnShow();
-	//completed.ShowBitmap();
 
 	// 轉換狀態
 	if (c_PacMan.IsGameover()) {
 		gameover.ShowBitmap();
-		overDelay++;
+		stateDelay++;
 		// 遊戲結束後 delay 一段時間後進入over state
-		if (overDelay == 40) {
+		if (stateDelay == 100) {
+			GotoGameState(GAME_STATE_OVER);
+		}
+	}
+	else if (isCompleted) {
+		completed.ShowBitmap();
+		stateDelay++;
+		// 遊戲結束後 delay 一段時間後進入over state
+		if (stateDelay == 100) {
 			GotoGameState(GAME_STATE_OVER);
 		}
 	}
@@ -742,22 +747,6 @@ void CGameStateRun::OnShow()
 		myLife.OnShow();
 	}
 
-	if (isCompleted) {
-		GotoGameState(GAME_STATE_OVER);
-	}
-
-	// 顯示Ghost
-	for (int i = 0; i < 4; i++) {
-		ghost[i].OnShow();
-	}
-
-	// 顯示分數
-	myScore.OnShow();
-
-	// 顯示關卡等級
-	myLevel.OnShow();
-
-	// 顯示生命值
-	myLife.OnShow();
+	
 }
 }

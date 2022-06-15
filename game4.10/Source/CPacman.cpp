@@ -321,6 +321,7 @@ namespace game_framework
 	void CPacman::restart()
 	{
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+		SetLastKey(-1);
 		animation = &animation_stop_4;
 		y = init_Y;
 		x = init_X;
