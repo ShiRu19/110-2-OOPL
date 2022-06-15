@@ -71,7 +71,15 @@ namespace game_framework
 		const char KEY_UP = 0x26; // keyboard上箭頭
 		const char KEY_RIGHT = 0x27; // keyboard右箭頭
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
-		
+		GetMapIndex();
+		if (MapIndex_X2 > 27)
+		{
+			x = MAP_START;
+		}
+		else if (MapIndex_X1 < 0)
+		{
+			x = MAP_START + 27 * BITMAP_SIZE;
+		}
 		if (LastKey == KEY_LEFT)
 		{
 			SetMovingLeft(true);
