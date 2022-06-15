@@ -369,6 +369,9 @@
     <Image Include="RES\label_operationKey.bmp" />
     <Image Include="RES\LEVEL.bmp" />
     <Image Include="RES\magicFood.bmp" />
+    <Image Include="RES\map1.bmp" />
+    <Image Include="RES\map2.bmp" />
+    <Image Include="RES\map3.bmp" />
     <Image Include="RES\multi.bmp" />
     <Image Include="RES\orange_1.bmp" />
     <Image Include="RES\orange_2.bmp" />

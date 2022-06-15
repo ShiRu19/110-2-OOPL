@@ -471,8 +471,13 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	//
 	// 載入地圖
-	gameMap.SetMap(MAP_BLUE);
+	gameMap.SetMap(MAP_1);
 	gameMap.LoadBitmap();
+
+	//bitMap.LoadBitmap(IDB_MAP1);
+	//bitMap.LoadBitmap(IDB_MAP2);
+	//bitMap.LoadBitmap(IDB_MAP3);
+	//bitMap.SetTopLeft(MAP_START, MAP_START);
 
 	// 載入PacMan
 	c_PacMan.LoadBitmap();
@@ -632,8 +637,10 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 
 void CGameStateRun::OnShow()
 {
+	//bitMap.ShowBitmap();
 	// 顯示地圖
 	gameMap.OnShow();
+
 	
 	// 顯示Pacman
 	c_PacMan.OnShow();

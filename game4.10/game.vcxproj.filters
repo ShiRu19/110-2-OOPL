@@ -137,6 +137,9 @@
     <Image Include="RES\label_operationKey.bmp" />
     <Image Include="RES\gameCombination.bmp" />
     <Image Include="RES\gameOperationKey.bmp" />
+    <Image Include="RES\map1.bmp" />
+    <Image Include="RES\map2.bmp" />
+    <Image Include="RES\map3.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />

@@ -149,6 +149,7 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		CGameMap        gameMap;    // 地圖
+		CMovingBitmap   bitMap;
 		const int       NUMMAPS;    // 地圖的總數
 		const int		NUMBALLS;	// 球的總數
 		CMovingBitmap	background;	// 背景圖
