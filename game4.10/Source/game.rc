@@ -234,6 +234,10 @@ IDB_MAP3                BITMAP                  "..\\RES\\map3.bmp"
 
 IDB_STARTLOGO           BITMAP                  "..\\RES\\startLogo.bmp"
 
+IDB_OVER_COMPLETED      BITMAP                  "..\\RES\\gameCompleted.bmp"
+												 
+IDB_OVER_GAMEOVER       BITMAP                  "..\\RES\\gameOver.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -354,8 +354,10 @@
     <Image Include="RES\blue_right_1.bmp" />
     <Image Include="RES\blue_right_2.bmp" />
     <Image Include="RES\gameCombination.bmp" />
+    <Image Include="RES\gameCompleted.bmp" />
     <Image Include="RES\gameContent.bmp" />
     <Image Include="RES\gameOperationKey.bmp" />
+    <Image Include="RES\gameOver.bmp" />
     <Image Include="RES\ghost_1.bmp" />
     <Image Include="RES\ghost_2.bmp" />
     <Image Include="RES\ghost_3.bmp" />

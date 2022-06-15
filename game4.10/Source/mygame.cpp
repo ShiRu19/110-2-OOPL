@@ -601,6 +601,12 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	ghost[1].SetTopLeft(MAP_START + 13 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[2].SetTopLeft(MAP_START + 14 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[3].SetTopLeft(MAP_START + 15 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
+
+	completed.LoadBitmap(IDB_OVER_COMPLETED);
+	gameover.LoadBitmap(IDB_OVER_GAMEOVER);
+	completed.SetTopLeft(MAP_START + 12 * BITMAP_SIZE, MAP_START + 17 * BITMAP_SIZE);
+	gameover.SetTopLeft(MAP_START + 12 * BITMAP_SIZE, MAP_START + 17 * BITMAP_SIZE);
+	overDelay = 0;
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -690,28 +696,35 @@ void CGameStateRun::OnShow()
 	//bitMap.ShowBitmap();
 	// 顯示地圖
 	gameMap.OnShow();
+	//completed.ShowBitmap();
 
-	
-	// 顯示Pacman
-	c_PacMan.OnShow();
-	
 	// 轉換狀態
 	if (c_PacMan.IsGameover()) {
-		GotoGameState(GAME_STATE_OVER);
+		gameover.ShowBitmap();
+		overDelay++;
+		// 遊戲結束後 delay 一段時間後進入over state
+		if (overDelay == 40) {
+			GotoGameState(GAME_STATE_OVER);
+		}
+	}
+	else {
+		// 顯示Pacman
+		c_PacMan.OnShow();
+
+		// 顯示Ghost
+		for (int i = 0; i < 4; i++) {
+			ghost[i].OnShow();
+		}
+
+		// 顯示分數
+		myScore.OnShow();
+
+		// 顯示關卡等級
+		myLevel.OnShow();
+
+		// 顯示生命值
+		myLife.OnShow();
 	}
 
-	// 顯示Ghost
-	for (int i = 0; i < 4; i++) {
-		ghost[i].OnShow();
-	}
-
-	// 顯示分數
-	myScore.OnShow();
-
-	// 顯示關卡等級
-	myLevel.OnShow();
-
-	// 顯示生命值
-	myLife.OnShow();
 }
 }

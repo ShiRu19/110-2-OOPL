@@ -156,9 +156,10 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		CGameMap        gameMap;    // 地圖
-		CMovingBitmap   bitMap;
 		const int       NUMMAPS;    // 地圖的總數
 		const int		NUMBALLS;	// 球的總數
+		CMovingBitmap   completed;  // 完成圖
+		CMovingBitmap   gameover;   // 失敗圖
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
 		CBall			*ball;		// 球的陣列
@@ -177,7 +178,8 @@ namespace game_framework {
 		CLevel          myLevel;    // 關卡等級
 		CLife           myLife;     // 生命值
 		int             ghostDelay; // 幽靈出發的delay時間
-		int             runningTime;  // 執行時間
+		int             runningTime;// 執行時間
+		int             overDelay;  // 進入Over狀態前的Delay
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -194,7 +196,9 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		int counter;	// 倒數之計數器
+		CMovingBitmap GameOver;                         // gameover
+		CMovingBitmap Completed;                        // 完成
+		int counter;	                                // 倒數之計數器
 	};
 
 }
