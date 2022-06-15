@@ -309,6 +309,7 @@ CGameStateRun::CGameStateRun(CGame *g)
 	ghostDelay = 0;
 	remainFoods = 299;
 	initFoods = 299;
+	runningTime = 0;
 }
 
 CGameStateRun::~CGameStateRun()
@@ -325,6 +326,12 @@ void CGameStateRun::OnBeginState()
 
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
+	runningTime++;
+
+	if (runningTime < 120) {
+		return;
+	}
+	
 	//
 	// 判斷Pacman是否碰到food
 	//
@@ -403,6 +410,9 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		}
 		remainFoods = gameMap.getFoodCount();
 		initFoods = remainFoods;
+		runningTime = 0;
+		CAudio::Instance()->Play(AUDIO_START);				// 播放 START
+		return;
 	}
 
 	//
