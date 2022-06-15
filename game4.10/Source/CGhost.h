@@ -52,7 +52,7 @@ namespace game_framework {
 		double turnLeft(int des_x, int des_y);                  // 判斷是否可向左走，並回傳下一步距離目的地的距離
 		double turnRight(int des_x, int des_y);                 // 判斷是否可向右走，並回傳下一步距離目的地的距離
 
-		int **map;                                              // 遊戲地圖
+		int map[31][27];                                              // 遊戲地圖
 		int MapIndex_X1;                                        // Pacman左上角位於地圖的座標(X軸)
 		int MapIndex_Y1;                                        // Pacman左上角位於地圖的座標(Y軸)
 		int MapIndex_X2;                                        // Pacman右下角位於地圖的座標(X軸)

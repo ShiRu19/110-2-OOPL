@@ -63,7 +63,7 @@ namespace game_framework {
 		bool HitRectangle(int tx1, int ty1, int tx2, int ty2);  // 檢查是否有交集
 		bool is_alive;                                          // 生命狀態
 		bool is_gameover = false;                               // 遊戲結束
-		int **map;                                              // 遊戲地圖
+		int map[31][27];                                        // 遊戲地圖
 		int MapIndex_X1;                                        // Pacman左上角位於地圖的座標(X軸)
 		int MapIndex_Y1;                                        // Pacman左上角位於地圖的座標(Y軸)
 		int MapIndex_X2;                                        // Pacman右下角位於地圖的座標(X軸)

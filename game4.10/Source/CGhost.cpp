@@ -19,11 +19,6 @@ namespace game_framework {
 	}
 
 	CGhost::~CGhost() {
-		for (int i = 0; i < 31; i++)
-		{
-			delete[] map[i];
-		}
-		delete[] map;
 	}
 
 	void CGhost::SetInitXY(int x, int y) {
@@ -38,8 +33,13 @@ namespace game_framework {
 		init_target_y = y;
 	}
 
-	void CGhost::SetMap(int **map) {
-		this->map = map;
+	void CGhost::SetMap(int **m) {
+		for (int i = 0; i < 31; i++)
+		{
+			for (int j = 0; j < 27; j++) {
+				map[i][j] = m[i][j];
+			}
+		}
 	}
 
 	void CGhost::OnMove(int des_x, int des_y) {

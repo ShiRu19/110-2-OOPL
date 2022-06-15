@@ -22,11 +22,6 @@ namespace game_framework
 	}
 
 	CPacman::~CPacman() {
-		for (int i = 0; i < 31; i++)
-		{
-			delete[] map[i];
-		}
-		delete[] map;
 	}
 
 	void CPacman::SetInitXY(int x, int y) {
@@ -278,9 +273,14 @@ namespace game_framework
 		return (tx2 >= x + adjust && tx1 <= (x + animation->Width() - adjust) && ty2 >= y + adjust && ty1 <= (y + animation->Height() - adjust));
 	}
 
-	void CPacman::SetMap(int **map)
+	void CPacman::SetMap(int **m)
 	{
-		this->map = map;
+		for (int i = 0; i < 31; i++)
+		{
+			for (int j = 0; j < 27; j++) {
+				map[i][j] = m[i][j];
+			}
+		}
 	}
 
 	void CPacman::SetIsAlive(bool alive)

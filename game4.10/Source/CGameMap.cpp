@@ -336,19 +336,19 @@ namespace game_framework {
 	}
 	int **CGameMap::GetMap()
 	{
-		int **new_map;
-		new_map = new int*[31];
-		for (int i = 0; i < 31; i++)
-		{
-			new_map[i] = new int[28];
-		}
-
-		for (int i = 0; i < 31; i++) {
-			for (int j = 0; j < 28; j++)
-			{
-				new_map[i][j] = map[i][j];
-			}
-		}
-		return new_map;
+		//int **new_map;
+		//new_map = new int*[31];
+		//for (int i = 0; i < 31; i++)
+		//{
+		//	new_map[i] = new int[28];
+		//}
+		//
+		//for (int i = 0; i < 31; i++) {
+		//	for (int j = 0; j < 28; j++)
+		//	{
+		//		new_map[i][j] = map[i][j];
+		//	}
+		//}
+		return map;
 	}
 }

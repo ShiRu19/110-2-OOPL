@@ -517,15 +517,9 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 	//
-	//
 	// 載入地圖
 	gameMap.SetMap(MAP_1);
 	gameMap.LoadBitmap();
-
-	//bitMap.LoadBitmap(IDB_MAP1);
-	//bitMap.LoadBitmap(IDB_MAP2);
-	//bitMap.LoadBitmap(IDB_MAP3);
-	//bitMap.SetTopLeft(MAP_START, MAP_START);
 
 	// 載入PacMan
 	c_PacMan.LoadBitmap();
@@ -546,8 +540,7 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	myLife.LoadBitmap();
 
 	// 載入 red ghost
-	int red[4][2] = 
-	{
+	int red[4][2] = {
 		{ IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2 },
 		{ IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2 },
 		{ IDB_GHOST_RED_LEFT_1, IDB_GHOST_RED_LEFT_2 },
