@@ -620,17 +620,16 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_M     = 0x4D; // keyboard M
 
 
-	c_PacMan.SetLastKey(nChar);
-	/*
+	//c_PacMan.SetLastKey(nChar);
+	
 	if (nChar == KEY_UP)
-		c_PacMan.SetMovingUp(true);
+		c_PacMan.SetLastKey(0);
 	if (nChar == KEY_DOWN)
-		c_PacMan.SetMovingDown(true);
+		c_PacMan.SetLastKey(1);
 	if (nChar == KEY_LEFT)
-		c_PacMan.SetMovingLeft(true);
+		c_PacMan.SetLastKey(2);
 	if (nChar == KEY_RIGHT)
-		c_PacMan.SetMovingRight(true);
-	*/
+		c_PacMan.SetLastKey(3);
 
 	if (nChar == KEY_ENTER) 
 	{

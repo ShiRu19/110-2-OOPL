@@ -70,46 +70,19 @@ namespace game_framework
 	{
 		if (!is_alive)
 			return;
+
 		const int STEP_SIZE = 2;
 		animation->OnMove();
 		isStop = false;
 		GetMapIndex();
-		const char KEY_LEFT = 0x25; // keyboard左箭頭
-		const char KEY_UP = 0x26; // keyboard上箭頭
-		const char KEY_RIGHT = 0x27; // keyboard右箭頭
-		const char KEY_DOWN = 0x28; // keyboard下箭頭
-		GetMapIndex();
-		//if (MapIndex_X2 > 27)
-		//{
-		//	x = MAP_START;
-		//}
-		//else if (MapIndex_X1 < 0)
-		//{
-		//	x = MAP_START + 27 * BITMAP_SIZE;
-		//}
-		if (LastKey == KEY_LEFT)
-		{
-			SetMovingLeft(true);
-		}
-		else if (LastKey == KEY_RIGHT)
-		{
-			SetMovingRight(true);
-		}
-		else if (LastKey == KEY_UP)
-		{
-			SetMovingUp(true);
-		}
-		else if (LastKey == KEY_DOWN)
-		{
-			SetMovingDown(true);
-		}
-		if (recording_step >= 2)
-		{
-			//LastKey = 0;
-		}
+
+		if (lastKey == 0) SetMovingUp(true);
+		else if (lastKey == 1) SetMovingDown(true);
+		else if (lastKey == 2) SetMovingLeft(true);
+		else if (lastKey == 3) SetMovingRight(true);
+
 		if (isMovingUp)
 		{
-			recording_step++;
 			if (y - wall_pixel > STEP_SIZE)
 			{
 				y -= STEP_SIZE;
@@ -122,7 +95,6 @@ namespace game_framework
 		}
 		else if (isMovingDown)
 		{
-			recording_step++;
 			if (wall_pixel - y > STEP_SIZE) 
 			{
 				y += STEP_SIZE;
@@ -135,7 +107,6 @@ namespace game_framework
 		}
 		else if (isMovingLeft)
 		{
-			recording_step++;
 			if (x == MAP_START + BITMAP_SIZE * (0)) 
 			{
 				x = MAP_START + BITMAP_SIZE * (27);
@@ -155,7 +126,6 @@ namespace game_framework
 		}
 		else if (isMovingRight)
 		{
-			recording_step++;
 			if (x == MAP_START + BITMAP_SIZE * (27)) 
 			{
 				x = MAP_START + BITMAP_SIZE * (0);
@@ -427,10 +397,11 @@ namespace game_framework
 			animation->OnShow();
 		}
 	}
-	void CPacman::SetLastKey(UINT key)
+	void CPacman::SetLastKey(int key)
 	{
-		LastKey = key;
-		RecordKeyHold = true;
-		recording_step = 0;
+		//
+		// 0: 上, 1: 下, 2: 左,3: 右
+		//
+		lastKey = key;
 	}
 }

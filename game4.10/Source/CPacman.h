@@ -37,7 +37,7 @@ namespace game_framework {
 		void SetMap(int **map);                                 // 初始化地圖
 		int FindMapIndex_X(int x);                              // 取得座標在矩陣的位置(X軸)
 		int FindMapIndex_Y(int y);                              // 取得座標在矩陣的位置(Y軸)
-		void SetLastKey(UINT key);								// 設定最後一個按下的KEY
+		void SetLastKey(int key);								// 設定最後一個按下的KEY
 	private:
 		CAnimation animation_stop_1;                            // Pacman的動畫_靜止狀態(預設向上)
 		CAnimation animation_stop_2;                            // Pacman的動畫_靜止狀態(預設向下)
@@ -69,8 +69,6 @@ namespace game_framework {
 		int MapIndex_X2;                                        // Pacman右下角位於地圖的座標(X軸)
 		int MapIndex_Y2;                                        // Pacman右下角位於地圖的座標(Y軸)
 		int wall_pixel;                                         // 牆壁位置
-		UINT LastKey;
-		bool RecordKeyHold;
-		int recording_step;
+		int lastKey;                                            // 最近一次按的方向
 	};
 }
