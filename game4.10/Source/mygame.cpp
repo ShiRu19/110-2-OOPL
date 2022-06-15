@@ -429,7 +429,9 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	const char KEY_ENTER = 0xD;  // keyboard Enter
 	const char KEY_CTRL  = 0x11; // keyboard Ctrl
-	const char KEY_SHIFT = 0x10; // keyboard Shift
+	const char KEY_E     = 0x45; // keyboard E
+	const char KEY_M     = 0x4D; // keyboard M
+
 
 	if (nChar == KEY_UP)
 		c_PacMan.SetMovingUp(true);
@@ -449,10 +451,16 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			}
 			remainFoods = 0;
 		}
+		ctrlDown = false;
+	}
+
+	if (nChar == KEY_CTRL) ctrlDown = true;
+	else if (nChar != KEY_E && nChar != KEY_M && nChar != KEY_ENTER) {
+		ctrlDown = false;
 	}
 	
 	// 組合鍵 - 跳至最後關卡
-	if (nChar == KEY_CTRL) {
+	if (ctrlDown && nChar == KEY_E) {
 		c_PacMan.restart();
 		ghost[0].SetTopLeft(MAP_START + 4 * BITMAP_SIZE, MAP_START + 5 * BITMAP_SIZE);
 		ghost[1].SetTopLeft(MAP_START + 4 * BITMAP_SIZE, MAP_START + 20 * BITMAP_SIZE);
@@ -469,13 +477,15 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			ghost[i].SetMap(gameMap.GetMap());
 		}
 		remainFoods = gameMap.getFoodCount();
+		ctrlDown = false;
 	}
 	
 	// 組合鍵 - 轉為逃避鬼模式
-	if (nChar == KEY_SHIFT) {
+	if (ctrlDown && nChar == KEY_M) {
 		for (int i = 0; i < 4; i++) {
 			ghost[i].changeMode(1);
 		}
+		ctrlDown = false;
 	}
 
 }

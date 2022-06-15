@@ -120,6 +120,7 @@ namespace game_framework {
 		CLife           myLife;     // 生命值
 		int             ghostDelay; // 幽靈出發的delay時間
 		bool            isCompleted;// 通關
+		bool            ctrlDown;   // 是否按下Ctrl鍵
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
