@@ -65,26 +65,69 @@ namespace game_framework {
 // 這個class為遊戲的遊戲開頭畫面物件
 /////////////////////////////////////////////////////////////////////////////
 
-CGameStateInit::CGameStateInit(CGame *g)
-: CGameState(g)
+CGameStateInit::CGameStateInit(CGame *g): CGameState(g)
 {
 }
 
 void CGameStateInit::OnInit()
 {
-	//
-	// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
-	//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
-	//
-	ShowInitProgress(0);	// 一開始的loading進度為0%
-	//
-	// 開始載入資料
-	//
-	logo.LoadBitmap(IDB_BACKGROUND);
-	Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
-	//
-	// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
-	//
+	isAbout = false;
+	for (int i = 0; i < 3; i++) {
+		label[i] = false;
+	}
+
+	logo.LoadBitmap(IDB_STARTLOGO);
+	startGame.LoadBitmap(IDB_START_STARTGAME);
+	about.LoadBitmap(IDB_START_ABOUT);
+	about_gameContent.LoadBitmap(IDB_START_ABOUT_GAMECONTENT);
+	about_gameOperation.LoadBitmap(IDB_START_ABOUT_GAMEOPERATION);
+	about_gameCombination.LoadBitmap(IDB_START_ABOUT_GAMECOMBINATION);
+	back.LoadBitmap(IDB_START_ABOUT_BACK);
+	label_gameContent.LoadBitmap(IDB_LABEL_GAMECONTENT);
+	label_operation.LoadBitmap(IDB_LABEL_OPERATION);
+	label_combination.LoadBitmap(IDB_LABEL_COMBINATION);
+
+	// LEFT
+	Pacman_left.AddBitmap(IDB_PACMAN_LEFT_1, RGB(255, 255, 255));           //向左_open
+	Pacman_left.AddBitmap(IDB_PACMAN_LEFT_2, RGB(255, 255, 255));           //向左_close
+	Pacman_x = (SIZE_X - startGame.Width()) / 2 + startGame.Width();
+	Pacman_left.SetTopLeft(Pacman_x, SIZE_Y * 4 / 8);
+	// RIGHT
+	Pacman_right.AddBitmap(IDB_PACMAN_RIGHT_1, RGB(255, 255, 255));          //向右_open
+	Pacman_right.AddBitmap(IDB_PACMAN_RIGHT_2, RGB(255, 255, 255));          //向右_close
+	Pacman_x = (SIZE_X - startGame.Width()) / 2;
+	Pacman_right.SetTopLeft(Pacman_x, SIZE_Y * 4 / 8);
+	isPacmanRight = true;
+
+	startGame_x1 = (SIZE_X - startGame.Width()) / 2;
+	startGame_y1 = SIZE_Y * 6 / 8;
+	startGame_x2 = (SIZE_X - startGame.Width()) / 2 + startGame.Width();
+	startGame_y2 = SIZE_Y * 6 / 8 + startGame.Height();
+
+	about_x1 = (SIZE_X - about.Width()) / 2;
+	about_y1 = SIZE_Y * 7 / 8;
+	about_x2 = (SIZE_X - about.Width()) / 2 + about.Width();
+	about_y2 = SIZE_Y * 7 / 8 + about.Height();
+
+	back_x1 = 0;
+	back_x2 = back.Width();
+	back_y1 = 0;
+	back_y2 = back.Height();
+
+	content_x1 = 0;
+	content_x2 = label_gameContent.Width();
+	content_y1 = back_y2;
+	content_y2 = back_y2 + label_gameContent.Height();
+
+	operation_x1 = 0;
+	operation_x2 = label_operation.Width();
+	operation_y1 = content_y2;
+	operation_y2 = content_y2 + label_operation.Height();
+
+	combination_x1 = 0;
+	combination_x2 = label_combination.Width();
+	combination_y1 = operation_y2;
+	combination_y2 = operation_y2 + label_combination.Height();
 }
 
 void CGameStateInit::OnBeginState()
@@ -103,40 +146,161 @@ void CGameStateInit::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
+	double point_x = point.x;
+	double point_y = point.y;
+	
+	if (!isAbout) {
+		if (point_x >= startGame_x1 && point_x <= startGame_x2 && point_y >= startGame_y1 && point_y <= startGame_y2) {
+			GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
+		}
+		else if (point_x >= about_x1 && point_x <= about_x2 && point_y >= about_y1 && point_y <= about_y2) {
+			isAbout = true;
+			label[0] = true;
+		}
+	}
+	else {
+		if (point_x >= back_x1 && point_x <= back_x2 && point_y >= back_y1 && point_y <= back_y2) {
+			isAbout = false;
+			for (int i = 0; i < 3; i++) {
+				label[i] = false;
+			}
+		}
+		
+		if (point_x >= content_x1 && point_x <= content_x2 && point_y >= content_y1 && point_y <= content_y2) {
+			isAbout = true;
+			for (int i = 0; i < 3; i++) {
+				label[i] = false;
+			}
+			label[0] = true;
+		}
+		
+		if (point_x >= operation_x1 && point_x <= operation_x2 && point_y >= operation_y1 && point_y <= operation_y2) {
+			isAbout = true;
+			for (int i = 0; i < 3; i++) {
+				label[i] = false;
+			}
+			label[1] = true;
+		}
+		
+		if (point_x >= combination_x1 && point_x <= combination_x2 && point_y >= combination_y1 && point_y <= combination_y2) {
+			isAbout = true;
+			for (int i = 0; i < 3; i++) {
+				label[i] = false;
+			}
+			label[2] = true;
+		}
+	}
+}
+
+void CGameStateInit::OnMove()
+{
+	if (!isAbout) {
+		if (isPacmanRight) {
+			Pacman_right.OnMove();
+			if (Pacman_x <= (SIZE_X - startGame.Width()) / 2 + startGame.Width()) {
+				Pacman_x += 2;
+				Pacman_right.SetTopLeft(Pacman_x, SIZE_Y * 4 / 8);
+			}
+			else {
+				isPacmanRight = false;
+			}
+		}
+		else {
+			Pacman_left.OnMove();
+			if (Pacman_x >= (SIZE_X - startGame.Width()) / 2) {
+				Pacman_x -= 2;
+				Pacman_left.SetTopLeft(Pacman_x, SIZE_Y * 4 / 8);
+			}
+			else {
+				isPacmanRight = true;
+			}
+		}
+	}
 }
 
 void CGameStateInit::OnShow()
 {
-	//
-	// 貼上logo
-	//
-	logo.SetTopLeft((SIZE_X - logo.Width())/2, SIZE_Y/8);
-	logo.ShowBitmap();
+	if (!isAbout) {
+		// 貼上logo
+		logo.SetTopLeft((SIZE_X - logo.Width())/2, SIZE_Y * 2 / 8);
+		logo.ShowBitmap();
+
+		// 顯示 Pacman
+		if (isPacmanRight) {
+			Pacman_right.OnShow();
+			Pacman_left.SetTopLeft((SIZE_X - startGame.Width()) / 2 + startGame.Width(), SIZE_Y * 4 / 8);
+		}
+		else {
+			Pacman_left.OnShow();
+			Pacman_right.SetTopLeft((SIZE_X - startGame.Width()) / 2, SIZE_Y * 4 / 8);
+		}
+		
+
+		// 貼上文字
+		startGame.SetTopLeft((SIZE_X - startGame.Width()) / 2, SIZE_Y * 6 / 8);
+		startGame.ShowBitmap();
+		about.SetTopLeft((SIZE_X - about.Width()) / 2, SIZE_Y * 7 / 8);
+		about.ShowBitmap();
+	}
+	else {
+		// 貼上文字
+		about.SetTopLeft((SIZE_X - about.Width()) / 2, SIZE_Y / 10);
+		about.ShowBitmap();
+
+		// 貼上返回鍵
+		back.SetTopLeft(0, 0);
+		back.ShowBitmap();
+
+		// 貼上標籤
+		label_gameContent.SetTopLeft(0, back.Height());
+		label_gameContent.ShowBitmap();
+		label_operation.SetTopLeft(0, back.Height() + label_gameContent.Height());
+		label_operation.ShowBitmap();
+		label_combination.SetTopLeft(0, back.Height() + label_gameContent.Height() + label_operation.Height());
+		label_combination.ShowBitmap();
+		
+		// 貼上說明文字
+		if (label[0]) {
+			about_gameContent.SetTopLeft((SIZE_X - about_gameContent.Width()) / 2, SIZE_Y * 2 / 10);
+			about_gameContent.ShowBitmap();
+		}
+		else if (label[1]) {
+			about_gameOperation.SetTopLeft((SIZE_X - about_gameOperation.Width()) / 2, SIZE_Y * 2 / 10);
+			about_gameOperation.ShowBitmap();
+		}
+		else if (label[2]) {
+			about_gameCombination.SetTopLeft((SIZE_X - about_gameCombination.Width()) / 2, SIZE_Y * 2 / 10);
+			about_gameCombination.ShowBitmap();
+		}
+	}
+
 	//
 	// Demo螢幕字型的使用，不過開發時請盡量避免直接使用字型，改用CMovingBitmap比較好
 	//
-	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-	CFont f,*fp;
-	f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
-	fp=pDC->SelectObject(&f);					// 選用 font f
-	pDC->SetBkColor(RGB(0,0,0));
-	pDC->SetTextColor(RGB(255,255,0));
-	pDC->TextOut(120,220,"Please click mouse or press SPACE to begin.");
-	pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
-	if (ENABLE_GAME_PAUSE)
-		pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
-	pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");
-	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	// CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+	// CFont f,*fp;
+	// f.CreatePointFont(300,"Times New Roman");	// 產生 font f; 160表示16 point的字
+	// fp = pDC->SelectObject(&f);					// 選用 font f
+	// pDC->SetBkColor(RGB(0,0,0));
+	// pDC->SetTextColor(RGB(255,255,0));
+	// int mid_y = SIZE_Y / 2;
+	
+	// string pacman_word = "Pacmac!";
+	// int pacman_word_width = (SIZE_X - logo.Width()) / 2 + 10;
+	// pDC->TextOut(pacman_word_width, mid_y, "Pacman!");
+	// // pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
+	// /*if (ENABLE_GAME_PAUSE)
+	// 	pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
+	// // pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");*/
+	// pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+	// CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 }								
 
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的結束狀態(Game Over)
 /////////////////////////////////////////////////////////////////////////////
 
-CGameStateOver::CGameStateOver(CGame *g)
-: CGameState(g)
+CGameStateOver::CGameStateOver(CGame *g): CGameState(g)
 {
 }
 
@@ -195,36 +359,55 @@ CGameStateRun::CGameStateRun(CGame *g)
 	remainFoods = 299;
 	initFoods = 299;
 	isCompleted = false;
+	runningTime = 0;
 }
 
 CGameStateRun::~CGameStateRun()
 {
-	
 }
 
 void CGameStateRun::OnBeginState()
 {
-	
+	CAudio::Instance()->Play(AUDIO_START);				// 播放 START
+	//hits_left.SetInteger(0);
+	//hits_left.SetTopLeft(590, 0);
 }
 
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
+	runningTime++;
+
+	if (runningTime < 120) {
+		myScore.setScore(0);
+		return;
+	}
+	
 	//
 	// 判斷Pacman是否碰到food
 	//
 	vector<CFood *>* allFoods = gameMap.getAllFoods();
-	for (int i = 0; i < gameMap.getFoodCount(); i++) {
-		if ((*allFoods->at(i)).IsAlive() && (*allFoods->at(i)).HitPacman(&c_PacMan)) {
+	for (int i = 0; i < gameMap.getFoodCount(); i++) 
+	{
+		if ((*allFoods->at(i)).IsAlive() && (*allFoods->at(i)).HitPacman(&c_PacMan))
+		{
 			(*allFoods->at(i)).SetIsAlive(false);
 			remainFoods--;
 			myScore.setScore(myScore.getScore() + (*allFoods->at(i)).GetScore()); // 得分
-
 			// 如果是碰到大魔豆
-			if ((*allFoods->at(i)).GetScore() == 50) {
+			if ((*allFoods->at(i)).GetScore() == 50) 
+			{
+				// 播放吃到大魔豆的音效
+				CAudio::Instance()->Stop(AUDIO_EAT);
+				CAudio::Instance()->Play(AUDIO_EATGHOST);
 				// ghost轉成躲避鬼模式
-				for (int i = 0; i < 4; i++) {
+				for (int i = 0; i < 4; i++) 
+				{
 					ghost[i].changeMode(1);
 				}
+			}
+			else
+			{
+				CAudio::Instance()->Play(AUDIO_EAT);				// 播放吃豆子的音效
 			}
 		}
 	}
@@ -232,17 +415,24 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 判斷Pacman是否碰到ghost
 	//
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 4; i++) 
+	{
 		// 若碰到正常鬼，Pacman死亡
-		if (ghost[i].isNormalMode()) {
-			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
+		if (ghost[i].isNormalMode()) 
+		{
+			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) 
+			{
 				c_PacMan.SetIsAlive(false); // Pacman死亡
+				c_PacMan.SetLastKey(0);
+				CAudio::Instance()->Play(AUDIO_DEADTH);
 				initFoods = remainFoods;
 			}
 		}
 		// 若碰到躲避鬼或不穩定鬼，Pacman得分
-		else if (ghost[i].isNormalMode() != true) {
-			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) {
+		else if (ghost[i].isNormalMode() != true)
+		{
+			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) 
+			{
 				ghost[i].changeMode(3); // 鬼變眼睛狀態
 				myScore.setScore(myScore.getScore() + 10); // 得分
 			}
@@ -283,6 +473,9 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		
 		remainFoods = gameMap.getFoodCount();
 		initFoods = remainFoods;
+		runningTime = 0;
+		CAudio::Instance()->Play(AUDIO_START);				// 播放 START
+		return;
 	}
 	else if (remainFoods == 0 && myLevel.getLevel() == 3) {
 		isCompleted = true;
@@ -317,36 +510,23 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 {
-	// 當圖很多時，OnInit載入所有的圖要花很多時間。為避免玩遊戲的人
-	//     等的不耐煩，遊戲會出現「Loading ...」，顯示Loading的進度。
-	//
-	//ShowInitProgress(33);	// 接個前一個狀態的進度，此處進度視為33%
-	//
-	// 開始載入資料
-	//
-	//background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
-	//background.SetTopLeft(50, 50);
-	//background.ShowBitmap();
-	//
-	// 完成部分Loading動作，提高進度
-	//
-	//ShowInitProgress(50);
-	//Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
-	//
-	// 繼續載入其他資料
-	//
-	// help.LoadBitmap(IDB_HELP,RGB(255,255,255));				// 載入說明的圖形			
-	// CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
-	// CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
-	// CAudio::Instance()->Load(AUDIO_NTUT,  "sounds\\ntut.mid");	// 載入編號2的聲音ntut.mid
+	// 載入AUDIO
+	CAudio::Instance()->Load(AUDIO_START,  "sounds\\pacman_beginning.wav");		// 載入編號0(遊戲開始)的聲音pacman_beginning.wav
+	CAudio::Instance()->Load(AUDIO_EAT,  "sounds\\pacman_chomp.wav");			// 載入編號1(吃豆子)的聲音pacman_chomp.wav
+	CAudio::Instance()->Load(AUDIO_DEADTH,  "sounds\\pacman_death.wav");		// 載入編號2(碰到鬼死亡)的聲音pacman_death.wav
+	CAudio::Instance()->Load(AUDIO_EATGHOST, "sounds\\pacman_eatghost.wav");	// 載入編號3(碰到大豆子)的聲音pacman_eatghost.wav
 	//
 	// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 	//
 	//
-	
 	// 載入地圖
-	gameMap.SetMap(MAP_BLUE);
+	gameMap.SetMap(MAP_1);
 	gameMap.LoadBitmap();
+
+	//bitMap.LoadBitmap(IDB_MAP1);
+	//bitMap.LoadBitmap(IDB_MAP2);
+	//bitMap.LoadBitmap(IDB_MAP3);
+	//bitMap.SetTopLeft(MAP_START, MAP_START);
 
 	// 載入PacMan
 	c_PacMan.LoadBitmap();
@@ -366,7 +546,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	myLife.LoadBitmap();
 
 	// 載入 red ghost
-	int red[4][2] = {
+	int red[4][2] = 
+	{
 		{ IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2 },
 		{ IDB_GHOST_RED_DOWN_1, IDB_GHOST_RED_DOWN_2 },
 		{ IDB_GHOST_RED_LEFT_1, IDB_GHOST_RED_LEFT_2 },
@@ -419,6 +600,12 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	ghost[1].SetTopLeft(MAP_START + 13 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[2].SetTopLeft(MAP_START + 14 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
 	ghost[3].SetTopLeft(MAP_START + 15 * BITMAP_SIZE, MAP_START + 14 * BITMAP_SIZE);
+
+	completed.LoadBitmap(IDB_OVER_COMPLETED);
+	gameover.LoadBitmap(IDB_OVER_GAMEOVER);
+	completed.SetTopLeft(MAP_START + 12 * BITMAP_SIZE, MAP_START + 17 * BITMAP_SIZE);
+	gameover.SetTopLeft(MAP_START + 12 * BITMAP_SIZE, MAP_START + 17 * BITMAP_SIZE);
+	overDelay = 0;
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -433,6 +620,8 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_M     = 0x4D; // keyboard M
 
 
+	c_PacMan.SetLastKey(nChar);
+	/*
 	if (nChar == KEY_UP)
 		c_PacMan.SetMovingUp(true);
 	if (nChar == KEY_DOWN)
@@ -441,9 +630,10 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		c_PacMan.SetMovingLeft(true);
 	if (nChar == KEY_RIGHT)
 		c_PacMan.SetMovingRight(true);
+	*/
 
-	// 組合鍵 - 跳至下一關
-	if (nChar == KEY_ENTER) {
+	if (nChar == KEY_ENTER) 
+	{
 		if (myLevel.getLevel() < NUMMAPS) {
 			c_PacMan.restart();
 			for (int i = 0; i < 4; i++) {
@@ -496,54 +686,61 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
-	/*
-	if (nChar == KEY_LEFT)
-		eraser.SetMovingLeft(false);
-	if (nChar == KEY_RIGHT)
-		eraser.SetMovingRight(false);
-	if (nChar == KEY_UP)
-		eraser.SetMovingUp(false);
-	if (nChar == KEY_DOWN)
-		eraser.SetMovingDown(false);
-	*/
 }
 
 void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
-	//eraser.SetMovingLeft(true);
 }
 
 void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	//eraser.SetMovingLeft(false);
 }
 
 void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	// 沒事。如果需要處理滑鼠移動的話，寫code在這裡
 }
 
 void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 {
-	//eraser.SetMovingRight(true);
 }
 
 void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
-	//eraser.SetMovingRight(false);
 }
 
 void CGameStateRun::OnShow()
 {
+	//bitMap.ShowBitmap();
 	// 顯示地圖
 	gameMap.OnShow();
-	
-	// 顯示Pacman
-	c_PacMan.OnShow();
-	
+	//completed.ShowBitmap();
+
 	// 轉換狀態
 	if (c_PacMan.IsGameover()) {
-		GotoGameState(GAME_STATE_OVER);
+		gameover.ShowBitmap();
+		overDelay++;
+		// 遊戲結束後 delay 一段時間後進入over state
+		if (overDelay == 40) {
+			GotoGameState(GAME_STATE_OVER);
+		}
+	}
+	else {
+		// 顯示Pacman
+		c_PacMan.OnShow();
+
+		// 顯示Ghost
+		for (int i = 0; i < 4; i++) {
+			ghost[i].OnShow();
+		}
+
+		// 顯示分數
+		myScore.OnShow();
+
+		// 顯示關卡等級
+		myLevel.OnShow();
+
+		// 顯示生命值
+		myLife.OnShow();
 	}
 
 	if (isCompleted) {

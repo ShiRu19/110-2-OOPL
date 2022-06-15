@@ -334,6 +334,10 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="RES\about.bmp" />
+    <Image Include="RES\allGhost.bmp" />
+    <Image Include="RES\back.bmp" />
+    <Image Include="RES\backMenu.bmp" />
     <Image Include="res\bitmap2.bmp" />
     <Image Include="res\bitmap3.bmp" />
     <Image Include="res\bitmap4.bmp" />
@@ -349,6 +353,11 @@
     <Image Include="RES\blue_left_2.bmp" />
     <Image Include="RES\blue_right_1.bmp" />
     <Image Include="RES\blue_right_2.bmp" />
+    <Image Include="RES\gameCombination.bmp" />
+    <Image Include="RES\gameCompleted.bmp" />
+    <Image Include="RES\gameContent.bmp" />
+    <Image Include="RES\gameOperationKey.bmp" />
+    <Image Include="RES\gameOver.bmp" />
     <Image Include="RES\ghost_1.bmp" />
     <Image Include="RES\ghost_2.bmp" />
     <Image Include="RES\ghost_3.bmp" />
@@ -358,8 +367,14 @@
     <Image Include="RES\ghost_eyes_down.bmp" />
     <Image Include="RES\ghost_white_1.bmp" />
     <Image Include="RES\ghost_white_2.bmp" />
+    <Image Include="RES\label_combination.bmp" />
+    <Image Include="RES\label_gameContent.bmp" />
+    <Image Include="RES\label_operationKey.bmp" />
     <Image Include="RES\LEVEL.bmp" />
     <Image Include="RES\magicFood.bmp" />
+    <Image Include="RES\map1.bmp" />
+    <Image Include="RES\map2.bmp" />
+    <Image Include="RES\map3.bmp" />
     <Image Include="RES\multi.bmp" />
     <Image Include="RES\orange_1.bmp" />
     <Image Include="RES\orange_2.bmp" />
@@ -372,6 +387,7 @@
     <Image Include="RES\orange_left_2.bmp" />
     <Image Include="RES\orange_right_1.bmp" />
     <Image Include="RES\orange_right_2.bmp" />
+    <Image Include="RES\Pacman.bmp" />
     <Image Include="RES\pacman_1.bmp" />
     <Image Include="RES\Pacman_2.bmp" />
     <Image Include="RES\Pacman_3.bmp" />
@@ -384,6 +400,7 @@
     <Image Include="RES\Pacman_down_2.bmp" />
     <Image Include="RES\Pacman_left_1.bmp" />
     <Image Include="RES\Pacman_left_2.bmp" />
+    <Image Include="RES\Pacman_logo.bmp" />
     <Image Include="RES\Pacman_right_1.bmp" />
     <Image Include="RES\Pacman_right_2.bmp" />
     <Image Include="RES\Pacman_up_1.bmp" />
@@ -412,6 +429,8 @@
     <Image Include="RES\red_right_2.bmp" />
     <Image Include="RES\SCORE.bmp" />
     <Image Include="RES\SCORE.png" />
+    <Image Include="RES\startGame.bmp" />
+    <Image Include="RES\startLogo.bmp" />
     <Image Include="res\wall_blu.bmp" />
     <Image Include="res\wall_gre.bmp" />
   </ItemGroup>

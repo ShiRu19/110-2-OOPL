@@ -1,459 +1,176 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{1a913106-0be0-4476-b0ce-2aa855072614}</UniqueIdentifier>
-      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
-    </Filter>
-    <Filter Include="MFC">
-      <UniqueIdentifier>{da904ee8-7f59-4a6c-b3ff-b91b6fb6d0ea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameLibrary">
-      <UniqueIdentifier>{df7aa532-3fdf-46a0-b3fc-8f5922e8d9e4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MyGame">
-      <UniqueIdentifier>{0c798913-b7d2-4e26-8241-0f83266cd626}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Source\audio.cpp" />
+    <ClCompile Include="Source\CBall.cpp" />
+    <ClCompile Include="Source\CBouncingBall.cpp" />
+    <ClCompile Include="Source\CGameMap.cpp" />
+    <ClCompile Include="Source\CFood.cpp" />
+    <ClCompile Include="Source\CGhost.cpp" />
+    <ClCompile Include="Source\CEraser.cpp" />
+    <ClCompile Include="Source\CLevel.cpp" />
+    <ClCompile Include="Source\CLife.cpp" />
+    <ClCompile Include="Source\CPacman.cpp" />
+    <ClCompile Include="Source\CScore.cpp" />
+    <ClCompile Include="Source\game.cpp" />
+    <ClCompile Include="Source\gameDoc.cpp" />
+    <ClCompile Include="Source\gamelib.cpp" />
+    <ClCompile Include="Source\gameView.cpp" />
+    <ClCompile Include="Source\MainFrm.cpp" />
+    <ClCompile Include="Source\StdAfx.cpp" />
+    <ClCompile Include="Source\mygame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Res\ball.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\bmp0.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\bmp1.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\bmp10.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\bmp2.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\bmp3.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\bmp4.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\bmp5.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\bmp6.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\bmp7.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\bmp8.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\bmp9.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\center.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\continue.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="Res\corner.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\eraser1.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\eraser2.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\eraser3.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\game.ico">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\game.rc2">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\gamecurs.cur">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\gameDoc.ico">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\help.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\loading.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="RES\ntutcsie.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\Toolbar.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
+    <ClInclude Include="Source\audio.h" />
+    <ClInclude Include="Source\CBall.h" />
+    <ClInclude Include="Source\CBouncingBall.h" />
+    <ClInclude Include="Source\CGameMap.h" />
+    <ClInclude Include="Source\CFood.h" />
+    <ClInclude Include="Source\CGhost.h" />
+    <ClInclude Include="Source\CEraser.h" />
+    <ClInclude Include="Source\CLevel.h" />
+    <ClInclude Include="Source\CLife.h" />
+    <ClInclude Include="Source\CPacman.h" />
+    <ClInclude Include="Source\CScore.h" />
+    <ClInclude Include="Source\game.h" />
+    <ClInclude Include="Source\gameDoc.h" />
+    <ClInclude Include="Source\gamelib.h" />
+    <ClInclude Include="Source\gameView.h" />
+    <ClInclude Include="Source\MainFrm.h" />
+    <ClInclude Include="Source\Resource.h" />
+    <ClInclude Include="Source\StdAfx.h" />
+    <ClInclude Include="Source\mygame.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\audio.cpp">
-      <Filter>GameLibrary</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\game.cpp">
-      <Filter>MFC</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\gameDoc.cpp">
-      <Filter>MFC</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\gameView.cpp">
-      <Filter>MFC</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MainFrm.cpp">
-      <Filter>MFC</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StdAfx.cpp">
-      <Filter>MFC</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\mygame.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CEraser.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CBall.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CBouncingBall.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CPacman.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\gamelib.cpp">
-      <Filter>GameLibrary</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CGhost.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CFood.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CGameMap.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CScore.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CLevel.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CLife.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
+    <ResourceCompile Include="Source\game.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\audio.h">
-      <Filter>GameLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\game.h">
-      <Filter>MFC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\gameDoc.h">
-      <Filter>MFC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\gameView.h">
-      <Filter>MFC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\MainFrm.h">
-      <Filter>MFC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Resource.h">
-      <Filter>MFC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StdAfx.h">
-      <Filter>MFC</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\mygame.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CEraser.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CBall.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CBouncingBall.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CPacman.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\gamelib.h">
-      <Filter>GameLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CGhost.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CFood.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CGameMap.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CScore.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CLevel.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CLife.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Source\game.rc">
-      <Filter>MFC</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="res\bitmap3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\bitmap4.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\bitmap5.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\orange_5.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\blue_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\orange_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\pink_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\red_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\pink_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\pink_3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\pink_4.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\pink_5.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\red_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\red_3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\red_4.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\red_5.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\blue_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\blue_3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\blue_4.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\blue_5.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\orange_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\orange_3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\orange_4.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\ghost_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\ghost_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\ghost_3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\ghost_4.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\pacman_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_up_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_up_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_right_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_right_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_down_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_down_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_left_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_left_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\red_down_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\red_down_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\red_left_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\red_left_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\red_right_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\red_right_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\blue_down_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\blue_down_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\blue_left_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\blue_left_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\blue_right_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\blue_right_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\pink_down_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\pink_down_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\pink_left_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\pink_left_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\pink_right_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\pink_right_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\orange_down_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\orange_down_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\orange_left_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\orange_left_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\orange_right_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\orange_right_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_die_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_die_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_die_3.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_die_4.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\Pacman_die_5.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <Image Include="res\bitmap2.bmp" />
+    <Image Include="res\bitmap3.bmp" />
+    <Image Include="res\bitmap4.bmp" />
+    <Image Include="res\bitmap5.bmp" />
+    <Image Include="RES\blue_1.bmp" />
+    <Image Include="RES\blue_2.bmp" />
+    <Image Include="RES\blue_3.bmp" />
+    <Image Include="RES\blue_4.bmp" />
+    <Image Include="RES\blue_5.bmp" />
+    <Image Include="RES\blue_down_1.bmp" />
+    <Image Include="RES\blue_down_2.bmp" />
+    <Image Include="RES\blue_left_1.bmp" />
+    <Image Include="RES\blue_left_2.bmp" />
+    <Image Include="RES\blue_right_1.bmp" />
+    <Image Include="RES\blue_right_2.bmp" />
+    <Image Include="RES\ghost_1.bmp" />
+    <Image Include="RES\ghost_2.bmp" />
+    <Image Include="RES\ghost_3.bmp" />
+    <Image Include="RES\ghost_4.bmp" />
+    <Image Include="RES\ghost_blue_1.bmp" />
+    <Image Include="RES\ghost_blue_2.bmp" />
+    <Image Include="RES\ghost_eyes_down.bmp" />
+    <Image Include="RES\ghost_white_1.bmp" />
+    <Image Include="RES\ghost_white_2.bmp" />
+    <Image Include="RES\LEVEL.bmp" />
+    <Image Include="RES\magicFood.bmp" />
+    <Image Include="RES\multi.bmp" />
+    <Image Include="RES\orange_1.bmp" />
+    <Image Include="RES\orange_2.bmp" />
+    <Image Include="RES\orange_3.bmp" />
+    <Image Include="RES\orange_4.bmp" />
+    <Image Include="RES\orange_5.bmp" />
+    <Image Include="RES\orange_down_1.bmp" />
+    <Image Include="RES\orange_down_2.bmp" />
+    <Image Include="RES\orange_left_1.bmp" />
+    <Image Include="RES\orange_left_2.bmp" />
+    <Image Include="RES\orange_right_1.bmp" />
+    <Image Include="RES\orange_right_2.bmp" />
+    <Image Include="RES\pacman_1.bmp" />
+    <Image Include="RES\Pacman_2.bmp" />
+    <Image Include="RES\Pacman_3.bmp" />
+    <Image Include="RES\Pacman_die_1.bmp" />
+    <Image Include="RES\Pacman_die_2.bmp" />
+    <Image Include="RES\Pacman_die_3.bmp" />
+    <Image Include="RES\Pacman_die_4.bmp" />
+    <Image Include="RES\Pacman_die_5.bmp" />
+    <Image Include="RES\Pacman_down_1.bmp" />
+    <Image Include="RES\Pacman_down_2.bmp" />
+    <Image Include="RES\Pacman_left_1.bmp" />
+    <Image Include="RES\Pacman_left_2.bmp" />
+    <Image Include="RES\Pacman_right_1.bmp" />
+    <Image Include="RES\Pacman_right_2.bmp" />
+    <Image Include="RES\Pacman_up_1.bmp" />
+    <Image Include="RES\Pacman_up_2.bmp" />
+    <Image Include="RES\pink_1.bmp" />
+    <Image Include="RES\pink_2.bmp" />
+    <Image Include="RES\pink_3.bmp" />
+    <Image Include="RES\pink_4.bmp" />
+    <Image Include="RES\pink_5.bmp" />
+    <Image Include="RES\pink_down_1.bmp" />
+    <Image Include="RES\pink_down_2.bmp" />
+    <Image Include="RES\pink_left_1.bmp" />
+    <Image Include="RES\pink_left_2.bmp" />
+    <Image Include="RES\pink_right_1.bmp" />
+    <Image Include="RES\pink_right_2.bmp" />
+    <Image Include="RES\red_1.bmp" />
+    <Image Include="RES\red_2.bmp" />
+    <Image Include="RES\red_3.bmp" />
+    <Image Include="RES\red_4.bmp" />
+    <Image Include="RES\red_5.bmp" />
+    <Image Include="RES\red_down_1.bmp" />
+    <Image Include="RES\red_down_2.bmp" />
+    <Image Include="RES\red_left_1.bmp" />
+    <Image Include="RES\red_left_2.bmp" />
+    <Image Include="RES\red_right_1.bmp" />
+    <Image Include="RES\red_right_2.bmp" />
+    <Image Include="RES\SCORE.bmp" />
     <Image Include="RES\SCORE.png" />
-    <Image Include="RES\SCORE.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\LEVEL.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\magicFood.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\bitmap2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\multi.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\ghost_blue_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\ghost_blue_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\ghost_white_1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\ghost_white_2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-<<<<<<< HEAD
-    <Image Include="RES\ghost_eyes_down.bmp">
-=======
-    <Image Include="res\wall_blu.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\wall_gre.bmp">
->>>>>>> Map
-      <Filter>Resource Files</Filter>
-    </Image>
+    <Image Include="res\wall_blu.bmp" />
+    <Image Include="res\wall_gre.bmp" />
+    <Image Include="RES\Pacman.bmp" />
+    <Image Include="RES\Pacman_logo.bmp" />
+    <Image Include="RES\about.bmp" />
+    <Image Include="RES\startGame.bmp" />
+    <Image Include="RES\gameContent.bmp" />
+    <Image Include="RES\backMenu.bmp" />
+    <Image Include="RES\back.bmp" />
+    <Image Include="RES\label_combination.bmp" />
+    <Image Include="RES\label_gameContent.bmp" />
+    <Image Include="RES\label_operationKey.bmp" />
+    <Image Include="RES\gameCombination.bmp" />
+    <Image Include="RES\gameOperationKey.bmp" />
+    <Image Include="RES\map1.bmp" />
+    <Image Include="RES\map2.bmp" />
+    <Image Include="RES\map3.bmp" />
+    <Image Include="RES\startLogo.bmp" />
+    <Image Include="RES\allGhost.bmp" />
+    <Image Include="RES\gameCompleted.bmp" />
+    <Image Include="RES\gameOver.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\ball.bmp" />
+    <None Include="RES\bmp0.bmp" />
+    <None Include="RES\bmp1.bmp" />
+    <None Include="RES\bmp10.bmp" />
+    <None Include="RES\bmp2.bmp" />
+    <None Include="RES\bmp3.bmp" />
+    <None Include="RES\bmp4.bmp" />
+    <None Include="RES\bmp5.bmp" />
+    <None Include="RES\bmp6.bmp" />
+    <None Include="RES\bmp7.bmp" />
+    <None Include="RES\bmp8.bmp" />
+    <None Include="RES\bmp9.bmp" />
+    <None Include="RES\center.bmp" />
+    <None Include="RES\continue.bmp" />
+    <None Include="Res\corner.bmp" />
+    <None Include="RES\eraser1.bmp" />
+    <None Include="RES\eraser2.bmp" />
+    <None Include="RES\eraser3.bmp" />
+    <None Include="res\game.ico" />
+    <None Include="res\game.rc2" />
+    <None Include="RES\gamecurs.cur" />
+    <None Include="res\gameDoc.ico" />
+    <None Include="RES\help.bmp" />
+    <None Include="RES\loading.bmp" />
+    <None Include="RES\ntutcsie.bmp" />
+    <None Include="res\Toolbar.bmp" />
   </ItemGroup>
 </Project>

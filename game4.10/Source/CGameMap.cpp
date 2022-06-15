@@ -24,10 +24,10 @@ namespace game_framework {
 		gameMaps = new int[NUMMAPS];
 		walls = new CMovingBitmap[NUMMAPS];
 
-		gameMaps[0] = MAP_BLUE;
-		gameMaps[1] = MAP_GREEN;
-		gameMaps[2] = MAP_RED;
-		gameMaps[3] = MAP_RED_END;
+		gameMaps[0] = MAP_1;
+		gameMaps[1] = MAP_2;
+		gameMaps[2] = MAP_3;
+		gameMaps[3] = MAP_END;
 
 		MapType = gameMaps[0];
 		currentWall = &walls[0];
@@ -55,7 +55,7 @@ namespace game_framework {
 
 		foodCount = 0;
 
-		if (MapType == MAP_RED_END) {
+		if (MapType == MAP_END) {
 			for (int i = 0 ; i < 31; i++) {
 				for (int j = 0; j < 28; j++) {
 					map[i][j] = map_info[i][j];
@@ -90,7 +90,7 @@ namespace game_framework {
 	{
 		MapType = maptype;
 
-		if (MapType == MAP_BLUE)
+		if (MapType == MAP_1)
 		{
 			int map_info[31][28] = {
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -110,7 +110,7 @@ namespace game_framework {
 			{4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4},
 			{1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1},
 			{1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1},
-			{1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1},
+			{1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1},
 			{1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1},
 			{1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1},
 			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -127,7 +127,7 @@ namespace game_framework {
 
 			setFoods(map_info);
 		}
-		else if (MapType == MAP_GREEN)
+		else if (MapType == MAP_2)
 		{
 			int map_info[31][28] = {
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -147,7 +147,7 @@ namespace game_framework {
 			{1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1},
 			{1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1},
 			{1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1},
-			{4, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 4},
+			{4, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 4},
 			{1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1},
 			{1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1},
 			{1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},
@@ -165,7 +165,7 @@ namespace game_framework {
 
 			setFoods(map_info);
 		}
-		else if (MapType == MAP_RED)
+		else if (MapType == MAP_3)
 		{
 			int map_info[31][28] = {
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -185,7 +185,7 @@ namespace game_framework {
 			{1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1},
 			{1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1},
 			{1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1},
-			{1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1},
+			{1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1},
 			{1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1},
 			{1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1},
 			{1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1},
@@ -203,7 +203,7 @@ namespace game_framework {
 
 			setFoods(map_info);
 		}
-		else if (MapType == MAP_RED_END)
+		else if (MapType == MAP_END)
 		{
 			int map_info[31][28] = {
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -243,29 +243,32 @@ namespace game_framework {
 		}
 	}
 
-	void CGameMap::nextMap() {
+	void CGameMap::nextMap() 
+	{
 		currentLevel++;
 		SetMap(gameMaps[currentLevel]);
 		MapType = gameMaps[currentLevel];
 		currentWall = &walls[currentLevel];
 	}
 
-	void CGameMap::lastMap() {
+	void CGameMap::lastMap() 
+	{
 		SetMap(gameMaps[3]);
 		MapType = gameMaps[3];
 		currentWall = &walls[3];
 	}
 
-	int CGameMap::getFoodCount() {
+	int CGameMap::getFoodCount() 
+	{
 		return foodCount;
 	}
 
 	void CGameMap::LoadBitmap()
 	{
-		walls[0].LoadBitmap(IDB_WALL_BLUE);
-		walls[1].LoadBitmap(IDB_WALL_GREEN);
-		walls[2].LoadBitmap(IDB_WALL_RED);
-		walls[3].LoadBitmap(IDB_WALL_RED);
+		walls[0].LoadBitmap(IDB_MAP1);
+		walls[1].LoadBitmap(IDB_MAP2);
+		walls[2].LoadBitmap(IDB_MAP3);
+		walls[3].LoadBitmap(IDB_MAP3);
 	}
 
 	vector<CFood *>* CGameMap::getAllFoods() {
@@ -275,15 +278,29 @@ namespace game_framework {
 	void CGameMap::OnShow()
 	{
 		int currentFoodIndex = 0;
-		if (MapType == MAP_RED_END) {
-			for (int i = 0; i < 31; i++) {
-				for (int j = 0; j < 28; j++) {
-					if (map[i][j] == 1) {
-						currentWall->SetTopLeft(X + (MW*j), Y + (MH*i));
-						currentWall->ShowBitmap();
-					}
-				}
-			}
+		switch (MapType)
+		{
+		case MAP_1:
+			walls[0].SetTopLeft(MAP_START, MAP_START);
+			walls[0].ShowBitmap();
+			break;
+		case MAP_2:
+			walls[1].SetTopLeft(MAP_START, MAP_START);
+			walls[1].ShowBitmap();
+			break;
+		case MAP_3:
+			walls[2].SetTopLeft(MAP_START, MAP_START);
+			walls[2].ShowBitmap();
+			break;
+		case MAP_END:
+			walls[3].SetTopLeft(MAP_START, MAP_START);
+			walls[3].ShowBitmap();
+			break;
+		default:
+			break;
+		}
+
+		if (MapType == MAP_END) {
 			allFoods.at(0)->SetTopLeft(X + (MW * 16), Y + (MH * 17));
 			allFoods.at(0)->OnShow();
 		}
@@ -299,8 +316,6 @@ namespace game_framework {
 							currentFoodIndex++;
 							break;
 						case 1:
-							currentWall->SetTopLeft(X + (MW*j), Y + (MH*i));
-							currentWall->ShowBitmap();
 							break;
 						case 3:
 							allFoods.at(currentFoodIndex)->SetTopLeft(X + (MW*j), Y + (MH*i));

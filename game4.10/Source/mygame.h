@@ -57,10 +57,12 @@ namespace game_framework {
 	// Constants
 	/////////////////////////////////////////////////////////////////////////////
 
-	enum AUDIO_ID {				// 定義各種音效的編號
-		AUDIO_DING,				// 0
-		AUDIO_LAKE,				// 1
-		AUDIO_NTUT				// 2
+	enum AUDIO_ID 
+	{							// 定義各種音效的編號
+		AUDIO_START,			// 0
+		AUDIO_EAT,				// 1
+		AUDIO_DEADTH,			// 2
+		AUDIO_EATGHOST			// 3
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -77,8 +79,56 @@ namespace game_framework {
 		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
+		void OnMove();									// 顯示這個狀態的遊戲動畫
 	private:
+		CAnimation    Pacman_right;                     // Pacman 動畫(右)
+		CAnimation    Pacman_left;                      // Pacman 動畫(左)
+		CAnimation    ghosts[4];                        // ghost 動畫
+		int           Pacman_x;                         // Pacman 位置
+		bool          isPacmanRight;                    // Pacman 是否向右
+
 		CMovingBitmap logo;								// csie的logo
+		CMovingBitmap startGame;                        // start game 標籤
+		CMovingBitmap about;                            // about 標籤
+		CMovingBitmap about_gameContent;                // 遊戲內容說明
+		CMovingBitmap about_gameOperation;              // 遊戲操作說明
+		CMovingBitmap about_gameCombination;            // 遊戲組合密技說明
+		CMovingBitmap back;                             // 回到主頁面
+		CMovingBitmap label_gameContent;                // 遊戲內容標籤
+		CMovingBitmap label_operation;                  // 操作按鍵標籤
+		CMovingBitmap label_combination;                // 組合按鍵標籤
+		bool          isAbout;                          // 是否在about頁面
+		bool          label[3];                         // 目前點擊標籤
+
+		double startGame_x1;
+		double startGame_y1;
+		double startGame_x2;
+		double startGame_y2;
+
+		double about_x1;
+		double about_y1;
+		double about_x2;
+		double about_y2;
+
+		double back_x1;
+		double back_x2;
+		double back_y1;
+		double back_y2;
+
+		double content_x1;
+		double content_x2;
+		double content_y1;
+		double content_y2;
+
+		double operation_x1;
+		double operation_x2;
+		double operation_y1;
+		double operation_y2;
+
+		double combination_x1;
+		double combination_x2;
+		double combination_y1;
+		double combination_y2;
 	};
 
 
@@ -108,6 +158,8 @@ namespace game_framework {
 		CGameMap        gameMap;    // 地圖
 		const int       NUMMAPS;    // 地圖的總數
 		const int		NUMBALLS;	// 球的總數
+		CMovingBitmap   completed;  // 完成圖
+		CMovingBitmap   gameover;   // 失敗圖
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
 		CPacman         c_PacMan;   // 黃色小精靈
@@ -121,6 +173,8 @@ namespace game_framework {
 		int             ghostDelay; // 幽靈出發的delay時間
 		bool            isCompleted;// 通關
 		bool            ctrlDown;   // 是否按下Ctrl鍵
+		int             runningTime;// 執行時間
+		int             overDelay;  // 進入Over狀態前的Delay
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -137,7 +191,9 @@ namespace game_framework {
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		int counter;	// 倒數之計數器
+		CMovingBitmap GameOver;                         // gameover
+		CMovingBitmap Completed;                        // 完成
+		int counter;	                                // 倒數之計數器
 	};
 
 }

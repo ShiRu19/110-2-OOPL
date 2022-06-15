@@ -8,13 +8,15 @@
 #include "CLife.h"
 #include "CPacman.h"
 
-namespace game_framework {
+namespace game_framework 
+{
 	/////////////////////////////////////////////////////////////////////////////
 	// CPacman: Pacman class
 	/////////////////////////////////////////////////////////////////////////////
 
 	// Pacman
-	CPacman::CPacman() {
+	CPacman::CPacman() 
+	{
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 		is_alive = true;
 	}
@@ -64,63 +66,109 @@ namespace game_framework {
 		animation_4.AddBitmap(IDB_PACMAN_RIGHT_2, RGB(255, 255, 255));          //向右_close
 	}
 
-	void CPacman::OnMove() {
+	void CPacman::OnMove() 
+	{
 		if (!is_alive)
 			return;
-
 		const int STEP_SIZE = 2;
 		animation->OnMove();
 		isStop = false;
 		GetMapIndex();
-
+		const char KEY_LEFT = 0x25; // keyboard左箭頭
+		const char KEY_UP = 0x26; // keyboard上箭頭
+		const char KEY_RIGHT = 0x27; // keyboard右箭頭
+		const char KEY_DOWN = 0x28; // keyboard下箭頭
+		GetMapIndex();
+		//if (MapIndex_X2 > 27)
+		//{
+		//	x = MAP_START;
+		//}
+		//else if (MapIndex_X1 < 0)
+		//{
+		//	x = MAP_START + 27 * BITMAP_SIZE;
+		//}
+		if (LastKey == KEY_LEFT)
+		{
+			SetMovingLeft(true);
+		}
+		else if (LastKey == KEY_RIGHT)
+		{
+			SetMovingRight(true);
+		}
+		else if (LastKey == KEY_UP)
+		{
+			SetMovingUp(true);
+		}
+		else if (LastKey == KEY_DOWN)
+		{
+			SetMovingDown(true);
+		}
+		if (recording_step >= 2)
+		{
+			//LastKey = 0;
+		}
 		if (isMovingUp)
 		{
-			if (y - wall_pixel > STEP_SIZE) {
+			recording_step++;
+			if (y - wall_pixel > STEP_SIZE)
+			{
 				y -= STEP_SIZE;
 			}
-			else {
+			else
+			{
 				y = wall_pixel;
 				isStop = true;
 			}
 		}
 		else if (isMovingDown)
 		{
-			if (wall_pixel - y > STEP_SIZE) {
+			recording_step++;
+			if (wall_pixel - y > STEP_SIZE) 
+			{
 				y += STEP_SIZE;
 			}
-			else {
+			else 
+			{
 				y = wall_pixel;
 				isStop = true;
 			}
 		}
 		else if (isMovingLeft)
 		{
-			if (map[MapIndex_Y1][MapIndex_X1] == 4 && x == MAP_START + BITMAP_SIZE * (0)) {
+			recording_step++;
+			if (x == MAP_START + BITMAP_SIZE * (0)) 
+			{
 				x = MAP_START + BITMAP_SIZE * (27);
 				SetMovingLeft(true);
 				return;
 			}
 
-			if (x - wall_pixel > STEP_SIZE) {
+			if (x - wall_pixel > STEP_SIZE) 
+			{
 				x -= STEP_SIZE;
 			}
-			else {
+			else
+			{
 				x = wall_pixel;
 				isStop = true;
 			}
 		}
 		else if (isMovingRight)
 		{
-			if (map[MapIndex_Y1][MapIndex_X1] == 4 && x == MAP_START + BITMAP_SIZE * (27)) {
+			recording_step++;
+			if (x == MAP_START + BITMAP_SIZE * (27)) 
+			{
 				x = MAP_START + BITMAP_SIZE * (0);
 				SetMovingRight(true);
 				return;
 			}
 
-			if (wall_pixel - x > STEP_SIZE) {
+			if (wall_pixel - x > STEP_SIZE) 
+			{
 				x += STEP_SIZE;
 			}
-			else {
+			else 
+			{
 				x = wall_pixel;
 				isStop = true;
 			}
@@ -139,7 +187,8 @@ namespace game_framework {
 	}
 
 	// 找Pacman四個點的陣列位置
-	void CPacman::GetMapIndex() {
+	void CPacman::GetMapIndex() 
+	{
 		MapIndex_X1 = FindMapIndex_X(x);         // 左
 		MapIndex_X2 = FindMapIndex_X(x + 22);    // 右
 		MapIndex_Y1 = FindMapIndex_Y(y);         // 上
@@ -150,7 +199,8 @@ namespace game_framework {
 	void CPacman::SetMovingUp(bool flag)
 	{
 		GetMapIndex();
-		if (map[MapIndex_Y1 - 1][MapIndex_X1] != 1 && map[MapIndex_Y1 - 1][MapIndex_X2] != 1) {
+		if (map[MapIndex_Y1 - 1][MapIndex_X1] != 1 && map[MapIndex_Y1 - 1][MapIndex_X2] != 1) 
+		{
 			animation = &animation_1;
 			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 			isMovingUp = flag;
@@ -174,11 +224,11 @@ namespace game_framework {
 	void CPacman::SetMovingDown(bool flag)
 	{
 		GetMapIndex();
-		if (map[MapIndex_Y2 + 1][MapIndex_X1] != 1 && map[MapIndex_Y2 + 1][MapIndex_X2] != 1 && map[MapIndex_Y2 + 1][MapIndex_X1] != 2 && map[MapIndex_Y2 + 1][MapIndex_X2] != 2) {
+		if (map[MapIndex_Y2 + 1][MapIndex_X1] != 1 && map[MapIndex_Y2 + 1][MapIndex_X2] != 1 && map[MapIndex_Y2 + 1][MapIndex_X1] != 2 && map[MapIndex_Y2 + 1][MapIndex_X2] != 2) 
+		{
 			animation = &animation_2;
 			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 			isMovingDown = flag;
-
 			// 計算向下終點牆的位置
 			wall_pixel = 0;
 			while (true)
@@ -198,11 +248,11 @@ namespace game_framework {
 	void CPacman::SetMovingLeft(bool flag)
 	{
 		GetMapIndex();
-		if (map[MapIndex_Y1][MapIndex_X1-1] != 1 && map[MapIndex_Y2][MapIndex_X1-1] != 1) {
+		if (map[MapIndex_Y1][MapIndex_X1-1] != 1 && map[MapIndex_Y2][MapIndex_X1-1] != 1) 
+		{
 			animation = &animation_3;
 			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 			isMovingLeft = flag;
-
 			// 計算向左終點牆的位置
 			wall_pixel = 0;
 			while (true)
@@ -222,7 +272,8 @@ namespace game_framework {
 	void CPacman::SetMovingRight(bool flag)
 	{
 		GetMapIndex();
-		if (map[MapIndex_Y1][MapIndex_X2 + 1] != 1 && map[MapIndex_Y2][MapIndex_X2 + 1] != 1) {
+		if (map[MapIndex_Y1][MapIndex_X2 + 1] != 1 && map[MapIndex_Y2][MapIndex_X2 + 1] != 1)
+		{
 			animation = &animation_4;
 			isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 			isMovingRight = flag;
@@ -257,7 +308,8 @@ namespace game_framework {
 		return (tx2 >= x + adjust && tx1 <= (x + animation->Width() - adjust) && ty2 >= y + adjust && ty1 <= (y + animation->Height() - adjust));
 	}
 
-	void CPacman::SetMap(int **map) {
+	void CPacman::SetMap(int **map)
+	{
 		this->map = map;
 	}
 
@@ -321,7 +373,8 @@ namespace game_framework {
 		return false;
 	}
 
-	void CPacman::SetTopLeft() {
+	void CPacman::SetTopLeft() 
+	{
 		animation->SetTopLeft(x, y);
 	}
 
@@ -329,20 +382,25 @@ namespace game_framework {
 	{
 		if (is_alive)
 		{
-			if (isStop) {
-				if (isMovingUp) {
+			if (isStop) 
+			{
+				if (isMovingUp) 
+				{
 					isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 					animation = &animation_stop_1; // 向上停止
 				}
-				else if (isMovingDown) {
+				else if (isMovingDown) 
+				{
 					isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 					animation = &animation_stop_2; // 向下停止
 				}
-				else if (isMovingLeft) {
+				else if (isMovingLeft) 
+				{
 					isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 					animation = &animation_stop_3; // 向左停止
 				}
-				else if (isMovingRight) {
+				else if (isMovingRight) 
+				{
 					isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
 					animation = &animation_stop_4; // 向右停止
 				}
@@ -360,12 +418,19 @@ namespace game_framework {
 		}
 		
 		// 死亡動畫結束
-		if (delay == 29) {
+		if (delay == 29) 
+		{
 			myLife--;
 			if (myLife > -1) restart();
 			delay = 0;
 			animation->OnMove();
 			animation->OnShow();
 		}
+	}
+	void CPacman::SetLastKey(UINT key)
+	{
+		LastKey = key;
+		RecordKeyHold = true;
+		recording_step = 0;
 	}
 }

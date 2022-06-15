@@ -8,10 +8,10 @@ namespace game_framework {
 
 	enum MAP_ID					// 定義各種地圖的編號
 	{
-		MAP_BLUE,				// 0
-		MAP_GREEN,				// 1
-		MAP_RED,				// 2
-		MAP_RED_END             // 3
+		MAP_1,				// 0
+		MAP_2,				// 1
+		MAP_3,				// 2
+		MAP_END             // 3
 	};
 
 	using namespace std;
