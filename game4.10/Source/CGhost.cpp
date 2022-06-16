@@ -208,7 +208,13 @@ namespace game_framework {
 			direction = direction_min;
 		}
 
-		const int STEP_SIZE = 2;
+		int STEP_SIZE;
+		if (animation == &animation_avoid || animation == &animation_change) {
+			STEP_SIZE = 1;
+		}
+		else {
+			STEP_SIZE = 2;
+		}
 		switch (direction) {
 			case 0:
 				break;
@@ -422,11 +428,17 @@ namespace game_framework {
 		direction = 0;
 	}
 
-	bool CGhost::isNormalMode() {
-		if (animation == &animation_avoid || animation == &animation_change || animation == &animation_eyes) {
-			return false;
+	int CGhost::GetMode() {
+		//
+		// 0: 正常, 1: 躲避, 2: 眼睛
+		//
+		if (animation == &animation_avoid || animation == &animation_change) {
+			return 1;
 		}
-		return true;
+		else if (animation == &animation_eyes) { // 眼睛視為正常狀態
+			return 2;
+		}
+		return 0;
 	}
 
 	int CGhost::GetX1() {

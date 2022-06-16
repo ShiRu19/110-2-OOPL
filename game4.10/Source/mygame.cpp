@@ -437,7 +437,10 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 				// ghost轉成躲避鬼模式
 				for (int i = 0; i < 4; i++) 
 				{
-					ghost[i].changeMode(1);
+					if (ghost[i].GetMode() != 2)
+					{
+						ghost[i].changeMode(1);
+					}
 				}
 			}
 			else
@@ -453,7 +456,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	for (int i = 0; i < 4; i++) 
 	{
 		// 若碰到正常鬼，Pacman死亡
-		if (ghost[i].isNormalMode()) 
+		if (ghost[i].GetMode() == 0) 
 		{
 			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) 
 			{
@@ -464,7 +467,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 			}
 		}
 		// 若碰到躲避鬼或不穩定鬼，Pacman得分
-		else if (ghost[i].isNormalMode() != true)
+		else if (ghost[i].GetMode() == 1)
 		{
 			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) 
 			{

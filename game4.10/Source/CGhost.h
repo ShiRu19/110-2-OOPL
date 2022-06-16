@@ -11,7 +11,7 @@ namespace game_framework {
 		
 		void LoadBitmap(int IDB[4][2]);		                    // 載入圖形
 		void changeMode(int mode);                              // 切換模式(正常鬼/躲避鬼)
-		bool isNormalMode();                                    // 精靈的狀態是否為正常狀態
+		int GetMode();                                          // 回傳精靈的狀態
 		int  GetX1();                                           // 取得x1(左上角)
 		int  GetY1();                                           // 取得y1(左上角)
 		int  GetX2();                                           // 取得x2(右下角)
