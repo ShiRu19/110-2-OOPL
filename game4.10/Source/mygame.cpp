@@ -471,6 +471,10 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 		{
 			if (c_PacMan.IsAlive() && c_PacMan.HitGhost(&ghost[i])) 
 			{
+				// 播放吃到鬼的音效
+				CAudio::Instance()->Stop(AUDIO_EAT);
+				CAudio::Instance()->Play(AUDIO_EATGHOST);
+
 				ghost[i].changeMode(3); // 鬼變眼睛狀態
 				myScore.setScore(myScore.getScore() + 10); // 得分
 			}
