@@ -21,10 +21,18 @@ namespace game_framework
 		is_alive = true;
 	}
 
-	CPacman::~CPacman() {
+	CPacman::~CPacman() {}
+
+	void CPacman::GameRestart()
+	{
+		restart();
+		myLife = 4;
+		delay = 0;
+		is_gameover = false;
 	}
 
-	void CPacman::SetInitXY(int x, int y) {
+	void CPacman::SetInitXY(int x, int y)
+	{
 		init_X = MAP_START + x * BITMAP_SIZE;									// 設定Pacman起始的Y座標
 		init_Y = MAP_START + y * BITMAP_SIZE;									// 設定Pacman起始的X座標
 		this->x = init_X;

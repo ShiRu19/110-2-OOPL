@@ -18,7 +18,11 @@ namespace game_framework {
 		stop = false;
 	}
 
-	CGhost::~CGhost() {
+	CGhost::~CGhost() {}
+
+	void CGhost::GameRestart()
+	{
+		restart();
 	}
 
 	void CGhost::SetInitXY(int x, int y) {

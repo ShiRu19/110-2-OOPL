@@ -164,7 +164,7 @@ namespace game_framework {
 		CMovingBitmap	help;		// 說明圖
 		CPacman         c_PacMan;   // 黃色小精靈
 		CGhost          ghost[4];     // 幽靈們
-		vector<CFood>   foods;      // 小豆子+大魔豆
+		//vector<CFood>   foods;      // 小豆子+大魔豆
 		int             initFoods;  // 原始豆子數量
 		int             remainFoods;// 場上剩餘豆子
 		CScore          myScore;    // 總分數
@@ -175,6 +175,7 @@ namespace game_framework {
 		bool            ctrlDown;   // 是否按下Ctrl鍵
 		int             runningTime;// 執行時間
 		int             stateDelay; // 進入Over狀態前的Delay
+		void            GameRestart(); // 重新開始遊戲
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -186,13 +187,14 @@ namespace game_framework {
 	public:
 		CGameStateOver(CGame *g);
 		void OnBeginState();							// 設定每次重玩所需的變數
+		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void OnInit();
 	protected:
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
-		CMovingBitmap GameOver;                         // gameover
-		CMovingBitmap Completed;                        // 完成
+		CMovingBitmap Restart;
+		CMovingBitmap Exit;
 		int counter;	                                // 倒數之計數器
 	};
 

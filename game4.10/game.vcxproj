@@ -353,6 +353,7 @@
     <Image Include="RES\blue_left_2.bmp" />
     <Image Include="RES\blue_right_1.bmp" />
     <Image Include="RES\blue_right_2.bmp" />
+    <Image Include="RES\exit.bmp" />
     <Image Include="RES\gameCombination.bmp" />
     <Image Include="RES\gameCompleted.bmp" />
     <Image Include="RES\gameContent.bmp" />
@@ -427,6 +428,7 @@
     <Image Include="RES\red_left_2.bmp" />
     <Image Include="RES\red_right_1.bmp" />
     <Image Include="RES\red_right_2.bmp" />
+    <Image Include="RES\restart.bmp" />
     <Image Include="RES\SCORE.bmp" />
     <Image Include="RES\SCORE.png" />
     <Image Include="RES\startGame.bmp" />

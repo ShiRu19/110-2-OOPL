@@ -245,33 +245,33 @@ void CGameStateInit::OnShow()
 	else {
 		// 貼上文字
 		about.SetTopLeft((SIZE_X - about.Width()) / 2, SIZE_Y / 10);
-		about.ShowBitmap();
+about.ShowBitmap();
 
-		// 貼上返回鍵
-		back.SetTopLeft(0, 0);
-		back.ShowBitmap();
+// 貼上返回鍵
+back.SetTopLeft(0, 0);
+back.ShowBitmap();
 
-		// 貼上標籤
-		label_gameContent.SetTopLeft(0, back.Height());
-		label_gameContent.ShowBitmap();
-		label_operation.SetTopLeft(0, back.Height() + label_gameContent.Height());
-		label_operation.ShowBitmap();
-		label_combination.SetTopLeft(0, back.Height() + label_gameContent.Height() + label_operation.Height());
-		label_combination.ShowBitmap();
-		
-		// 貼上說明文字
-		if (label[0]) {
-			about_gameContent.SetTopLeft((SIZE_X - about_gameContent.Width()) / 2, SIZE_Y * 2 / 10);
-			about_gameContent.ShowBitmap();
-		}
-		else if (label[1]) {
-			about_gameOperation.SetTopLeft((SIZE_X - about_gameOperation.Width()) / 2, SIZE_Y * 2 / 10);
-			about_gameOperation.ShowBitmap();
-		}
-		else if (label[2]) {
-			about_gameCombination.SetTopLeft((SIZE_X - about_gameCombination.Width()) / 2, SIZE_Y * 2 / 10);
-			about_gameCombination.ShowBitmap();
-		}
+// 貼上標籤
+label_gameContent.SetTopLeft(0, back.Height());
+label_gameContent.ShowBitmap();
+label_operation.SetTopLeft(0, back.Height() + label_gameContent.Height());
+label_operation.ShowBitmap();
+label_combination.SetTopLeft(0, back.Height() + label_gameContent.Height() + label_operation.Height());
+label_combination.ShowBitmap();
+
+// 貼上說明文字
+if (label[0]) {
+	about_gameContent.SetTopLeft((SIZE_X - about_gameContent.Width()) / 2, SIZE_Y * 2 / 10);
+	about_gameContent.ShowBitmap();
+}
+else if (label[1]) {
+	about_gameOperation.SetTopLeft((SIZE_X - about_gameOperation.Width()) / 2, SIZE_Y * 2 / 10);
+	about_gameOperation.ShowBitmap();
+}
+else if (label[2]) {
+	about_gameCombination.SetTopLeft((SIZE_X - about_gameCombination.Width()) / 2, SIZE_Y * 2 / 10);
+	about_gameCombination.ShowBitmap();
+}
 	}
 
 	//
@@ -284,7 +284,7 @@ void CGameStateInit::OnShow()
 	// pDC->SetBkColor(RGB(0,0,0));
 	// pDC->SetTextColor(RGB(255,255,0));
 	// int mid_y = SIZE_Y / 2;
-	
+
 	// string pacman_word = "Pacmac!";
 	// int pacman_word_width = (SIZE_X - logo.Width()) / 2 + 10;
 	// pDC->TextOut(pacman_word_width, mid_y, "Pacman!");
@@ -294,21 +294,23 @@ void CGameStateInit::OnShow()
 	// // pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");*/
 	// pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 	// CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
-}								
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // 這個class為遊戲的結束狀態(Game Over)
 /////////////////////////////////////////////////////////////////////////////
 
-CGameStateOver::CGameStateOver(CGame *g): CGameState(g)
+CGameStateOver::CGameStateOver(CGame *g) : CGameState(g)
 {
 }
 
 void CGameStateOver::OnMove()
 {
+	/*
 	counter--;
 	if (counter < 0)
 		GotoGameState(GAME_STATE_INIT);
+	*/
 }
 
 void CGameStateOver::OnBeginState()
@@ -331,10 +333,45 @@ void CGameStateOver::OnInit()
 	// 最終進度為100%
 	//
 	ShowInitProgress(100);
+
+	Restart.LoadBitmap(IDB_OVER_RESTART);
+	Exit.LoadBitmap(IDB_OVER_EXIT);
+	Restart.SetTopLeft((SIZE_X - Restart.Width()) / 2, SIZE_Y * 3 / 8);
+	Exit.SetTopLeft((SIZE_X - Exit.Width()) / 2, SIZE_Y * 4 / 8);
+}
+
+void CGameStateOver::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	double point_x = point.x;
+	double point_y = point.y;
+
+	double restart_x1 = (SIZE_X - Restart.Width()) / 2;
+	double restart_x2 = restart_x1 + Restart.Width();
+	double restart_y1 = SIZE_Y * 3 / 8;
+	double restart_y2 = restart_y1 + Restart.Height();
+
+	double exit_x1 = (SIZE_X - Exit.Width()) / 2;
+	double exit_x2 = exit_x1 + Exit.Width();
+	double exit_y1 = SIZE_Y * 4 / 8;
+	double exit_y2 = exit_y1 + Exit.Height();
+
+	if (point_x >= restart_x1 && point_x <= restart_x2 && point_y >= restart_y1 && point_y <= restart_y2)
+	{
+		GotoGameState(GAME_STATE_RUN);
+	}
+	if (point_x >= exit_x1 && point_x <= exit_x2 && point_y >= exit_y1 && point_y <= exit_y2)
+	{
+		GotoGameState(GAME_STATE_INIT);
+	}
+
 }
 
 void CGameStateOver::OnShow()
 {
+	Restart.ShowBitmap();
+	Exit.ShowBitmap();
+
+	/*
 	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 	CFont f,*fp;
 	f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
@@ -346,6 +383,7 @@ void CGameStateOver::OnShow()
 	pDC->TextOut(240,210,str);
 	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	*/
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -356,8 +394,6 @@ CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g), NUMBALLS(28), NUMMAPS(3)
 {
 	ghostDelay = 0;
-	remainFoods = 299;
-	initFoods = 299;
 	isCompleted = false;
 	runningTime = 0;
 }
@@ -521,6 +557,9 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	gameMap.SetMap(MAP_1);
 	gameMap.LoadBitmap();
 
+	initFoods = gameMap.getFoodCount();
+	remainFoods = initFoods;
+
 	// 載入PacMan
 	c_PacMan.LoadBitmap();
 	c_PacMan.SetInitXY(14, 17);
@@ -603,6 +642,10 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
+	if (runningTime < 120) {
+		return;
+	}
+
 	const char KEY_LEFT  = 0x25; // keyboard左箭頭
 	const char KEY_UP    = 0x26; // keyboard上箭頭
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
@@ -702,6 +745,27 @@ void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 {
 }
 
+void CGameStateRun::GameRestart() {
+	gameMap.SetMap(MAP_1);
+	
+	c_PacMan.GameRestart();
+	c_PacMan.SetMap(gameMap.GetMap());
+	for (int i = 0; i < 4; i++) {
+		ghost[i].GameRestart();
+		ghost[i].SetMap(gameMap.GetMap());
+	}
+	initFoods = gameMap.getFoodCount();
+	remainFoods = initFoods;
+	myLevel.setLevel(1);
+	myScore.setScore(0);
+	myLife.setLife(4);
+	ghostDelay = 0;
+	isCompleted = false;
+	ctrlDown = false;
+	runningTime = 0;
+	stateDelay = 0;
+}
+
 void CGameStateRun::OnShow()
 {
 	// 顯示地圖
@@ -713,6 +777,7 @@ void CGameStateRun::OnShow()
 		stateDelay++;
 		// 遊戲結束後 delay 一段時間後進入over state
 		if (stateDelay == 100) {
+			GameRestart();
 			GotoGameState(GAME_STATE_OVER);
 		}
 	}
@@ -721,6 +786,7 @@ void CGameStateRun::OnShow()
 		stateDelay++;
 		// 遊戲結束後 delay 一段時間後進入over state
 		if (stateDelay == 100) {
+			GameRestart();
 			GotoGameState(GAME_STATE_OVER);
 		}
 	}

@@ -38,6 +38,7 @@ namespace game_framework {
 		int FindMapIndex_X(int x);                              // 取得座標在矩陣的位置(X軸)
 		int FindMapIndex_Y(int y);                              // 取得座標在矩陣的位置(Y軸)
 		void SetLastKey(int key);								// 設定最後一個按下的KEY
+		void GameRestart();                                     // 遊戲重新開始
 	private:
 		CAnimation animation_stop_1;                            // Pacman的動畫_靜止狀態(預設向上)
 		CAnimation animation_stop_2;                            // Pacman的動畫_靜止狀態(預設向下)

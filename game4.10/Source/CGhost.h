@@ -8,6 +8,7 @@ namespace game_framework {
 	public:
 		CGhost();
 		~CGhost();
+		
 		void LoadBitmap(int IDB[4][2]);		                    // 載入圖形
 		void changeMode(int mode);                              // 切換模式(正常鬼/躲避鬼)
 		bool isNormalMode();                                    // 精靈的狀態是否為正常狀態
@@ -28,6 +29,7 @@ namespace game_framework {
 		void GetMapIndex();                                     // 取得左上角及右下角在地圖的座標
 
 		void restart();                                         // Pacman死亡或切換關卡時，回到基地
+		void GameRestart();                                     // 遊戲重新開始
 		void OnMove(int pacman_x, int pacman_y);				// 移動
 		void OnShow();											// 將圖形貼到畫面
 	private:

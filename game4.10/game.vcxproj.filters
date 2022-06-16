@@ -144,6 +144,8 @@
     <Image Include="RES\allGhost.bmp" />
     <Image Include="RES\gameCompleted.bmp" />
     <Image Include="RES\gameOver.bmp" />
+    <Image Include="RES\exit.bmp" />
+    <Image Include="RES\restart.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Res\ball.bmp" />
