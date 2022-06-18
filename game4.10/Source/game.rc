@@ -62,14 +62,6 @@ END
 // Bitmap
 //
 
-IDB_BALL                BITMAP                  "..\\res\\ball.bmp"
-
-IDB_ERASER1             BITMAP                  "..\\res\\eraser1.bmp"
-
-IDB_BACKGROUND          BITMAP                  "..\\res\\ntutcsie.bmp"
-
-IDB_CORNER              BITMAP                  "..\\res\\corner.bmp"
-
 IDB_0                   BITMAP                  "..\\res\\bmp0.bmp"
 
 IDB_1                   BITMAP                  "..\\res\\bmp1.bmp"
@@ -92,15 +84,7 @@ IDB_9                   BITMAP                  "..\\res\\bmp9.bmp"
 
 IDB_MINUS               BITMAP                  "..\\res\\bmp10.bmp"
 
-IDB_CENTER              BITMAP                  "..\\res\\center.bmp"
-
-IDB_ERASER2             BITMAP                  "..\\res\\eraser2.bmp"
-
-IDB_ERASER3             BITMAP                  "..\\res\\eraser3.bmp"
-
 IDB_CONTINUE            BITMAP                  "..\\res\\continue.bmp"
-
-IDB_HELP                BITMAP                  "..\\res\\help.bmp"
 
 IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
 
@@ -110,9 +94,7 @@ IDB_PACMAN_RIGHT_2      BITMAP                  "..\\RES\\Pacman_right_2.bmp"
 
 IDB_PACMAN_UP_1         BITMAP                  "..\\RES\\Pacman_up_1.bmp"
 
-IDB_WALL_BLUE           BITMAP                  "..\\res\\bitmap4.bmp"
-
-IDB_FOOD                BITMAP                  "..\\res\\bitmap5.bmp"
+IDB_FOOD                BITMAP                  "..\\res\\food.bmp"
 
 IDB_PACMAN_UP_2         BITMAP                  "..\\RES\\Pacman_up_2.bmp"
 
@@ -200,12 +182,6 @@ IDB_GHOST_WHITE_2       BITMAP                  "..\\RES\\ghost_white_2.bmp"
 
 IDB_GHOST_EYES_DOWN     BITMAP                  "..\\RES\\ghost_eyes_down.bmp"
 
-IDB_WALL_GREEN          BITMAP                  "..\\res\\wall_blu.bmp"
-
-IDB_WALL_RED            BITMAP                  "..\\res\\wall_gre.bmp"
-
-IDB_BITMAP3             BITMAP                  "..\\RES\\Pacman.bmp"
-
 IDB_LOGO                BITMAP                  "..\\RES\\Pacman_logo.bmp"
 
 IDB_START_ABOUT         BITMAP                  "..\\RES\\about.bmp"
@@ -239,8 +215,10 @@ IDB_OVER_COMPLETED      BITMAP                  "..\\RES\\gameCompleted.bmp"
 IDB_OVER_GAMEOVER       BITMAP                  "..\\RES\\gameOver.bmp"
 
 IDB_OVER_EXIT           BITMAP                  "..\\RES\\exit.bmp"
-												 
+
 IDB_OVER_RESTART        BITMAP                  "..\\RES\\restart.bmp"
+
+IDB_GAMEAUTHOR          BITMAP                  "D:\\NTUT\\110-2\\OOPL\\game4.10\\RES\\Author.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

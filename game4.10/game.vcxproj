@@ -260,12 +260,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\audio.cpp" />
-    <ClCompile Include="Source\CBall.cpp" />
-    <ClCompile Include="Source\CBouncingBall.cpp" />
     <ClCompile Include="Source\CGameMap.cpp" />
     <ClCompile Include="Source\CFood.cpp" />
     <ClCompile Include="Source\CGhost.cpp" />
-    <ClCompile Include="Source\CEraser.cpp" />
     <ClCompile Include="Source\CLevel.cpp" />
     <ClCompile Include="Source\CLife.cpp" />
     <ClCompile Include="Source\CPacman.cpp" />
@@ -307,12 +304,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
-    <ClInclude Include="Source\CBall.h" />
-    <ClInclude Include="Source\CBouncingBall.h" />
     <ClInclude Include="Source\CGameMap.h" />
     <ClInclude Include="Source\CFood.h" />
     <ClInclude Include="Source\CGhost.h" />
-    <ClInclude Include="Source\CEraser.h" />
     <ClInclude Include="Source\CLevel.h" />
     <ClInclude Include="Source\CLife.h" />
     <ClInclude Include="Source\CPacman.h" />
@@ -336,6 +330,7 @@
   <ItemGroup>
     <Image Include="RES\about.bmp" />
     <Image Include="RES\allGhost.bmp" />
+    <Image Include="RES\Author.bmp" />
     <Image Include="RES\back.bmp" />
     <Image Include="RES\backMenu.bmp" />
     <Image Include="res\bitmap2.bmp" />
@@ -354,6 +349,7 @@
     <Image Include="RES\blue_right_1.bmp" />
     <Image Include="RES\blue_right_2.bmp" />
     <Image Include="RES\exit.bmp" />
+    <Image Include="res\food.bmp" />
     <Image Include="RES\gameCombination.bmp" />
     <Image Include="RES\gameCompleted.bmp" />
     <Image Include="RES\gameContent.bmp" />

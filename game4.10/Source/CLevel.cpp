@@ -19,22 +19,24 @@ namespace game_framework {
 		myLevel.SetInteger(1);
 	}
 
-	void CLevel::LoadBitmap() {
+	void CLevel::LoadBitmap()
+	{
 		LEVEL_text.LoadBitmap(IDB_LEVEL_TEXT, RGB(255, 255, 255));
 		myLevel.LoadBitmap();
 	}
 	
-	void CLevel::setLevel(int LV) {
+	void CLevel::setLevel(int LV)
+	{
 		myLevel.SetInteger(LV);
 
 		// 計算level的位數
 		int d = 1;
-		while (true) {
+		while (true)
+		{
 			LV = LV / 10;
-			if (LV != 0) {
-				d++;
-			}
-			else {
+			if (LV != 0) d++;
+			else
+			{
 				myLevel.SetDigits(d); // 重設level的位數
 				break;
 			}
@@ -42,23 +44,26 @@ namespace game_framework {
 		}
 	}
 
-	void CLevel::levelUp() {
+	void CLevel::levelUp()
+	{
 		int nextLevel = myLevel.GetInteger() + 1;
 		setLevel(nextLevel);
 	}
 	
-	int CLevel::getLevel() {
+	int CLevel::getLevel()
+	{
 		return myLevel.GetInteger();
 	}
 
-	void CLevel::SetTopLeft() {
+	void CLevel::SetTopLeft()
+	{
 		LEVEL_text.SetTopLeft(800, 130);
 		myLevel.SetTopLeft(820, 155);
 	}
 
-	void CLevel::OnShow() {
+	void CLevel::OnShow()
+	{
 		LEVEL_text.ShowBitmap();
 		myLevel.ShowBitmap();
 	}
-	
 }

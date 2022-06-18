@@ -71,8 +71,7 @@ namespace game_framework
 
 	void CPacman::OnMove() 
 	{
-		if (!is_alive)
-			return;
+		if (!is_alive) return;
 
 		const int STEP_SIZE = 2;
 		animation->OnMove();
@@ -86,10 +85,7 @@ namespace game_framework
 
 		if (isMovingUp)
 		{
-			if (y - wall_pixel > STEP_SIZE)
-			{
-				y -= STEP_SIZE;
-			}
+			if (y - wall_pixel > STEP_SIZE) y -= STEP_SIZE;
 			else
 			{
 				y = wall_pixel;
@@ -98,10 +94,7 @@ namespace game_framework
 		}
 		else if (isMovingDown)
 		{
-			if (wall_pixel - y > STEP_SIZE) 
-			{
-				y += STEP_SIZE;
-			}
+			if (wall_pixel - y > STEP_SIZE) y += STEP_SIZE;
 			else 
 			{
 				y = wall_pixel;
@@ -117,10 +110,7 @@ namespace game_framework
 				return;
 			}
 
-			if (x - wall_pixel > STEP_SIZE) 
-			{
-				x -= STEP_SIZE;
-			}
+			if (x - wall_pixel > STEP_SIZE) x -= STEP_SIZE;
 			else
 			{
 				x = wall_pixel;
@@ -136,10 +126,7 @@ namespace game_framework
 				return;
 			}
 
-			if (wall_pixel - x > STEP_SIZE) 
-			{
-				x += STEP_SIZE;
-			}
+			if (wall_pixel - x > STEP_SIZE) x += STEP_SIZE;
 			else 
 			{
 				x = wall_pixel;
@@ -285,7 +272,8 @@ namespace game_framework
 	{
 		for (int i = 0; i < 31; i++)
 		{
-			for (int j = 0; j < 28; j++) {
+			for (int j = 0; j < 28; j++)
+			{
 				map[i][j] = m[i][j];
 			}
 		}
@@ -336,19 +324,19 @@ namespace game_framework
 		is_alive = true;
 	}
 
-	int CPacman::GetDelay() {
+	int CPacman::GetDelay()
+	{
 		return delay;
 	}
 
-	void CPacman::SetLife(int life) {
+	void CPacman::SetLife(int life)
+	{
 		myLife = life;
 	}
 
 	bool CPacman::IsGameover()
 	{
-		if (myLife < 0) {
-			return true;
-		}
+		if (myLife < 0) return true;
 		return false;
 	}
 

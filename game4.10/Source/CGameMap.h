@@ -43,5 +43,4 @@ namespace game_framework {
 		int *gameMaps;                  // 地圖順序
 		int currentLevel = 0;           // 目前地圖
 	};
-
 }

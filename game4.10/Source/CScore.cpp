@@ -18,40 +18,47 @@ namespace game_framework {
 		myScore.SetDigits(1);
 	}
 
-	void CScore::LoadBitmap() {
+	void CScore::LoadBitmap()
+	{
 		SCORE_text.LoadBitmap(IDB_SCORE_TEXT, RGB(255, 255, 255));
 		myScore.LoadBitmap();
 	}
 
-	void CScore::SetTopLeft() {
+	void CScore::SetTopLeft()
+	{
 		SCORE_text.SetTopLeft(800, 50);
 		myScore.SetTopLeft(820, 75);
 	}
 	
-	void CScore::setScore(int profit) {
+	void CScore::setScore(int profit)
+	{
 		int newScore = profit;
 		myScore.SetInteger(newScore);
 
 		// 計算score的位數
 		int d = 1;
-		while (true) {
+		while (true)
+		{
 			newScore = newScore / 10;
-			if (newScore != 0) {
+			if (newScore != 0)
+			{
 				d++;
 			}
-			else {
+			else
+			{
 				myScore.SetDigits(d); // 重設score的位數
 				break;
 			}
-
 		}
 	}
 
-	int CScore::getScore() {
+	int CScore::getScore()
+	{
 		return myScore.GetInteger();
 	}
 
-	void CScore::OnShow() {
+	void CScore::OnShow()
+	{
 		SCORE_text.ShowBitmap();
 		myScore.ShowBitmap();
 	}

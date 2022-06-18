@@ -12,7 +12,6 @@ namespace game_framework {
 	// CGolst: Golst class
 	/////////////////////////////////////////////////////////////////////////////
 
-	// Golst
 	CGhost::CGhost() {
 		animation = &animation_4;
 		stop = false;
@@ -491,16 +490,6 @@ namespace game_framework {
 			avoidTime = 0;
 			changeMode(0);
 		}
-
-		// ************************************
-		// * 當狀態為死亡時 (animation_eyes)
-		// ************************************
-		//if (animation == &animation_eyes) {
-		//	if (x == init_x && y == init_y) {
-		//
-		//		animation = &animation_1;
-		//	}
-		//}
 
 		animation->SetTopLeft(x,y);
 		animation->OnShow();

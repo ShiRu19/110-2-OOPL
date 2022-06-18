@@ -53,8 +53,7 @@ namespace game_framework {
 
 	void CFood::OnMove()
 	{
-		if (!is_alive)
-			return;
+		if (!is_alive) return;
 	}
 
 	void CFood::SetIsAlive(bool alive)
@@ -67,11 +66,13 @@ namespace game_framework {
 		x = nx; y = ny;
 	}
 
-	int CFood::GetScore() {
+	int CFood::GetScore()
+	{
 		return this->score;
 	}
 
-	void CFood::SetTopLeft(int x, int y) {
+	void CFood::SetTopLeft(int x, int y)
+	{
 		foods.SetTopLeft(x, y);
 		this->x = x;
 		this->y = y;
@@ -85,5 +86,4 @@ namespace game_framework {
 			foods.OnShow();
 		}
 	}
-	
 }

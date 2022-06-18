@@ -35,7 +35,8 @@ namespace game_framework {
 
 	CGameMap::~CGameMap()
 	{
-		for (int i = 0; i < (int)allFoods.size(); i++) {
+		for (int i = 0; i < (int)allFoods.size(); i++)
+		{
 			delete allFoods.at(i);
 		}
 		for (int i = 0; i < 31; i++)
@@ -47,17 +48,22 @@ namespace game_framework {
 		delete[] gameMaps;
 	}
 
-	void CGameMap::setFoods(int map_info[31][28]) {
-		for (int i = 0; i < foodCount; i++) {
+	void CGameMap::setFoods(int map_info[31][28])
+	{
+		for (int i = 0; i < foodCount; i++)
+		{
 			delete allFoods.at(i);
 		}
 		allFoods.clear();
 
 		foodCount = 0;
 
-		if (MapType == MAP_END) {
-			for (int i = 0 ; i < 31; i++) {
-				for (int j = 0; j < 28; j++) {
+		if (MapType == MAP_END)
+		{
+			for (int i = 0 ; i < 31; i++)
+			{
+				for (int j = 0; j < 28; j++)
+				{
 					map[i][j] = map_info[i][j];
 				}
 			}
@@ -72,12 +78,14 @@ namespace game_framework {
 			for (int j = 0; j < 28; j++)
 			{
 				map[i][j] = map_info[i][j];
-				if (map_info[i][j] == 0 || map_info[i][j] == 4) { // 小豆子
+				if (map_info[i][j] == 0 || map_info[i][j] == 4)
+				{ // 小豆子
 					allFoods.push_back(new CFood(10));
 					allFoods.at(foodCount)->LoadBitmap(IDB_FOOD, IDB_FOOD);
 					foodCount++;
 				}
-				else if (map_info[i][j] == 3) { // 大魔豆
+				else if (map_info[i][j] == 3)
+				{ // 大魔豆
 					allFoods.push_back(new CFood(50));
 					allFoods.at(foodCount)->LoadBitmap(IDB_MAGICFOOD, IDB_BLACKBMP);
 					foodCount++;
@@ -275,7 +283,8 @@ namespace game_framework {
 		walls[3].LoadBitmap(IDB_MAP3);
 	}
 
-	vector<CFood *>* CGameMap::getAllFoods() {
+	vector<CFood *>* CGameMap::getAllFoods()
+	{
 		return &allFoods;
 	}
 
@@ -304,7 +313,8 @@ namespace game_framework {
 			break;
 		}
 
-		if (MapType == MAP_END) {
+		if (MapType == MAP_END)
+		{
 			allFoods.at(0)->SetTopLeft(X + (MW * 16), Y + (MH * 17));
 			allFoods.at(0)->OnShow();
 		}
@@ -313,7 +323,8 @@ namespace game_framework {
 			{
 				for (int j = 0; j < 28; j++)
 				{
-					switch (map[i][j]){
+					switch (map[i][j])
+					{
 						case 0:
 							allFoods.at(currentFoodIndex)->SetTopLeft(X + (MW*j), Y + (MH*i));
 							allFoods.at(currentFoodIndex)->OnShow();
@@ -335,19 +346,6 @@ namespace game_framework {
 	}
 	int **CGameMap::GetMap()
 	{
-		//int **new_map;
-		//new_map = new int*[31];
-		//for (int i = 0; i < 31; i++)
-		//{
-		//	new_map[i] = new int[28];
-		//}
-		//
-		//for (int i = 0; i < 31; i++) {
-		//	for (int j = 0; j < 28; j++)
-		//	{
-		//		new_map[i][j] = map[i][j];
-		//	}
-		//}
 		return map;
 	}
 }

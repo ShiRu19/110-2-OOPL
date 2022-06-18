@@ -38,10 +38,6 @@
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
 
-#include "CEraser.h"
-#include "CBall.h"
-#include "CBouncingBall.h"
-
 #include "CGhost.h"
 #include "CGameMap.h"
 #include "CPacman.h"
@@ -74,7 +70,6 @@ namespace game_framework {
 	public:
 		CGameStateInit(CGame *g);
 		void OnInit();  								// 遊戲的初值及圖形設定
-		void OnBeginState();							// 設定每次重玩所需的變數
 		void OnKeyUp(UINT, UINT, UINT); 				// 處理鍵盤Up的動作
 		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 	protected:
@@ -97,42 +92,17 @@ namespace game_framework {
 		CMovingBitmap label_gameContent;                // 遊戲內容標籤
 		CMovingBitmap label_operation;                  // 操作按鍵標籤
 		CMovingBitmap label_combination;                // 組合按鍵標籤
+		CMovingBitmap author;                           // 作者
 		bool          isAbout;                          // 是否在about頁面
 		bool          label[3];                         // 目前點擊標籤
-
-		double startGame_x1;
-		double startGame_y1;
-		double startGame_x2;
-		double startGame_y2;
-
-		double about_x1;
-		double about_y1;
-		double about_x2;
-		double about_y2;
-
-		double back_x1;
-		double back_x2;
-		double back_y1;
-		double back_y2;
-
-		double content_x1;
-		double content_x2;
-		double content_y1;
-		double content_y2;
-
-		double operation_x1;
-		double operation_x2;
-		double operation_y1;
-		double operation_y2;
-
-		double combination_x1;
-		double combination_x2;
-		double combination_y1;
-		double combination_y2;
+		
+		double startGame_coordinate[4];                 // Start Game 文字座標
+		double about_coordinate[4];                     // About 文字座標
+		double back_coordinate[4];                      // back 符號座標
+		double content_coordinate[4];                   // 遊戲內容 標籤座標
+		double operation_coordinate[4];                 // 遊戲操作 標籤座標
+		double combination_coordinate[4];               // 組合密技 標籤座標
 	};
-
-
-
 
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
@@ -142,40 +112,32 @@ namespace game_framework {
 	public:
 		CGameStateRun(CGame *g);
 		~CGameStateRun();
-		void OnBeginState();							// 設定每次重玩所需的變數
-		void OnInit();  								// 遊戲的初值及圖形設定
+		void OnBeginState();			  // 設定每次重玩所需的變數
+		void OnInit();  				  // 遊戲的初值及圖形設定
 		void OnKeyDown(UINT, UINT, UINT);
-		void OnKeyUp(UINT, UINT, UINT);
-		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
-		void OnLButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
-		void OnMouseMove(UINT nFlags, CPoint point);	// 處理滑鼠的動作 
-		void OnRButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
-		void OnRButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
-	protected:
-		void OnMove();									// 移動遊戲元素
-		void OnShow();									// 顯示這個狀態的遊戲畫面
+		void OnKeyUp(UINT, UINT, UINT);	  
+	protected:							  
+		void OnMove();					  // 移動遊戲元素
+		void OnShow();					  // 顯示這個狀態的遊戲畫面
 	private:
-		CGameMap        gameMap;    // 地圖
-		const int       NUMMAPS;    // 地圖的總數
-		const int		NUMBALLS;	// 球的總數
-		CMovingBitmap   completed;  // 完成圖
-		CMovingBitmap   gameover;   // 失敗圖
-		CMovingBitmap	background;	// 背景圖
-		CMovingBitmap	help;		// 說明圖
-		CPacman         c_PacMan;   // 黃色小精靈
-		CGhost          ghost[4];     // 幽靈們
-		//vector<CFood>   foods;      // 小豆子+大魔豆
-		int             initFoods;  // 原始豆子數量
-		int             remainFoods;// 場上剩餘豆子
-		CScore          myScore;    // 總分數
-		CLevel          myLevel;    // 關卡等級
-		CLife           myLife;     // 生命值
-		int             ghostDelay; // 幽靈出發的delay時間
-		bool            isCompleted;// 通關
-		bool            ctrlDown;   // 是否按下Ctrl鍵
-		int             runningTime;// 執行時間
-		int             stateDelay; // 進入Over狀態前的Delay
-		void            GameRestart(); // 重新開始遊戲
+		const int       NUMMAPS;          // 地圖的總數
+		const int		NUMBALLS;	      // 球的總數
+		CGameMap        gameMap;          // 地圖
+		CMovingBitmap   completed;        // 完成圖
+		CMovingBitmap   gameover;         // 失敗圖
+		CPacman         c_PacMan;         // 黃色小精靈
+		CGhost          ghost[4];         // 幽靈們
+		CScore          myScore;          // 總分數
+		CLevel          myLevel;          // 關卡等級
+		CLife           myLife;           // 生命值
+		int             runningTime;      // 執行時間
+		int             ghostDelay;       // 幽靈出發的delay時間
+		int             stateDelay;       // 進入Over狀態前的Delay
+		int             initFoods;        // 原始豆子數量
+		int             remainFoods;      // 場上剩餘豆子
+		bool            isCompleted;      // 通關
+		bool            ctrlDown;         // 是否按下Ctrl鍵
+		void            GameRestart();    // 重新開始遊戲
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -186,16 +148,13 @@ namespace game_framework {
 	class CGameStateOver : public CGameState {
 	public:
 		CGameStateOver(CGame *g);
-		void OnBeginState();							// 設定每次重玩所需的變數
 		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void OnInit();
 	protected:
-		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		CMovingBitmap Restart;
 		CMovingBitmap Exit;
 		int counter;	                                // 倒數之計數器
 	};
-
 }
